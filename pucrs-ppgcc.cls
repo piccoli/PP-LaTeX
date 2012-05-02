@@ -1,0 +1,1099 @@
+%% Copyright (C) 2012 Ricardo Piccoli <rfbpiccoli at gmail.com>
+%%
+%% This program is free software; you can redistribute it and/or modify
+%% it under the terms of the GNU General Public License as published by
+%% the Free Software Foundation; either version 2 of the License, or
+%% (at your option) any later version.
+%%
+%% This program is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+%%
+%% You should have received a copy of the GNU General Public License
+%% along with this program; if not, write to the Free Software
+%% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+%%
+%----------------------------------------------------------------------------------
+% Classe LaTeX para monografias, teses e dissertações -- PPGCC/PUCRS (modelo 2009)
+%
+% ATENÇÃO! O modelo implementado por esta classe NÃO é oficial do
+% PPGCC e não implementa todas as normas de formatação propostas
+% pelo PPGCC, ou ainda, pela Biblioteca Central da PUCRS. Desta
+% forma, não é possível garantir que sua tese ou dissertação será
+% homologada pelo simples uso esta classe. Fique atento às normas
+% documentadas neste link:
+% http://www.inf.pucrs.br/alunos/PPGCC/ModeloTeseDiMono/padrao_dissertacoes_teses_ataCC21_2010_v3.pdf
+%
+% Requisitos: É recomendado a instalação da versão mais
+% recente da distribuição TeXLive (para Windows e UNIXes):
+% www.tug.org/texlive/. Nas distribuições Linux, os nomes dos
+% pacotes necessários são:
+%   - texlive-basic
+%   - texlive-fontsrecommended
+%   - texlive-langenglish
+%   - texlive-langportuguese
+%   - texlive-latex
+%   - texlive-latexextra
+%   - texlive-latexrecommended
+%   - xcolor
+%
+% Para a distribuição Ubuntu Linux, provavelmente o mais fácil é
+% instalar o pacote texlive-full.
+%
+% Limitações:
+%   - funciona apenas com impressão em frente e verso.
+%   - funciona apenas em dois idiomas: português e inglês
+%   - formata PEP's, monografias, teses e propostas de tese
+%   - a ordenação automática da lista de siglas/abreviaturas ainda
+%   requer um utilitário externo (sort.sh). Porém, por questões
+%   de usablidade e compatibilidade da classe, é desejável uma
+%   implementação interna deste procedimento.
+%
+% Falta:
+%   - Corrigir problemas no estilo bibliográfico (formatação de acentos, etc.)
+%
+% Desejável (para futuras versões):
+%   - Formatação para impressão em um lado.
+%   - Monografia em outros idiomas além de português e inglês
+%   - O código dependente de idioma está muito amarrado. Como fazer melhor?
+%   - Documentar a classe com o pacote 'doc' e organizar com o DocStrip (texdoc doc; texdoc docstrip).
+%   - Macro interna do TeX para realizar a ordenação lexicográfica
+%   das listas de siglas e abreviaturas. Ver 'Sorting Within TeX',
+%,  de Kees Van der Laan, TUGboat, volume 14 (1993), No. 3 (http://www.ctan.org/pkg/laansort).
+%
+% Obs.: este modelo foi criado inicialmente apenas para suprir as
+% necessidades do autor quanto à conformidade ao formato do
+% PPGCC/PUCRS (especialmente o estilo bibliográfico). Caso lhe
+% falte alguma formatação em particular do padrão, ou por ventura
+% tenha sugestões, comentários, ou ainda, tenha encontrado um erro
+% no formato, por favor entre em contato com o autor pelo e-mail
+% <rfbpiccoli at gmail.com> (Ricardo Piccoli).
+%----------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesClass{pucrs-ppgcc}[2012/04/26 ^^J
+------------------------------------------------------------^^J
+Classe para monografias, teses e dissertações -- PPGCC/PUCRS^^J
+^^J
+Para resolução de problemas ou sugestões, entre em contato pelo^^J
+e-mail <rfbpiccoli at gmail.com>^^J
+------------------------------------------------------------]
+
+\global\gdef\PP@english{english}
+\global\gdef\PP@brazil{brazil}
+\global\let\PP@language\PP@brazil
+\def\PP@erro{\ClassError{Opção '\CurrentOption' não permitida para este formato!}}
+\DeclareOption{letterpaper}{\PP@erro}
+\DeclareOption{legalpaper}{\PP@erro}
+\DeclareOption{executivepaper}{\PP@erro}
+\DeclareOption{a5paper}{\PP@erro}
+\DeclareOption{b5paper}{\PP@erro}
+\DeclareOption{landscape}{\PP@erro}
+\DeclareOption{twocolumn}{\PP@erro}
+\DeclareOption{notitlepage}{\PP@erro}
+\DeclareOption{oneside}{\PP@erro}
+\DeclareOption{10pt}{\PP@erro}
+\DeclareOption{11pt}{\PP@erro}
+\DeclareOption{english}{\global\let\PP@language\PP@english}
+\DeclareOption{portuguese}{\global\let\PP@language\PP@brazil}
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{report}}
+\ProcessOptions
+%\ExecuteOptions{12pt,onecolumn,twoside,titlepage,a4paper,openright,final}
+\LoadClass[12pt,onecolumn,twoside,titlepage,a4paper,openright,final]{report}[2007/10/19]
+
+\RequirePackage[T1]{fontenc}[2005/09/27]
+\RequirePackage[utf8x]{inputenc}[2008/03/30]
+\RequirePackage[english,brazil]{babel}[2008/07/06]
+\RequirePackage[a4paper]{geometry}[2010/09/12]
+\RequirePackage{textcomp}[2005/09/27]
+\RequirePackage{lmodern}[2009/10/30]
+\RequirePackage[lm]{sfmath}[2007/08/27]
+\RequirePackage{indentfirst}[1995/11/23]
+\RequirePackage{setspace}[2000/12/01]
+\RequirePackage{textcase}[2004/10/07]
+%\RequirePackage{graphicx}[1999/02/16]
+\RequirePackage{float}[2001/11/08]
+\RequirePackage{amsmath}[2000/07/18]
+\RequirePackage{amssymb}[2009/06/22]
+\RequirePackage{amsfonts}[2009/06/22]
+\RequirePackage{url}
+\RequirePackage[table]{xcolor}[2007/01/21]
+%\RequirePackage[colorlinks=true,hidelinks,urlcolor=blue]{hyperref}[2011/04/07]
+%\RequirePackage[colorlinks=true,allcolors=,urlcolor=blue]{hyperref}[2011/04/07]
+% Este pacote sofreu muitas alterações recentemente. Neste caso, é
+% melhor fazer justiça com versões um pouco mais antigas.
+\RequirePackage[colorlinks=true,anchorcolor=,citecolor=,%
+                filecolor=,linkcolor=,menucolor=,runcolor=,%
+                urlcolor=blue]{hyperref}[2009/10/09]
+%\RequirePackage{algorithm}[2009/08/24]
+%\RequirePackage{algorithmic}[2009/08/24]
+%\RequirePackage{subfigure}[2002/03/15]
+%\RequirePackage{multirow}
+
+%----------------------------------------------------------------------------------
+% Seleciona o idioma o mais cedo possível
+%
+% TODO Necessário?
+%----------------------------------------------------------------------------------
+%\expandafter\selectlanguage\expandafter{\PP@language}
+
+%----------------------------------------------------------------------------------
+% Redefine o tamanho da fonte \large para exatamente 14pt, e 18pt de
+% espaçamento entre baselines.
+%
+% TODO Necessário?
+%----------------------------------------------------------------------------------
+% \renewcommand\large{\@setfontsize\large{14}{18}}
+
+%----------------------------------------------------------------------------------
+% Faz um retângulo em volta da caixa #1 com 0.5pt de margem, para
+% depuração. Evitei o \framebox{} pois desconheço qualquer possível
+% efeito colateral do mesmo.
+%----------------------------------------------------------------------------------
+\long\def\PP@boxit#1{\leavevmode\vbox{
+\hrule\hbox{\vrule\kern.5pt\vbox{
+\kern.5pt\parindent0pt\hbox{#1}\kern.5pt}%
+\kern.5pt\vrule}\hrule}}
+
+%----------------------------------------------------------------------------------
+% Preenche a caixa atual com uma linha horizontal
+%----------------------------------------------------------------------------------
+\def\PP@hrulefill{\leavevmode\leaders\hrule\hfill}
+
+%----------------------------------------------------------------------------------
+% Novos comandos e alocação de registradores (públicos e internos). Comandos
+% internos começam com o prefixo PP@.
+%----------------------------------------------------------------------------------
+\newbox\PP@tmpbox
+\newdimen\PP@tmpdim
+\newdimen\PP@tmpdimi
+% Definições dependentes de idioma.
+% TODO Ficou nojento. Tem como ser mais elegante usando o pacote babel?
+\ifx\PP@language\PP@brazil
+  \newcommand*{\PP@Uni}{Pontif\'{i}cia Universidade Cat\'{o}lica do Rio Grande do Sul}
+  \newcommand*{\PP@Fac}{Faculdade de Inform\'{a}tica}
+  \newcommand*{\PP@Dep}{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
+%  \newcommand*{\PP@undef}{n\~{a}o definido}
+  \edef\PP@undef{n\~{a}o definido}
+  \newcommand*{\tese}{Tese}
+  \newcommand*{\pep}{Plano de estudo e pesquisa}
+  \newcommand*{\ptese}{Proposta de tese}
+  \newcommand*{\dissertacao}{Disserta\c{c}\~{a}o}
+  \newcommand*{\monografia}{Monografia}
+  \newcommand*{\doutor}{Doutor}
+  \newcommand*{\mestre}{Mestre}
+  \newcommand*{\bacharel}{Bacharel}
+  \newcommand*{\PP@orientadorname}{Orientador}
+  \newcommand*{\PP@descricao}{%
+\PP@tipo{} apresentada como requisito parcial \`{a}
+obten\c{c}\~{a}o do grau de \PP@grau{} em Ci\^{e}ncia da
+Computa\c{c}\~{a}o na \PP@Uni{}.}%
+  \newcommand*{\PP@fichaname}{Substitua esta p\'{a}gina pela Ficha Catalogr\'{a}fica}
+  \newcommand*{\PP@termoname}{Substitua esta p\'{a}gina pelo Termo de Apresenta\c{c}\~{a}o}
+  \newcommand*{\PP@dedicatorianame}{Dedicat\'{o}ria}
+  \newcommand*{\PP@agradecimentosname}{Agradecimentos}
+  \newcommand*{\PP@bibname}{Refer\^{e}ncias}
+  \newcommand*{\PP@anexoname}{Anexo}
+  % TODO Para usar os estilos bibliográficos de forma independente desta
+  % classe, copie estas definições para o seu documento.
+  \gdef\bbland{e}
+  \gdef\bbletal{et~al.}
+  \gdef\bbleditors{editores}
+  \gdef\bbleditor{editor}
+  \gdef\bbledby{editado por}
+  \gdef\bbledn{ed.}
+  \gdef\bblvol{vol.}
+  \gdef\bblof{de}
+  \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+  \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+  \gdef\bblin{in}
+  \gdef\bblpp{pp.}
+  \gdef\bblp{pp.}
+  \gdef\bbleidpp{p}
+  \gdef\bblchap{cap.}
+  \gdef\bbltechrep{Relat\'{o}rio T\'{e}cnico}
+  \gdef\bblmthesis{Disserta\c{c}\~{a}o de Mestrado}
+  \gdef\bblphdthesis{Tese de Doutorado}
+  \gdef\bbljan{Jan}
+  \gdef\bblfeb{Fev}
+  \gdef\bblmar{Mar}
+  \gdef\bblapr{Abr}
+  \gdef\bblmay{Maio}
+  \gdef\bbljun{Jun}
+  \gdef\bbljul{Jul}
+  \gdef\bblaug{Ago}
+  \gdef\bblsep{Set}
+  \gdef\bbloct{Out}
+  \gdef\bblnov{Nov}
+  \gdef\bbldec{Dez}
+\else
+  \newcommand*{\PP@Uni}{Pontifical Catholic University of Rio Grande do Sul}
+  \newcommand*{\PP@Fac}{Faculty of Informatics}
+  \newcommand*{\PP@Dep}{Graduate Program in Computer Science}
+%  \newcommand*{\PP@undef}{not defined}
+  \edef\PP@undef{not defined}
+  \newcommand*{\tese}{Thesis}
+  \newcommand*{\pep}{Research plan}
+  \newcommand*{\ptese}{Thesis proposal}
+  \newcommand*{\dissertacao}{Dissertation}
+  \newcommand*{\monografia}{Monograph}
+  \newcommand*{\doutor}{Ph.\ D.}
+  \newcommand*{\mestre}{Master}
+  \newcommand*{\bacharel}{Bachelor}
+  \newcommand*{\PP@orientadorname}{Advisor}
+  \newcommand*{\PP@descricao}{%
+\PP@tipo{} presented as partial requirement for
+obtaining the degree of \PP@grau{} in Computer Science
+at \PP@Uni{}.}%
+  \newcommand*{\PP@fichaname}{Replace this page with the Library Catalog Information}
+  \newcommand*{\PP@termoname}{Replace this page with the Presentation Term}
+  \newcommand*{\PP@dedicatorianame}{\null}
+  \newcommand*{\PP@agradecimentosname}{Acknowledgments}
+  \newcommand*{\PP@bibname}{References}
+  \newcommand*{\PP@anexoname}{Attachment}
+  % TODO Para usar os estilos bibliográficos de forma independente desta
+  % classe, copie estas definições para o seu documento.
+  \gdef\bbland{and}
+  \gdef\bbletal{et~al.}
+  \gdef\bbleditors{editors}
+  \gdef\bbleditor{editor}
+  \gdef\bbledby{edited by}
+  \gdef\bbledn{ed.}
+  \gdef\bblvol{vol.}
+  \gdef\bblof{of}
+  \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+  \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+  \gdef\bblin{in}
+  \gdef\bblpp{pp.}
+  \gdef\bblp{pp.}
+  \gdef\bbleidpp{p}
+  \gdef\bblchap{chap.}
+  \gdef\bbltechrep{Technical Report}
+  \gdef\bblmthesis{Master's Thesis}
+  \gdef\bblphdthesis{Ph.D. Thesis}
+  \gdef\bbljan{Jan}
+  \gdef\bblfeb{Feb}
+  \gdef\bblmar{Mar}
+  \gdef\bblapr{Apr}
+  \gdef\bblmay{May}
+  \gdef\bbljun{Jun}
+  \gdef\bbljul{Jul}
+  \gdef\bblaug{Aug}
+  \gdef\bblsep{Sep}
+  \gdef\bbloct{Oct}
+  \gdef\bblnov{Nov}
+  \gdef\bbldec{Dec}
+\fi
+
+\newcommand*{\PP@Cid}{Porto~Alegre}
+\let\PP@grau=\PP@undef
+\let\PP@tipo=\monografia
+\newcommand*{\tipotrabalho}[1]{\global\let\PP@tipo=#1
+  \ifx#1\ptese\grau{\doutor}\else
+  \ifx#1\tese\grau{\doutor}\else
+  \ifx#1\dissertacao\grau{\mestre}\fi\fi\fi}
+\newcommand*{\grau}[1]{\global\let\PP@grau=#1}
+\edef\PP@orientador{\PP@undef}
+\edef\PP@coorientador{\PP@undef}
+\newcommand*{\orientador}[1]{\renewcommand*{\PP@orientador}{#1}}
+\newcommand*{\coorientador}[1]{\renewcommand*{\PP@coorientador}{#1}}
+
+%----------------------------------------------------------------------------------
+% Redefinindo o comando interno do LaTeX para armazenar títulos,
+% pois precisamos do título em dois idiomas
+%----------------------------------------------------------------------------------
+\def\@titleen{\@latex@error{No \noexpand\title given}\@ehc}
+\def\@titlept{\@latex@error{Nenhum \noexpand\title informado}\@ehc}
+\global\let\@title=\@titleen
+% #1: título em português
+% #2: título em inglês
+\def\title#1#2{\gdef\@titlept{#1}\gdef\@titleen{#2}
+\ifx\PP@language\PP@brazil \global\let\@title=\@titlept
+\else \global\let\@title=\@titleen\fi}
+
+%----------------------------------------------------------------------------------
+% Formatação da capa
+%----------------------------------------------------------------------------------
+\renewcommand\maketitle{\begin{titlepage}%
+\renewcommand*{\baselinestretch}{1.0}%
+\hoffset=-1in
+\voffset=-1in
+\hsize=\paperwidth
+\vsize=\paperheight
+\evensidemargin0pt
+\oddsidemargin0pt
+\headheight0pt
+\headsep0pt
+\topskip0pt
+\topmargin0pt
+\footskip0pt
+\parfillskip0pt
+\parskip0pt
+\parindent0pt
+\global\let\thanks\relax
+\global\let\date\relax
+\global\let\@thanks\@empty
+\global\let\@date\@empty
+\let\footnote\thanks
+\vbox to \vsize{%
+\kern 4ex
+%----------------------------------------------------------------------------------
+% Cabeçalho (universidade + faculdade + programa)
+%----------------------------------------------------------------------------------
+\setbox\PP@tmpbox=\vbox{%
+\parskip0pt
+\leftskip 0pt plus1fil
+\rightskip 0pt plus1fil
+\hyphenpenalty 10000\relax
+\bfseries
+\leavevmode\hbox{\MakeUppercase{\PP@Uni}}\par
+\leavevmode\hbox{\MakeUppercase{\PP@Fac}}\par
+\leavevmode\hbox{\MakeUppercase{\PP@Dep}}\par
+}%
+\PP@tmpdim=9.5cm
+\advance \PP@tmpdim by-\ht\PP@tmpbox
+\advance \PP@tmpdim by-\dp\PP@tmpbox
+\box\PP@tmpbox
+\vskip\PP@tmpdim
+%----------------------------------------------------------------------------------
+% Retângulo central (título + autor)
+%----------------------------------------------------------------------------------
+\hskip5cm\vbox to 7.7cm{%
+\hsize=11.5cm
+\parskip 6ex
+\leftskip 0pt plus1fil
+\rightskip 0pt plus1fil
+\leavevmode\kern 2.5em\vbox{%
+\hsize=11.5cm
+\advance\hsize by-5em
+\hbox{}\par
+{\Large\bfseries\expandafter\uppercase\expandafter{\@title}}\par
+{\large\bfseries\expandafter\uppercase\expandafter{\@author}}\par
+\vfil\hbox{}}\kern 2.5em
+}%
+\vskip 7.5ex
+%----------------------------------------------------------------------------------
+% Descrição da monografia ("Tese apresentada como requisito...")
+%----------------------------------------------------------------------------------
+\hbox{}\hfill\vbox{%
+\hsize=23cm
+\divide\hsize by3\relax
+\hyphenpenalty 10000\relax
+\emergencystretch=2em
+\PP@descricao\hfil\hbox{}}%
+\hskip 35pt\hbox{}\par
+\vskip 7.5ex
+%----------------------------------------------------------------------------------
+% Orientador / Co-Orientador
+%----------------------------------------------------------------------------------
+\hbox{\vbox{%
+\leftskip 0pt plus1fil
+\rightskip 0pt plus1fil
+\leavevmode\hbox{\PP@orientadorname{}: Prof.\ \PP@orientador}%
+\ifx\PP@coorientador\PP@undef\relax%
+\else\break\hbox{Co-\PP@orientadorname{}: Prof.\ \PP@coorientador}%
+\fi}}%
+\vfill
+%----------------------------------------------------------------------------------
+% Cidade / ano
+%----------------------------------------------------------------------------------
+\hbox{\vbox{%
+\leftskip 0pt plus1fil
+\rightskip 0pt plus1fil
+\leavevmode\bfseries\hbox{\PP@Cid}\break%
+\hbox{\number\year}}}%
+\kern 3ex%
+}%
+\end{titlepage}%
+\global\let\maketitle\relax
+\global\let\@author\@empty
+\global\let\@title\@empty
+\global\let\title\relax
+\global\let\author\relax
+\global\let\and\relax
+\global\let\PP@Uni\@empty
+\global\let\PP@Fac\@empty
+\global\let\PP@Dep\@empty
+\global\let\PP@Cid\@empty
+\global\let\PP@orientadorname\@empty
+\global\let\PP@descricao\@empty
+\global\let\PP@orientador\@empty
+\global\let\PP@coorientador\@empty
+\global\let\PP@grau\@empty
+\global\let\tipotrabalho\relax
+\global\let\grau\relax
+\global\let\orientador\relax
+\global\let\coorientador\relax
+\newpage\thispagestyle{empty}%
+}
+
+%----------------------------------------------------------------------------------
+% Gera uma página para ser substituída na versão final (ficha
+% catalográfica ou termo de apresentação)
+%----------------------------------------------------------------------------------
+\newcommand*\PP@replacepage[1]{%
+\hbox{}\newpage\thispagestyle{empty}%
+\vbox to \vsize{%
+\parfillskip0pt
+\parskip0pt
+%\baselineskip0pt
+\parindent0pt
+\leftskip 0pt plus1fil
+\rightskip 0pt plus1fil
+\hbox{}\vfil
+\hbox{}\hfil\hbox{\vbox{\hsize=5in\bfseries\Huge\MakeTextUppercase{#1}}}%
+\hfil\hbox{}\vfil\hbox{}}%
+\newpage\thispagestyle{empty}%
+}
+
+%----------------------------------------------------------------------------------
+% Gera as páginas para serem substituídas pela ficha
+% catalográfica e o termo de apresentação
+%----------------------------------------------------------------------------------
+\newcommand*{\fillers}{%
+   \PP@replacepage{\PP@fichaname}%
+   \PP@replacepage{\PP@termoname}%
+   \hbox{}\newpage
+   %\renewcommand*{\baselinestretch}{1.5}
+}
+
+%----------------------------------------------------------------------------------
+% Formata uma página de capítulo pré-textual genérica
+%----------------------------------------------------------------------------------
+\newenvironment{pretextual}[1]
+     {%
+       \cleardoublepage%
+       \thispagestyle{empty}%
+       {\parindent\z@%
+        \centering%
+        \normalfont%
+        \interlinepenalty\@M%
+        \bfseries\MakeUppercase{#1}\par\nobreak%
+        \normalfont\normalsize%
+        \vskip 19.5ex}%
+       \@afterheading%
+    }{\newpage\thispagestyle{empty}}%
+
+%----------------------------------------------------------------------------------
+% Dedicatória
+%
+% #1: texto da dedicatória.
+%----------------------------------------------------------------------------------
+\newcommand*{\dedicatoria}[1]{%
+\begin{pretextual}{\PP@dedicatorianame}%
+#1%
+\end{pretextual}%
+\global\let\PP@dedicatorianame\@empty%
+}
+
+%----------------------------------------------------------------------------------
+% Epígrafe (interno, só formata o pensamento na página atual)
+%
+% #1: frase.
+% #2: autor.
+%----------------------------------------------------------------------------------
+\newcommand*{\PP@epigrafe}[2]{%
+\null\vfill\null\hfill%
+\parbox[t]{3.32in}{%
+\noindent\parskip0pt%
+``#1''\par
+(#2)\par
+}}
+
+%----------------------------------------------------------------------------------
+% Epígrafe
+%
+% #1: texto do pensamento (sem aspas)
+% #2: autor (sem parênteses)
+%----------------------------------------------------------------------------------
+\newcommand*{\epigrafe}[2]{%
+\cleardoublepage%
+\thispagestyle{empty}%
+\normalfont\normalsize%
+\PP@epigrafe{#1}{#2}%
+\newpage\thispagestyle{empty}%
+}
+
+%----------------------------------------------------------------------------------
+% Dedicatória e epígrafe (na mesma página)
+%
+% #1: texto da dedicatória.
+% #2: texto do pensamento (sem aspas)
+% #3: autor (sem parênteses)
+%----------------------------------------------------------------------------------
+\newcommand*{\dedigrafe}[3]{%
+\dedicatoria{#1\par\PP@epigrafe{#2}{#3}}%
+}%
+
+%----------------------------------------------------------------------------------
+% Agradecimentos
+%
+% #1: texto do agradecimento
+%----------------------------------------------------------------------------------
+\newenvironment{agradecimentos}
+  {\begin{pretextual}{\PP@agradecimentosname}}%
+  {\end{pretextual}\global\let\PP@agradecimentosname\@empty}
+
+%----------------------------------------------------------------------------------
+% Abstract/Resumo (comando interno)
+%
+% #1: título da página ("Resumo" ou "Abstract")
+% #2: título das palavras chave ("Palavras Chave" ou "Keywords")
+% #3: título da monografia
+% #4: palavras chave
+%----------------------------------------------------------------------------------
+\newenvironment{PP@abstract}[4]
+     {%
+       \def\PP@kwname{#2}%
+       \def\PP@kwtext{#4}%
+       \cleardoublepage%
+       \thispagestyle{empty}{%
+        \parindent\z@%
+        \centering%
+        \normalfont%
+        \interlinepenalty\@M%
+        \large\bfseries\MakeUppercase{#3}\par\nobreak%
+        \normalfont\normalsize%
+        \vskip 19.5ex}{%
+        \parindent\z@%
+        \centering%
+        \normalfont%
+        \interlinepenalty\@M%
+        \bfseries\MakeUppercase{#1}\par\nobreak%
+        \normalfont\normalsize%
+        \vskip 19.5ex}%
+       \@afterheading%
+    }%
+    {\null\vskip 2cm%
+    \begin{description}%
+      \item[\PP@kwname{}:] \PP@kwtext{}.%
+    \end{description}%
+    \let\PP@kwname\@empty%
+    \let\PP@kwtext\@empty%
+    \newpage\thispagestyle{empty}}
+
+%----------------------------------------------------------------------------------
+% Resumo em língua portuguesa
+%
+% #1: palavras chave
+%----------------------------------------------------------------------------------
+\newenvironment{resumo}[1]%
+    {\begin{hyphenrules}{brazil}%
+     \begin{PP@abstract}{Resumo}{Palavras Chave}{\@titlept}{#1}}%
+    {\global\let\@titlept\@empty
+     \end{PP@abstract}%
+     \end{hyphenrules}}
+
+%----------------------------------------------------------------------------------
+% Resumo em língua inglesa
+%
+% #1: palavras chave
+%----------------------------------------------------------------------------------
+\renewenvironment{abstract}[1]%
+    {\begin{hyphenrules}{english}%
+     \begin{PP@abstract}{Abstract}{Keywords}{\@titleen}{#1}}%
+    {\global\let\@titleen\@empty
+     \end{PP@abstract}%
+     \end{hyphenrules}}
+
+%----------------------------------------------------------------------------------
+% Lista de siglas
+%----------------------------------------------------------------------------------
+\ifx\PP@language\PP@brazil
+  \newcommand*\listacronymname{Lista de Siglas}
+\else
+  \newcommand*\listacronymname{List of Acronyms}
+\fi
+\newcommand\listofacronyms{\chapter*{\listacronymname}\@starttoc{loa}}
+%----------------------------------------------------------------------------------
+% Comando para inserir novas siglas:
+%
+% \sigla{DDS}{Definição da Sigla}
+%----------------------------------------------------------------------------------
+\newcommand{\sigla}[2]{\addcontentsline{loa}{acronym}{\MakeUppercase{#1}\nobreakspace--\nobreakspace #2}}
+\newcommand*{\l@acronym}[2]{%
+ \vskip \z@ \@plus.2\p@
+ {\leftskip 1.5em\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+  \parindent 1.5em\relax\@afterindenttrue
+  \interlinepenalty\@M
+  \leavevmode
+  \@tempdima 2.3em\relax
+  \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+  {#1}\nobreak\par}%
+}
+
+%----------------------------------------------------------------------------------
+% Lista de abreviaturas
+%----------------------------------------------------------------------------------
+\ifx\PP@language\PP@brazil
+  \newcommand*\listabbrevname{Lista de Abreviaturas}
+\else
+  \newcommand*\listabbrevname{List of Abbreviations}
+\fi
+\newcommand\listofabbreviations{\chapter*{\listabbrevname}\@starttoc{lob}}
+%----------------------------------------------------------------------------------
+% Comando para inserir novas abreviaturas:
+%
+% \abrev{Abrev}{Abreviatura} ("Abrev" SEM PONTO no final)
+%----------------------------------------------------------------------------------
+\newcommand{\abrev}[2]{\addcontentsline{lob}{abbreviation}{#1.\nobreakspace--\nobreakspace #2}}
+\global\let\l@abbreviation\l@acronym
+
+%----------------------------------------------------------------------------------
+% Lista de símbolos
+%----------------------------------------------------------------------------------
+\ifx\PP@language\PP@brazil
+  \newcommand*\listsymbolname{Lista de S\'{i}mbolos}
+\else
+  \newcommand*\listsymbolname{List of Symbols}
+\fi
+\newcommand\listofsymbols{\chapter*{\listsymbolname}\@starttoc{los}}
+%----------------------------------------------------------------------------------
+% Comando para inserir novos símbolos:
+%
+% \simbolo{Hz}{Hertz}
+%----------------------------------------------------------------------------------
+\newcommand{\simbolo}[2]{\addcontentsline{los}{symbol}{#1\nobreakspace--\nobreakspace #2}}
+\newcommand*\l@symbol{\@dottedtocline{1}{1.5em}{2.3em}}
+
+%----------------------------------------------------------------------------------
+% Redefinindo formatação do cabeçalho: apenas o número da página em
+% fonte menor que a do texto
+%----------------------------------------------------------------------------------
+\def\ps@headings{%
+  \let\@oddfoot\@empty\let\@evenfoot\@empty
+  % Aqui
+  \def\@evenhead{\small\thepage}%\hfil\slshape\leftmark}%
+  % e aqui
+  \def\@oddhead{\hfil\small\thepage}%{\slshape\rightmark}\hfil\thepage}%
+  \let\@mkboth\markboth
+\def\chaptermark##1{%
+  \markboth {\MakeUppercase{%
+    \ifnum \c@secnumdepth >\m@ne
+        \@chapapp\ \thechapter. \ %
+    \fi
+    ##1}}{}}%
+\def\sectionmark##1{%
+  \markright {\MakeUppercase{%
+    \ifnum \c@secnumdepth >\z@
+      \thesection. \ %
+    \fi
+    ##1}}}}
+
+%----------------------------------------------------------------------------------
+% Redefinindo o comando de legendas da classe report para
+% incluir 'Figura' ou 'Tabela' ao lado do número de cada uma
+% nas listas de figuras e tabelas.
+%----------------------------------------------------------------------------------
+\long\def\@caption#1[#2]#3{%
+  \par
+  \addcontentsline{\csname ext@#1\endcsname}{#1}%
+    {\csname #1name\endcsname\nobreakspace\protect\numberline{\csname the#1\endcsname\hfil\nobreakspace--\nobreakspace}{\ignorespaces #2}}%
+  \begingroup
+    \@parboxrestore
+    \if@minipage
+      \@setminipage
+    \fi
+    \normalsize
+    \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
+  \endgroup}
+
+%----------------------------------------------------------------------------------
+% Redefinindo o comando de legendas da classe report para
+% substituir 'Figura x.y:' por Figura x.y - '
+%----------------------------------------------------------------------------------
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  % Aqui
+%  \sbox\@tempboxa{#1: #2}%
+  \sbox\@tempboxa{#1 -- #2}%
+  \ifdim \wd\@tempboxa >\hsize
+    #1: #2\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+
+%----------------------------------------------------------------------------------
+% Redefinindo o sumário para automaticamente usar frente e verso e
+% configurar o estilo da página para o resto do trabalho.
+%----------------------------------------------------------------------------------
+\renewcommand\tableofcontents{%
+% Desnecessário
+%    \if@twocolumn
+%      \@restonecoltrue\onecolumn
+%    \else
+%      \@restonecolfalse
+%    \fi
+    \chapter*{\contentsname
+        \@mkboth{%
+           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \@starttoc{toc}%
+% Desnecessário
+%    \if@restonecol\twocolumn\fi
+    % Aqui
+    \cleardoublepage
+    \pagestyle{headings}%
+    }
+
+%----------------------------------------------------------------------------------
+% Redefinindo o formato dos capítulos e seções...
+%----------------------------------------------------------------------------------
+\renewcommand\chapter{\cleardoublepage
+%                    \thispagestyle{plain}%
+                    \global\@topnum\z@
+%                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+% Capítulos com numeração ficam alinhados à esquerda com número e
+% a mesma indentação do parágrafo (após o número).
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                         \refstepcounter{chapter}%
+                         \typeout{\thechapter.}%
+                         \addcontentsline{toc}{chapter}%
+                         {\protect\numberline{\thechapter}\expandafter\uppercase\expandafter{#1}}%
+                    \else
+                        \addcontentsline{toc}{chapter}{\expandafter\uppercase\expandafter{#1}}%
+                    \fi
+                    \chaptermark{#1}%
+%                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+%                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                    \@makechapterhead{#2}%
+                    \@afterheading}
+\def\@makechapterhead#1{%
+  {\parindent\z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \leavevmode\hbox to 4em{\large\bfseries\thechapter.\ }%
+%    \large\bfseries\expandafter\uppercase\expandafter{#1}\par\nobreak%
+    \large\bfseries\MakeTextUppercase{#1}\par\nobreak%
+    \normalfont\normalsize%
+    \vskip 6ex
+  }}
+% Capítulos sem numeração ficam centralizados (sumário, listas, resumo, etc.)
+\def\@schapter#1{\@makeschapterhead{#1}%
+                 \@afterheading}
+\def\@makeschapterhead#1{%
+  {\parindent\z@
+    \centering
+    \normalfont
+    \interlinepenalty\@M
+    % Aqui
+    \large\bfseries\MakeTextUppercase{#1}\par\nobreak%
+    \normalfont\normalsize%
+    \vskip 6ex
+  }}
+%----------------------------------------------------------------------------------
+% Redefinindo comando para formatar capítulos no sumário,
+% i. e., com linhas e tudo mais.
+%----------------------------------------------------------------------------------
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    {\leftskip \z@\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+     \parindent \z@ \relax\@afterindenttrue
+     \interlinepenalty\@M
+     \leavevmode
+     \@tempdima 3.2em\relax
+     \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+%     % Aqui
+%     \setbox\PP@tmpbox=\hbox{#2}%
+%     \PP@tmpdim=\wd\PP@tmpbox
+%     \edef\@pnumwidth{\PP@tmpdim}%
+%     %---
+     {\bfseries#1}\nobreak
+     \leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        mu$}\hfill
+     \nobreak
+     \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor\bfseries #2}%
+     \par
+     \penalty\@highpenalty}%
+  \fi}
+%----------------------------------------------------------------------------------
+% Redefinindo comando para formatar seções no sumário,
+% sem indentação.
+%----------------------------------------------------------------------------------
+\renewcommand*\l@section{\@dottedtocline{1}{0em}{3.2em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{0em}{3.2em}}
+
+%----------------------------------------------------------------------------------
+% Redefinindo distância entre pontinhos no sumário
+% para ficarem mais próximos...
+%----------------------------------------------------------------------------------
+\renewcommand\@dotsep{2.5}
+
+%----------------------------------------------------------------------------------
+% Redefinindo comando interno do LaTeX para inserir
+% nomes de capítulos e seções em maiúsculo no sumário...
+%----------------------------------------------------------------------------------
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        \@hangfrom{\hskip #3\relax\@svsec}%
+          \interlinepenalty \@M #8\@@par}%
+    \endgroup
+    \csname #1mark\endcsname{#7}%
+    \addcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+        \protect\numberline{\csname the#1\endcsname}%
+      \fi
+%      #7}%
+      % Aqui
+      \expandafter\uppercase\expandafter{#7}}%
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec #8}%
+      \csname #1mark\endcsname{#7}%
+      \addcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\csname the#1\endcsname}%
+        \fi
+%        #7}}%
+        % Aqui
+        \expandafter\uppercase\expandafter{#7}}}%
+  \fi
+  \@xsect{#5}}
+
+%----------------------------------------------------------------------------------
+% Redefinindo comando interno do LaTeX para substituir um espaço indesejado...
+%----------------------------------------------------------------------------------
+\def\@seccntformat#1{\hbox to \parindent{\csname the#1\endcsname}}
+
+%----------------------------------------------------------------------------------
+% Redefinindo formatação de seções da report.cls
+%----------------------------------------------------------------------------------
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+%                                   {4ex \@plus 1ex \@minus .2ex}%
+                                   {3.5ex \@plus 1ex \@minus .2ex}%
+                                   {5.2ex \@plus.2ex}%
+                                   {\normalfont\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+%                                    {4ex \@plus 1ex \@minus .2ex}%
+                                     {3.5ex \@plus 1ex \@minus .2ex}%
+                                     {5.2ex \@plus.2ex}%
+                                     {\normalfont\normalsize}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {3.25ex \@plus 1ex \@minus .2ex}%
+                                     {1.5ex \@plus.2ex}%
+                                     {\normalfont\normalsize}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {3.25ex \@plus 1ex \@minus .2ex}%
+                                    {1em}%
+                                    {\normalfont\normalsize}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                      {3.25ex \@plus 1ex \@minus .2ex}%
+                                      {1em}%
+                                      {\normalfont\normalsize}}
+
+%----------------------------------------------------------------------------------
+% Ambiente para inserir citações diretas com mais de 3 linhas.
+%
+% Exemplo de uso:
+%
+% De acordo com Fulano (2011, p.~21):
+% \begin{directcite}
+%   bla bla bla bla
+% \end{directcite}
+%
+% Para citações diretas de até 3 linhas, faça assim:
+% De acordo com Fulano (2011, p.~21): "bla bla bla, bla 'bla'."
+%
+%----------------------------------------------------------------------------------
+\newenvironment{directcite}%
+{\par\bgroup\hangafter=0\hangindent=4cm\small}%
+{\par\egroup}%
+
+%----------------------------------------------------------------------------------
+% Redefinindo bibliografias, para aparecer no sumário.
+%----------------------------------------------------------------------------------
+\renewenvironment{thebibliography}[1]
+     {\chapter*{\bibname}%
+      % Aqui
+      \addcontentsline{toc}{chapter}%
+      % e aqui
+      {\protect\numberline{\thechapter}\expandafter\uppercase\expandafter{\PP@bibname}}%
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist\global\let\PP@bibname\@empty}
+
+%----------------------------------------------------------------------------------
+% Redefinindo o apêndice
+%----------------------------------------------------------------------------------
+\renewcommand\appendix{\par
+  \setcounter{chapter}{0}%
+  \setcounter{section}{0}%
+  \gdef\@chapapp{\appendixname}%
+  %\gdef\thechapter{\expandafter\uppercase\expandafter{\ifx\PP@language\PP@brazil Ap\^{e}ndice\else Appendix\fi}\nobreakspace\@Alph\c@chapter}
+  \gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
+  \gdef\@chapter[##1]##2{\ifnum \c@secnumdepth >\m@ne
+                           \refstepcounter{chapter}%
+                           \typeout{\thechapter.}%
+                           \addcontentsline{toc}{chapter}%
+                               {\protect\numberline{}\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
+                      \else
+                          \addcontentsline{toc}{chapter}{##1}%
+                      \fi
+                      \chaptermark{##1}%
+                      % Coloca um espaço vertical entre figuras de capítulos diferentes.
+  %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+  %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                      \@makechapterhead{##2}%
+                      \@afterheading}%
+  \gdef\@makechapterhead##1{%
+    {\parindent\z@
+      \centering
+      \normalfont
+      \interlinepenalty\@M
+      \large\bfseries\MakeTextUppercase{\thechapter\nobreakspace--\nobreakspace ##1}\par\nobreak
+      \normalfont\normalsize
+      \vskip 6ex
+    }}%
+}
+
+%----------------------------------------------------------------------------------
+% Criando um comando para anexos também, que é a mesma coisa
+% (em termos tipográficos) que o apêndice. O código
+% foi simplesmente duplicado e renomeado para "Anexo" onde
+% necessário.
+%----------------------------------------------------------------------------------
+\newcommand\anexos{\par
+  \setcounter{chapter}{0}%
+  \setcounter{section}{0}%
+  \xdef\appendixname{\PP@anexoname}%
+  \global\let\PP@anexoname\@empty
+  \gdef\@chapapp{\appendixname}%
+  \gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
+  \gdef\@chapter[##1]##2{\ifnum \c@secnumdepth >\m@ne
+                           \refstepcounter{chapter}%
+                           \typeout{\thechapter.}%
+                           \addcontentsline{toc}{chapter}%
+                               {\protect\numberline{}\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
+                      \else
+                          \addcontentsline{toc}{chapter}{##1}%
+                      \fi
+                      \chaptermark{##1}%
+                      % Coloca um espaço vertical entre figuras de capítulos diferentes.
+  %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+  %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                      \@makechapterhead{##2}%
+                      \@afterheading}%
+  \gdef\@makechapterhead##1{%
+    {\parindent\z@
+      \centering
+      \normalfont
+      \interlinepenalty\@M
+      \large\bfseries\thechapter\nobreakspace--\nobreakspace ##1\par\nobreak
+      \normalfont\normalsize
+      \vskip 6ex
+    }}%
+}
+
+\AtEndOfClass{%
+   \renewcommand*{\familydefault}{\sfdefault}
+   \renewcommand{\chaptername}{}
+   \urlstyle{same}
+   \normalfont\normalsize
+   %% Compensando o deslocamento de 1 polegada que o TeX sempre
+   %% coloca na hora de gerar a página...
+   %\setlength{\hoffset}{-1in}
+   %\setlength{\voffset}{-1in}
+   % A opção [a4paper] já toma conta destes valores...
+   %\setlength{\paperheight}{297mm}
+   %\setlength{\paperwidth}{210mm}
+   % Margens de 2cm na horizontal e na vertical
+   \setlength{\evensidemargin}{2cm}
+   \setlength{\oddsidemargin}{2cm}
+   \setlength{\topmargin}{2cm}
+   % O tamanho do corpo do texto é o tamanho da página sem as
+   % margens.
+   \setlength{\textheight}{\paperheight}
+   \setlength{\textwidth}{\paperwidth}
+   \addtolength{\textwidth}{-2\evensidemargin}
+   \addtolength{\textheight}{-4cm}
+   % Distância vertical entre o corpo do texto e o cabeçalho.
+   \setlength{\headsep}{3ex}
+   % Altura do cabeçalho.
+   \setlength{\headheight}{16pt}
+   % Remove o cabeçalho e a separação da margem vertical, que vai
+   % até o cabeçalho.
+   \addtolength{\topmargin}{-\headsep}
+   \addtolength{\topmargin}{-\headheight}
+   % Distância da base do texto até a base do rodapé.
+   \setlength{\footskip}{\headsep}
+   \addtolength{\footskip}{\baselineskip}
+   % Notas de margem.
+   \setlength{\marginparpush}{1mm}
+   \setlength{\marginparsep}{2mm}
+   \setlength{\marginparwidth}{1.6cm}
+   % Indentação do parágrafo.
+   \setlength{\parindent}{4em}
+   % Distância vertical entre dois parágrafos.
+   \setlength{\parskip}{1mm}
+   %\setlength{\parskip}{\medskipamount}
+   % Distância do início do corpo da página até a primeira linha
+   % (baseline) de texto.
+   \setlength{\topskip}{4.5ex}
+   % Este layout não usa colunas, então não precisamos destes
+   % parâmetros.
+   \setlength{\columnsep}{0pt}
+   \setlength{\columnseprule}{0pt}
+   \setlength{\columnwidth}{0pt}
+   % Ao invés de mexer em \hoffset e \voffset, mexemos nas
+   % margens, que evita conflitos com outros pacotes.
+   \addtolength{\evensidemargin}{-1in}
+   \addtolength{\oddsidemargin}{-1in}
+   \addtolength{\topmargin}{-1in}
+
+   % Posicionamento padrão de figuras e tabelas, aceitando:
+   % h - na posição pedida, se possível;
+   % ! - não respeita as regras "normais" de
+   %     posicionamento do LaTeX;
+   % t - no topo da página; ou
+   % b - no final da página
+   \floatplacement{figure}{htb!}
+   \floatplacement{table}{htb!}
+   \pagestyle{empty}
+   % Evita ao máximo linhas viúvas e órfãs em parágrafos.
+   \global\widowpenalty=10000
+   \global\clubpenalty=10000
+   %\addto\captionsportuges{\renewcommand*{\bibname}{Refer\^{e}ncias~Bibliogr\'{a}ficas}}
+   %\addto\captionsportuges{\renewcommand*{\contentsname}{Sum\'{a}rio}}
+   %\addto\captionsportuges{\renewcommand*{\figurename}{Figura}}
+   %\addto\captionsportuges{\renewcommand*{\tablename}{Tabela}}
+}
+
+\AtBeginDocument{
+   \expandafter\selectlanguage\expandafter{\PP@language}
+   \maketitle
+   \onehalfspacing
+   \ifx\PP@tipo\tese\fillers\else
+   \ifx\PP@tipo\dissertacao\fillers\fi\fi
+   \global\let\PP@tipo\@empty
+   \global\let\PP@fichaname\@empty
+   \global\let\PP@termoname\@empty
+}

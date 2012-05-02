@@ -1,0 +1,212 @@
+%----------------------------------------------------------------------------------
+% Exemplo do uso da classe pucrs-ppgcc.cls. Veja o arquivo .cls
+% para mais detalhes e instruções.
+%----------------------------------------------------------------------------------
+\chapter{\label{chap:intro}Introdução}
+% Comando para inserir siglas. Tanto as siglas quanto as
+% abreviaturas devem aparecer em ordem ALFABÉTICA nas listas
+% correspondentes. Como a classe no momento não é capaz de ordenar
+% as entradas automaticamente, existem duas alternativas:
+%
+%    a- Insira todas as siglas e abreviaturas no começo do texto,
+%    manualmente e em ordem alfabética.
+%
+%    b- Caso esteja em um ambiente UNIX (Linux, Mac ou Cygwin/similares),
+%    utilize o script sort.sh e o makefile que acompanham a
+%    classe. O makefile automaticamente compila a monografia para
+%    PDF (mas assume que o latex está acessível pela linha de
+%    comando). Neste caso a ordenação é feita de forma automática.
+%
+\sigla{abc}{Associação Brasileira de Computadores}
+\sigla{xyz}{lorem ipsum dolor sit}
+\sigla{ijk}{lorem ipsum dolor sit}
+%
+% Comando para inserir abreviaturas.
+%
+\abrev{Abrev}{Abreviatura}
+\abrev{Inform}{Informática}
+%
+% Comando para inserir símbolos. Estes irão aparecer em ordem
+% de ocorrência, já que o número da página está presente na lista
+% de símbolos.
+\simbolo{Hz}{Hertz}
+\simbolo{$\pi$}{Constante com valor aproximado de $3.1415926$}%
+%
+lorem ipsum dolor sit amet Capítulo~\ref{chap:intro} consetetur
+sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore
+et dolore magna aliquyam erat sed diam voluptua at vero eos et
+accusam et justo duo dolores et ea rebum stet clita kasd gubergren
+no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum
+dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod.
+Ver Figura~\ref{fig:fig1}.
+
+% Um exemplo de figura
+\begin{figure}[htb!]
+\centering\includegraphics[width=.65\textwidth]{fig/exemplo.eps}
+\caption{\label{fig:fig1}This is a figure}
+\end{figure}
+
+tempor invidunt ut labore et dolore magna aliquyam erat sed diam
+voluptua at vero eos et accusam et justo duo dolores et ea rebum
+stet clita kasd gubergren no sea takimata sanctus est lorem ipsum
+dolor sit amet lorem ipsum~\cite{NAGAPACKING07}. O algoritmo na
+Figura~\ref{fig:algo} mostra este processo.
+
+\begin{figure}[htb!]
+\begin{center}
+      % Um exemplo de algoritmo utilizando a pacote 'algorithmic'
+      \algsetup{linenosize=\small,linenodelimiter=.}
+      \begin{algorithmic}[1]
+         \STATE \textbf{function} $\sigma\left(i,j\right)$
+         \STATE \COMMENT{\texttt{table} is a global object to contain the best matching templates for each pair $\left(i,j\right)$}
+           \IF{$table\left[i,j\right].memoized$}
+             \RETURN $table\left[i,j\right].error$
+           \ENDIF
+         \STATE $minerror\leftarrow\infty$
+         \STATE $bestt\leftarrow{}nil$
+         \FOR { each template $t$ in $T$ }
+           \STATE $error\leftarrow{}allocate\left(t,i,j\right)$
+           \IF{$error<minerror$}
+             \STATE $minerror\leftarrow{}error$
+             \STATE $bestt\leftarrow{}t$
+           \ENDIF
+         \ENDFOR
+         \STATE $table\left[i,j\right].memoized\leftarrow{}true$
+         \STATE $table\left[i,j\right].template\leftarrow{}bestt$
+         \STATE $table\left[i,j\right].error\leftarrow{}minerror$
+         \RETURN $minerror$
+      \end{algorithmic}
+      \caption{\label{fig:algo}Template scoring and selection function}
+\end{center}
+\end{figure}
+
+tempor invidunt ut labore et dolore magna aliquyam erat sed diam
+voluptua at vero eos et accusam et justo duo dolores et ea
+rebum~\cite{CORMEMALGORITHMS01}.
+
+dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat sed diam
+voluptua at vero~\cite{BRIANPL04}.
+
+\begin{enumerate}
+   \item lorem
+   \item ipsum
+   \item dolor
+   \item sit
+   \item amet
+   \item consetetur
+\end{enumerate}
+
+\section{\label{sec:secao1}Primeira seção}
+
+lorem ipsum dolor sit $x\leq 2$  amet consetetur sadipscing elitr
+sed diam nonumy eirmod Seção~\ref{sec:secao1} tempor invidunt ut
+labore et dolore magna aliquyam erat sed diam voluptua at vero eos
+et accusam et justo duo dolores et ea rebum stet
+clita.~\cite{OLIVEIRAAPL08}
+
+% Um exemplo de equação
+\begin{equation}\label{eq:eq1}
+    \int_{0}^{\infty}{x^2 + \frac{\pi}{\sum_{i=0}^{n}{\frac{1}{i^2}}}}
+\end{equation}
+
+kasd gubergren no sea Equação~\eqref{eq:eq1} takimata sanctus est
+lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur
+sadipscing elitr sed diam nonumy eirmod.~\cite{PICCOLIAPL11}
+
+amet lorem ipsum dolor sit amet consetetur sadipscing elitr sed
+diam nonumy eirmod.~\cite{PICCOLIDM08}
+
+\subsection{Subseção}
+
+dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat sed diam
+voluptua at vero.
+
+lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam
+voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita
+kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem
+ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy
+eirmod.
+
+tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at
+vero eos et accusam et justo duo dolores et ea rebum stet clita kasd
+gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum
+dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor
+invidunt ut labore et dolore magna aliquyam erat sed diam voluptua
+at vero:
+
+\begin{itemize}
+   \item lorem
+   \item ipsum
+   \item dolor
+   \item sit
+   \item amet
+   \item consetetur
+\end{itemize}
+
+\subsubsection{Subsubsub}
+
+lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam
+voluptua at vero eos et accusam et justo duo dolores et ea rebum
+stet clita.~\cite{GOLDENBERGAPL02}
+
+\begin{equation}\label{eq:apl}%
+    L\left(i,j,w,h\right)=
+    \begin{cases}
+      E\left(i,w,h\right) & i=j\\
+      \min\left(\min_{k=i}^{j-1}\left\{\heartsuit\left(i,k,j,w,h\right)\right\},
+                \min_{k=i}^{j-1}\left\{\spadesuit\left(i,k,j,w,h\right)\right\}\right) & i<j\text{.}
+    \end{cases}
+\end{equation}
+
+lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam
+voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita
+kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem
+ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at
+vero eos et accusam et justo duo dolores et ea rebum stet clita kasd
+gubergren no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum
+dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor
+invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero
+eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no
+sea takimata sanctus est lorem ipsum dolor sit amet.
+
+%----------------------------------------------------------------------------------
+% Exemplo do ambiente para citações diretas com mais de 3 linhas.
+%
+% Para citações diretas de até 3 linhas, faça assim:
+% De acordo com Fulano (2011, p.~21): "bla bla bla, bla 'bla'."
+De acordo com Fulaninho (2011, p.~19):
+
+\begin{directcite}
+ut wisi enim ad minim veniam quis nostrud exerci tation ullamcorper suscipit
+lobortis nisl ut aliquip ex ea commodo consequat duis autem vel eum iriure
+dolor in hendrerit in vulputate velit esse molestie consequat vel illum
+dolore eu feugiat nulla facilisis at vero eros et accumsan et
+iusto odio
+\end{directcite}
+
+duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros
+et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+delenit augue duis dolore te feugait nulla facilisi lorem ipsum dolor sit
+amet consectetuer adipiscing elit sed diam nonummy nibh euismod tincidunt ut
+laoreet dolore magna aliquam erat volutpat.
+
+ut wisi enim ad minim veniam quis nostrud exerci tation ullamcorper suscipit
+lobortis nisl ut aliquip ex ea commodo consequat duis autem vel eum iriure
+dolor in hendrerit in vulputate velit esse molestie consequat vel illum
+dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
+dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te
+feugait nulla facilisi.
+
+nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet
+doming id quod mazim placerat facer possim assum lorem ipsum dolor sit amet
+consectetuer adipiscing elit sed diam nonummy nibh euismod tincidunt ut
+laoreet dolore magna aliquam erat volutpat ut wisi enim ad minim veniam quis
+nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
+commodo consequat.

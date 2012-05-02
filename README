@@ -1,14 +1,21 @@
 %----------------------------------------------------------------------------------
 % Classe LaTeX para monografias, teses e dissertações -- PPGCC/PUCRS (modelo 2009)
-% ver. 1.0 por Ricardo Piccoli <rfbpiccoli@gmail.com>
-% Últimas alterações: 25/04/2012
 %
 % Para instruções de como utilizar a classe, veja o arquivo
 % exemplo.tex. Para facilitar, é recomendado utilizar o mesmo
 % arquivo como template inicial para o seu trabalho.
 %
-% IMPORTANTE: por favor, leia o arquivo makefile antes de utilizá-lo para
-% compilar o seu documento.
+% ATENÇÃO! O modelo implementado por esta classe NÃO é oficial do
+% PPGCC e não implementa todas as normas de formatação propostas
+% pelo PPGCC, ou ainda, pela Biblioteca Central da PUCRS. Desta
+% forma, não é possível garantir que sua tese ou dissertação será
+% homologada pelo simples uso esta classe. Fique atento às normas
+% documentadas neste link:
+% http://www.inf.pucrs.br/alunos/PPGCC/ModeloTeseDiMono/padrao_dissertacoes_teses_ataCC21_2010_v3.pdf
+%
+% IMPORTANTE: examine os arquivos 'makefile' e 'sort.sh' antes de
+% utilizá-los para compilar o seu documento, pois não me
+% responsabilizo pelo uso incorreto destes.
 %
 % Requisitos: É recomendado a instalação da versão mais
 % recente da distribuição TeXLive (para Windows e UNIXes):
@@ -26,7 +33,7 @@
 % Para a distribuição Ubuntu Linux, provavelmente o mais fácil é
 % instalar o pacote texlive-full.
 %
-% Limitações: 
+% Limitações:
 %   - funciona apenas com impressão em frente e verso.
 %   - funciona apenas em dois idiomas: português e inglês
 %   - formata PEP's, monografias, teses e propostas de tese
@@ -34,12 +41,13 @@
 %   requer um utilitário externo (sort.sh). Porém, por questões
 %   de usablidade e compatibilidade da classe, é desejável uma
 %   implementação interna deste procedimento.
-% 
+%
 % Obs.: este modelo foi criado inicialmente apenas para suprir as
 % necessidades do autor quanto à conformidade ao formato do
 % PPGCC/PUCRS (especialmente o estilo bibliográfico). Caso lhe
 % falte alguma formatação em particular do padrão, ou por ventura
 % tenha sugestões, comentários, ou ainda, tenha encontrado um erro
-% no formato, por favor entre em contato pelo e-mail <rfbpiccoli@gmail.com>.
+% no formato, por favor entre em contato pelo e-mail
+% <rfbpiccoli at gmail.com> (Ricardo Piccoli).
 %
 %----------------------------------------------------------------------------------

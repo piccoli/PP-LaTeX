@@ -1,0 +1,219 @@
+%----------------------------------------------------------------------------------
+% Exemplo do uso da classe pucrs-ppgcc.cls. Veja o arquivo .cls
+% para mais detalhes e instruções.
+%----------------------------------------------------------------------------------
+
+% Seleção de idioma da monografia. Por enquanto as únicas opções
+% suportadas são 'portuguese' e 'english'
+% No momento a classe suporta apenas a impressão em frente e
+% verso.
+\documentclass[portuguese]{pucrs-ppgcc}
+%\documentclass[english]{pucrs-ppgcc}
+
+%----------------------------------------------------------------
+% Coloque seus pacotes abaixo.
+%
+% Obs.: muitos pacotes de uso comum do LaTeX, como amsmath,
+% geometry e url já são automaticamente incluídos pela classe
+% (veja o arquivo .cls). Isso torna obrigatória a presença destes
+% no sistema para o uso desta classe, mas ao mesmo tempo o uso se
+% torna mais simples.  Recomendo a instalação da versão mais
+% recente da distribuição TeXLive (para Windows e UNIXes):
+% www.tug.org/texlive/
+%
+% Pacotes e opções já incluídas automaticamente:
+%
+% \RequirePackage[T1]{fontenc}[2005/09/27]
+% \RequirePackage[utf8x]{inputenc}[2008/03/30]
+% \RequirePackage[english,brazil]{babel}[2008/07/06]
+% \RequirePackage[a4paper]{geometry}[2010/09/12]
+% \RequirePackage{textcomp}[2005/09/27]
+% \RequirePackage{lmodern}[2009/10/30]
+% \RequirePackage{indentfirst}[1995/11/23]
+% \RequirePackage{setspace}[2000/12/01]
+% \RequirePackage{textcase}[2004/10/07]
+% \RequirePackage{float}[2001/11/08]
+% \RequirePackage{amsmath}[2000/07/18]
+% \RequirePackage{amssymb}[2009/06/22]
+% \RequirePackage{amsfonts}[2009/06/22]
+% \RequirePackage{url}
+% \RequirePackage[table]{xcolor}[2007/01/21]
+%% \RequirePackage[colorlinks=true,allcolors=,urlcolor=blue]{hyperref}[2011/04/07]
+% Este pacote sofreu muitas alterações recentemente. Neste caso, é
+% melhor fazer justiça com versões um pouco mais antigas.
+%\RequirePackage[colorlinks=true,anchorcolor=,citecolor=,%
+%                filecolor=,linkcolor=,menucolor=,runcolor=,%
+%                urlcolor=blue]{hyperref}[2009/10/09]
+%----------------------------------------------------------------
+% Para inserção de figuras.
+\usepackage{graphicx}
+% Utilize a opção 'pdftex' se você estiver usando o pdflatex (que
+% permite figuras em formatos como .jpg ou .png)
+%\usepackage[pdftex]{graphicx}
+
+% Para tabelas com elementos ocupando mais de uma linha
+\usepackage{multirow}
+% Para frações na mesma linha (ex. ⅓).
+\usepackage{nicefrac}
+% Para inserir figuras lado a lado.
+% \usepackage{subfigure}
+% Ambiente para inserir algoritmos.
+%\usepackage{algorithm}
+% Para formatar os algoritmos propriamente ditos.
+\usepackage{algorithmic}
+
+%----------------------------------------------------------------
+% Autor (OBRIGATÓRIO)
+%----------------------------------------------------------------
+\author{Fulano da Silva}
+
+%----------------------------------------------------------------
+% Título (OBRIGATÓRIO). Devem ser passados DOIS parâmetros,
+% o título em português E o inglês, não importando o idioma
+% escolhido. Os títulos são utilizados para a montagem da capa,
+% resumo e abstract mais tarde.
+%----------------------------------------------------------------
+\title{Seu título em português aqui}
+      {Your title in english here}
+
+%----------------------------------------------------------------
+% Opções para o tipo de trabalho (OBRIGATÓRIO)
+%----------------------------------------------------------------
+%\tipotrabalho{\monografia}  % Monografias em geral (e de "bônus": TCCs)
+%\tipotrabalho{\pep}         % Plano de estudo e pesquisa
+%\tipotrabalho{\dissertacao} % Dissertação
+%\tipotrabalho{\ptese}       % Proposta de tese
+\tipotrabalho{\tese}         % Tese
+
+%----------------------------------------------------------------
+% Seleção do curso ("este trabalho é um requisito parcial para
+% obtenção do grau de (mestre ou doutor) em Ciência da Computação").
+% Necessário somente para o tipo 'monografia'.
+%----------------------------------------------------------------
+%\grau{\bacharel} % Este é "bônus"
+%\grau{\mestre}
+%\grau{\doutor}
+
+%----------------------------------------------------------------
+% Orientador (e Co-orientador, caso haja um). É OBRIGATÓRIO
+% informar pelo menos o orientador.
+%----------------------------------------------------------------
+\orientador{Beltrano Dias}
+\coorientador{Ciclano de Farias}
+
+%----------------------------------------------------------------
+% A capa é inserida automaticamente. Por isso não é necessário
+% chamar \maketitle
+%----------------------------------------------------------------
+\begin{document}
+
+%----------------------------------------------------------------
+% Depois da capa vem a dedicatória e a epígrafe.
+%----------------------------------------------------------------
+\dedicatoria{Dedico este trabalho a meus pais.}
+
+\epigrafe{The art of simplicity is a puzzle of complexity.}
+         {Douglas Horton}
+
+%----------------------------------------------------------------
+% Também dá para fazer as duas na mesma página:
+%----------------------------------------------------------------
+%\dedigrafe{Dedico este trabalho a meus pais.}
+%          {The art of simplicity is a puzzle of complexity.}
+%          {Douglas Horton}
+
+%----------------------------------------------------------------
+% A seguir, a página de agradecimentos (OPCIONAL):
+%----------------------------------------------------------------
+\begin{agradecimentos}
+À lorem ipsum, dolor sit amet consetetur sadipscing elitr sed diam
+nonumy eirmod tempor. invidunt ut labore et dolore magna aliquyam
+
+À erat sed, diam voluptua at vero, eos et accusam et justo duo
+dolores et ea rebum stet clita.
+
+À kasd gubergren, no sea. takimata sanctus est lorem ipsum dolor sit
+amet lorem ipsum dolor sit amet. consetetur sadipscing elitr sed
+
+À diam nonumy, eirmod tempor, invidunt ut labore et dolore magna
+aliquyam erat sed diam voluptua at.
+\end{agradecimentos}
+
+%----------------------------------------------------------------
+% Resumo, com as palavras-chave passadas por parâmetro
+% (OBRIGATÓRIO, ao menos para teses e dissertações)
+%----------------------------------------------------------------
+\begin{resumo}{lorem, ipsum, dolor, sit, amet}
+Seu resumo em português aqui. lorem ipsum dolor sit amet
+consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt
+ut labore et dolore magna aliquyam erat sed diam voluptua at vero
+eos et accusam et justo duo dolores et ea rebum stet clita.  kasd
+gubergren no sea takimata sanctus est lorem ipsum dolor sit amet
+lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+erat sed diam voluptua at.
+\end{resumo}
+
+%----------------------------------------------------------------
+% Abstract, com as palavras-chave passadas por parâmetro
+% (OBRIGATÓRIO, ao menos para teses e dissertações)
+%----------------------------------------------------------------
+\begin{abstract}{lorem, ipsum, dolor, sit, amet}
+Your abstract in English here. lorem ipsum dolor sit amet
+consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt
+ut labore et dolore magna aliquyam erat sed diam voluptua at vero
+eos et accusam et justo duo dolores et ea rebum stet clita kasd
+gubergren no sea takimata sanctus est lorem ipsum dolor sit amet
+lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+erat sed diam voluptua at
+\end{abstract}
+
+%----------------------------------------------------------------
+% Listas e sumário, nessa ordem. Somente o sumário é obrigatório,
+% portanto, comente as outras listas, caso sejam desnecessárias.
+%----------------------------------------------------------------
+\listoffigures       % Lista de figuras      (OPCIONAL)
+\listoftables        % Lista de tabelas      (OPCIONAL)
+\listofacronyms      % Lista de siglas       (OPCIONAL)
+\listofabbreviations % Lista de abreviaturas (OPCIONAL)
+\listofsymbols       % Lista de símbolos     (OPCIONAL)
+\tableofcontents     % Sumário               (OBRIGATÓRIO)
+
+%----------------------------------------------------------------
+% Aqui começa o desenvolvimento do trabalho. Para uma melhor
+% organização e gerenciamento do documento, separe-o em arquivos,
+% um para cada capítulo. Para isso, utilize o comando \include,
+% como mostrado abaixo.
+%----------------------------------------------------------------
+\include{exemplo-cap1}
+\include{exemplo-cap2}
+
+%----------------------------------------------------------------
+% Aqui vai a bibliografia. Existem dois estilos de citação: use
+% 'ppgcc-alpha' para citações do tipo [Abc+] ou [XYZ] (em ordem
+% alfabética na bibliografia), e 'ppgcc-num' para citações
+% numéricas do tipo [1], [20], etc., em ordem de referência.
+%----------------------------------------------------------------
+\bibliographystyle{ppgcc-alpha}
+%\bibliographystyle{ppgcc-num}
+\bibliography{exemplo-bib}
+
+%----------------------------------------------------------------
+% Após \appendix, se iniciam os capítulos de Apêndice, com
+% numeração alfabética.
+%----------------------------------------------------------------
+\appendix
+\chapter{Meu primeiro apêndice}
+\chapter{My second appendix}
+
+%----------------------------------------------------------------
+% E aqui vão os "capítulos" de anexos. No caso, cada anexo deve
+% ser considerado um capítulo.
+%----------------------------------------------------------------
+\anexos
+\chapter{Meu primeiro anexo}
+\chapter{My second attachment}
+
+% E aqui (para a felicidade de todos) termina o documento.
+\end{document}

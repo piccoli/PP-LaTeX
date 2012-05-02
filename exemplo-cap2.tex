@@ -1,0 +1,147 @@
+%----------------------------------------------------------------------------------
+% Exemplo do uso da classe pucrs-ppgcc.cls. Veja o arquivo .cls
+% para mais detalhes e instruções.
+%----------------------------------------------------------------------------------
+\chapter{\label{chap:chap2}Another chapter}
+
+lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam
+nonumy eirmod tempor invidunt~\cite{PLASSPAG81} ut labore et
+dolore magna aliquyam erat sed diam voluptua at vero eos et
+accusam et justo duo dolores et ea rebum stet clita kasd gubergren
+no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum
+dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat sed diam
+voluptua at vero eos et accusam et justo duo dolores et ea rebum
+stet clita kasd gubergren no sea takimata sanctus est lorem ipsum
+dolor sit amet lorem ipsum. A Tabela~\ref{tab:tab1} mostra o
+cronograma.~\cite{WIKIPIC09}
+
+% Um exemplo relativamente complicado de tabela.
+\begin{table}[htb!]
+\begin{center}
+\caption{\label{tab:tab1}This is a table}%
+%\rowcolors{4}{black!10}{black!15}
+\setlength{\tabcolsep}{.5cm}%
+\resizebox{.7\linewidth}{!}{%
+\begin{tabular}{r*{2}{>{\columncolor[gray]{0.95}}c>{\columncolor[gray]{1.0}}c}}%
+\noalign{\smallskip}
+%\hline
+\multirow{2}{*}{\textbf{Atividade}} & \multicolumn{4}{c}{\textbf{Ano/Semestre}}\tabularnewline
+\cline{2-5}
+   & \textbf{2011/II} & \textbf{2012/I} & \textbf{2012/II} & \textbf{2013/I}\tabularnewline
+1  &            &            &            &          \tabularnewline
+2  & \checkmark & \checkmark & \checkmark &          \tabularnewline
+3  & \checkmark & \checkmark & \checkmark &          \tabularnewline
+4  & \checkmark & \checkmark & \checkmark & $\times$ \tabularnewline
+5  &            &            &            &          \tabularnewline
+6  &            &            &            &          \tabularnewline
+7  & $\times$   &            &            &          \tabularnewline
+8  &            & $\times$   &            &          \tabularnewline
+9  &            & $\times$   & $\times$   &          \tabularnewline
+10 & $\times$   & $\times$   & $\times$   &          \tabularnewline
+11 & $\times$   & $\times$   & $\times$   & $\times$ \tabularnewline
+\end{tabular}}
+\end{center}
+\end{table}
+
+\section{Another section}
+
+Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+erat sed diam voluptua at vero eos et accusam et justo duo dolores
+et ea rebum stet clita kasd gubergren no sea takimata sanctus est
+lorem ipsum dolor sit amet lorem.~\cite{XIAOAPL05}
+
+Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+erat sed diam voluptua at vero eos et accusam et justo duo dolores
+et ea rebum stet clita kasd gubergren no sea takimata sanctus est
+lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur
+sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore
+et dolore magna aliquyam erat sed diam voluptua at vero eos et
+accusam et justo duo dolores et ea rebum stet clita kasd gubergren
+no sea takimata sanctus est lorem ipsum dolor sit amet lorem ipsum
+dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat sed diam
+voluptua at vero eos et accusam et justo duo dolores et ea rebum
+stet clita kasd gubergren no sea takimata sanctus est lorem ipsum
+dolor sit amet. Figura~\ref{fig:fig2}.
+
+% Mais uma figura
+\begin{figure}[htb!]
+\centering\includegraphics[width=.75\textwidth]{fig/exemplo1.eps}
+\caption{\label{fig:fig2}This is another figure}
+\end{figure}
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit
+esse molestie consequat vel illum dolore eu feugiat nulla
+facilisis at vero eros et accumsan et iusto odio dignissim qui
+blandit praesent luptatum zzril delenit augue duis dolore te
+feugait nulla facilisi lorem ipsum dolor sit amet consectetuer
+adipiscing elit sed diam nonummy nibh euismod tincidunt ut laoreet
+dolore magna aliquam erat volutpat.
+
+Ut wisi enim ad minim veniam quis nostrud exerci tation
+ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+consequat duis autem vel eum iriure dolor in hendrerit in
+vulputate velit esse molestie consequat vel illum dolore eu
+feugiat nulla facilisis at vero eros et accumsan et iusto odio
+dignissim qui blandit praesent luptatum zzril delenit augue duis
+dolore te feugait nulla facilisi.
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil
+imperdiet doming id quod mazim placerat facer possim assum lorem
+ipsum dolor sit amet consectetuer adipiscing elit sed diam nonummy
+nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+volutpat ut wisi enim ad minim veniam quis nostrud exerci tation
+ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+consequat.
+
+\subsection{Another subsection}
+
+lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+erat sed diam.~\cite{COFFMANPACKING98}
+
+\subsubsection{Another subsubsection}
+
+lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam
+nonumy. A seguir, a Tabela~\ref{tab:tab2} mostra algo mais
+simples.
+
+% Um exemplo de tabela mais simples.
+\begin{table}
+\begin{center}%
+\caption{\label{tab:tab2}Note que a legenda da tabela fica na parte de cima}%
+%\setlength{\tabcolsep}{1cm}%
+\begin{tabular*}{.7\linewidth}{@{\extracolsep{\fill}}ccc}%
+\noalign{\medskip}
+\hline
+1 & 2 & 3 \tabularnewline
+4 & 5 & 6 \tabularnewline
+7 & 8 & 9 \tabularnewline
+1 & 2 & 3 \tabularnewline
+4 & 5 & 6 \tabularnewline
+7 & 8 & 9 \tabularnewline
+1 & 2 & 3 \tabularnewline
+4 & 5 & 6 \tabularnewline
+7 & 8 & 9 \tabularnewline
+\end{tabular*}
+\end{center}
+\end{table}
+
+Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+erat sed diam voluptua at vero eos et accusam et justo duo dolores
+et ea rebum stet clita kasd gubergren no sea takimata sanctus est
+lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur
+sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore
+et dolore magna aliquyam erat sed diam voluptua at.
+
+Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+erat sed diam voluptua at vero eos et accusam et justo duo dolores
+et ea rebum stet clita kasd gubergren no sea takimata sanctus est
+lorem ipsum dolor sit amet lorem ipsum dolor sit amet consetetur
+sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore
+et dolore magna aliquyam erat sed diam voluptua at.
