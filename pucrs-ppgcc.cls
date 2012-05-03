@@ -96,7 +96,7 @@ e-mail <rfbpiccoli at gmail.com>^^J
 \DeclareOption{11pt}{\PP@erro}
 \DeclareOption{english}{\global\let\PP@language\PP@english}
 \DeclareOption{portuguese}{\global\let\PP@language\PP@brazil}
-\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{report}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions
 %\ExecuteOptions{12pt,onecolumn,twoside,titlepage,a4paper,openright,final}
 \LoadClass[12pt,onecolumn,twoside,titlepage,a4paper,openright,final]{report}[2007/10/19]
