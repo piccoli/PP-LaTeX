@@ -320,6 +320,8 @@ at \PP@Uni{}.}%
 \voffset=-1in
 \hsize=\paperwidth
 \vsize=\paperheight
+\textwidth=\paperwidth
+\textheight=\paperheight
 \evensidemargin0pt
 \oddsidemargin0pt
 \headheight0pt
@@ -330,11 +332,15 @@ at \PP@Uni{}.}%
 \parfillskip0pt
 \parskip0pt
 \parindent0pt
+\columnsep0pt
+\columnseprule0pt
+\columnwidth0pt
 \global\let\thanks\relax
 \global\let\date\relax
 \global\let\@thanks\@empty
 \global\let\@date\@empty
 \let\footnote\thanks
+\normalfont\normalsize
 \vbox to \vsize{%
 \kern 4ex
 %----------------------------------------------------------------------------------
@@ -353,6 +359,7 @@ at \PP@Uni{}.}%
 \PP@tmpdim=9.5cm
 \advance \PP@tmpdim by-\ht\PP@tmpbox
 \advance \PP@tmpdim by-\dp\PP@tmpbox
+\advance \PP@tmpdim by-4ex
 \box\PP@tmpbox
 \vskip\PP@tmpdim
 %----------------------------------------------------------------------------------
@@ -365,6 +372,7 @@ at \PP@Uni{}.}%
 \rightskip 0pt plus1fil
 \leavevmode\kern 2.5em\vbox{%
 \hsize=11.5cm
+\parskip 6ex
 \advance\hsize by-5em
 \hbox{}\par
 {\Large\bfseries\expandafter\uppercase\expandafter{\@title}}\par
@@ -377,6 +385,7 @@ at \PP@Uni{}.}%
 %----------------------------------------------------------------------------------
 \hbox{}\hfill\vbox{%
 \hsize=23cm
+\parskip0pt
 \divide\hsize by3\relax
 \hyphenpenalty 10000\relax
 \emergencystretch=2em
