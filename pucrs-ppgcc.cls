@@ -97,7 +97,7 @@ e-mail <rfbpiccoli at gmail.com>^^J
 \DeclareOption{english}{\global\let\PP@language\PP@english}
 \DeclareOption{portuguese}{\global\let\PP@language\PP@brazil}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
-\ProcessOptions
+\ProcessOptions\relax
 %\ExecuteOptions{12pt,onecolumn,twoside,titlepage,a4paper,openright,final}
 \LoadClass[12pt,onecolumn,twoside,titlepage,a4paper,openright,final]{report}[2007/10/19]
 
