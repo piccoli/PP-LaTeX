@@ -314,105 +314,115 @@ at \PP@Uni{}.}%
 %----------------------------------------------------------------------------------
 % Formatação da capa
 %----------------------------------------------------------------------------------
-\renewcommand\maketitle{\begin{titlepage}%
-\renewcommand*{\baselinestretch}{1.0}%
-\hoffset=-1in
-\voffset=-1in
-\hsize=\paperwidth
-\vsize=\paperheight
-\textwidth=\paperwidth
-\textheight=\paperheight
-\evensidemargin0pt
-\oddsidemargin0pt
-\headheight0pt
-\headsep0pt
-\topskip0pt
-\topmargin0pt
-\footskip0pt
-\parfillskip0pt
-\parskip0pt
-\parindent0pt
-\columnsep0pt
-\columnseprule0pt
-\columnwidth0pt
-\global\let\thanks\relax
-\global\let\date\relax
-\global\let\@thanks\@empty
-\global\let\@date\@empty
-\let\footnote\thanks
-\normalfont\normalsize
-\vbox to \vsize{%
-\kern 4ex
-%----------------------------------------------------------------------------------
-% Cabeçalho (universidade + faculdade + programa)
-%----------------------------------------------------------------------------------
-\setbox\PP@tmpbox=\vbox{%
-\parskip0pt
-\leftskip 0pt plus1fil
-\rightskip 0pt plus1fil
-\hyphenpenalty 10000\relax
-\bfseries
-\leavevmode\hbox{\MakeUppercase{\PP@Uni}}\par
-\leavevmode\hbox{\MakeUppercase{\PP@Fac}}\par
-\leavevmode\hbox{\MakeUppercase{\PP@Dep}}\par
-}%
-\PP@tmpdim=9.5cm
-\advance \PP@tmpdim by-\ht\PP@tmpbox
-\advance \PP@tmpdim by-\dp\PP@tmpbox
-\advance \PP@tmpdim by-4ex
-\box\PP@tmpbox
-\vskip\PP@tmpdim
-%----------------------------------------------------------------------------------
-% Retângulo central (título + autor)
-%----------------------------------------------------------------------------------
-\hskip5cm\vbox to 7.7cm{%
-\hsize=11.5cm
-\parskip 6ex
-\leftskip 0pt plus1fil
-\rightskip 0pt plus1fil
-\leavevmode\kern 2.5em\vbox{%
-\hsize=11.5cm
-\parskip 6ex
-\advance\hsize by-5em
-\hbox{}\par
-{\Large\bfseries\expandafter\uppercase\expandafter{\@title}}\par
-{\large\bfseries\expandafter\uppercase\expandafter{\@author}}\par
-\vfil\hbox{}}\kern 2.5em
-}%
-\vskip 7.5ex
-%----------------------------------------------------------------------------------
-% Descrição da monografia ("Tese apresentada como requisito...")
-%----------------------------------------------------------------------------------
-\hbox{}\hfill\vbox{%
-\hsize=23cm
-\parskip0pt
-\divide\hsize by3\relax
-\hyphenpenalty 10000\relax
-\emergencystretch=2em
-\PP@descricao\hfil\hbox{}}%
-\hskip 35pt\hbox{}\par
-\vskip 7.5ex
-%----------------------------------------------------------------------------------
-% Orientador / Co-Orientador
-%----------------------------------------------------------------------------------
-\hbox{\vbox{%
-\leftskip 0pt plus1fil
-\rightskip 0pt plus1fil
-\leavevmode\hbox{\PP@orientadorname{}: Prof.\ \PP@orientador}%
-\ifx\PP@coorientador\PP@undef\relax%
-\else\break\hbox{Co-\PP@orientadorname{}: Prof.\ \PP@coorientador}%
-\fi}}%
-\vfill
-%----------------------------------------------------------------------------------
-% Cidade / ano
-%----------------------------------------------------------------------------------
-\hbox{\vbox{%
-\leftskip 0pt plus1fil
-\rightskip 0pt plus1fil
-\leavevmode\bfseries\hbox{\PP@Cid}\break%
-\hbox{\number\year}}}%
-\kern 3ex%
-}%
+\renewcommand\maketitle{%
+\begin{titlepage}%
+    \renewcommand*{\baselinestretch}{1.0}%
+    \hoffset=-1in
+    \voffset=-1in
+    \hsize=\paperwidth
+    \vsize=\paperheight
+    \textwidth=\paperwidth
+    \textheight=\paperheight
+    \evensidemargin0pt
+    \oddsidemargin0pt
+    \topmargin0pt
+    \headheight0pt
+    \headsep0pt
+    \topskip0pt
+    \footskip0pt
+    \columnsep0pt
+    \columnseprule0pt
+    \columnwidth0pt
+    \marginparpush0pt
+    \marginparsep0pt
+    \marginparwidth0pt
+    \global\let\thanks\relax
+    \global\let\date\relax
+    \global\let\@thanks\@empty
+    \global\let\@date\@empty
+    \let\footnote\thanks
+    \normalfont\normalsize
+    \vbox to \vsize{%
+        \boxmaxdepth=0pt
+        \parindent0pt
+        \parfillskip0pt
+        \parskip0pt
+        \leftskip0pt
+        \rightskip0pt
+        \kern4ex
+        %----------------------------------------------------------------------------------
+        % Cabeçalho (universidade + faculdade + programa)
+        %----------------------------------------------------------------------------------
+        \setbox\PP@tmpbox=\vbox{%
+            \leftskip0pt plus1fil
+            \rightskip0pt plus1fil
+            \hyphenpenalty 10000\relax
+            \bfseries
+            \noindent\hbox{\MakeUppercase{\PP@Uni}}\par
+            \noindent\hbox{\MakeUppercase{\PP@Fac}}\par
+            \noindent\hbox{\MakeUppercase{\PP@Dep}}\par
+        }%
+        \PP@tmpdim=9.5cm
+        \advance \PP@tmpdim by-\ht\PP@tmpbox
+        \advance \PP@tmpdim by-\dp\PP@tmpbox
+        \advance \PP@tmpdim by-4ex
+        \box\PP@tmpbox
+        \vskip\PP@tmpdim
+        %----------------------------------------------------------------------------------
+        % Retângulo central (título + autor)
+        %----------------------------------------------------------------------------------
+        \leavevmode\kern5cm\vbox to 7.7cm{%
+            \hsize=11.5cm
+            \parskip 6ex
+            \leftskip0pt plus1fil
+            \rightskip0pt plus1fil
+            \noindent\leavevmode\kern2.5em\vbox{%
+                \advance\hsize by-5em
+                \noindent\hbox{}\par
+                \noindent{\Large\bfseries\expandafter\uppercase\expandafter{\@title}}\par
+                \noindent{\large\bfseries\expandafter\uppercase\expandafter{\@author}}\par\nointerlineskip
+                \vfil\hbox{}%
+            }\kern2.5em
+        }%
+        \vskip7.5ex
+        %----------------------------------------------------------------------------------
+        % Descrição da monografia ("Tese apresentada como requisito...")
+        %----------------------------------------------------------------------------------
+        \hbox{}\hfill\vbox{%
+            \hsize=23cm
+            \parfillskip0pt plus1fil
+            \divide\hsize by3\relax
+            \leftskip0pt
+            \rightskip0pt
+            \hyphenpenalty 10000\relax
+            \emergencystretch=2em
+            \noindent\PP@descricao\par\nointerlineskip%
+        }%
+        \hskip35pt\hbox{}\par\nointerlineskip
+        \vskip7.5ex
+        %----------------------------------------------------------------------------------
+        % Orientador / Co-Orientador
+        %----------------------------------------------------------------------------------
+        \hbox{\vbox{%
+            \leftskip0pt plus1fil
+            \rightskip0pt plus1fil
+            \noindent\hbox{\PP@orientadorname{}: Prof.\ \PP@orientador}%
+            \ifx\PP@coorientado\PP@undef\relax
+            \else\break\hbox{Co-\PP@orientadorname{}: Prof.\ \PP@coorientador}\fi
+        }}%
+        \vfill
+        %----------------------------------------------------------------------------------
+        % Cidade / ano
+        %----------------------------------------------------------------------------------
+        \hbox{\vbox{%
+            \leftskip0pt plus1fil
+            \rightskip0pt plus1fil
+            \bfseries
+            \noindent\hbox{\PP@Cid}\break
+            \hbox{\number\year}%
+        }}%
+        \kern3ex
+    }%
 \end{titlepage}%
 \global\let\maketitle\relax
 \global\let\@author\@empty
@@ -619,7 +629,7 @@ at \PP@Uni{}.}%
 %
 % \sigla{DDS}{Definição da Sigla}
 %----------------------------------------------------------------------------------
-\newcommand{\sigla}[2]{\addcontentsline{loa}{acronym}{\MakeUppercase{#1}\nobreakspace--\nobreakspace #2}}
+\newcommand{\sigla}[2]{\addcontentsline{loa}{acronym}{\MakeTextUppercase{#1}\nobreakspace--\nobreakspace #2}}
 \newcommand*{\l@acronym}[2]{%
  \vskip \z@ \@plus.2\p@
  {\leftskip 1.5em\relax \rightskip \@tocrmarg \parfillskip -\rightskip
