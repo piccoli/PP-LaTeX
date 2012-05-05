@@ -1,4 +1,4 @@
-%% Copyright (C) 2012 Ricardo Piccoli <rfbpiccoli at gmail.com>
+%% Copyright (C) 2012 Ricardo Piccoli <rfbpiccoli at gmail dot com>
 %%
 %% This program is free software; you can redistribute it and/or modify
 %% it under the terms of the GNU General Public License as published by
@@ -21,8 +21,9 @@
 % PPGCC e não implementa todas as normas de formatação propostas
 % pelo PPGCC, ou ainda, pela Biblioteca Central da PUCRS. Desta
 % forma, não é possível garantir que sua tese ou dissertação será
-% homologada pelo simples uso esta classe. Fique atento às normas
+% homologada apenas pelo uso esta classe. Fique atento às normas
 % documentadas neste link:
+%
 % http://www.inf.pucrs.br/alunos/PPGCC/ModeloTeseDiMono/padrao_dissertacoes_teses_ataCC21_2010_v3.pdf
 %
 % Requisitos: É recomendado a instalação da versão mais
@@ -38,8 +39,8 @@
 %   - texlive-latexrecommended
 %   - xcolor
 %
-% Para a distribuição Ubuntu Linux, provavelmente o mais fácil é
-% instalar o pacote texlive-full.
+% Para a distribuição Ubuntu Linux, o mais fácil é
+% instalar o pacote 'texlive-full'.
 %
 % Limitações:
 %   - funciona apenas com impressão em frente e verso.
@@ -50,17 +51,17 @@
 %   de usablidade e compatibilidade da classe, é desejável uma
 %   implementação interna deste procedimento.
 %
-% Falta:
-%   - Corrigir problemas no estilo bibliográfico (formatação de acentos, etc.)
-%
 % Desejável (para futuras versões):
-%   - Formatação para impressão em um lado.
+%   - Formatação para impressão em um lado da folha apenas.
 %   - Monografia em outros idiomas além de português e inglês
-%   - O código dependente de idioma está muito amarrado. Como fazer melhor?
-%   - Documentar a classe com o pacote 'doc' e organizar com o DocStrip (texdoc doc; texdoc docstrip).
+%   - O código dependente de idioma está muito amarrado. Como
+%   fazer melhor?
+%   - Documentar a classe com o pacote 'doc' e organizar com o
+%   DocStrip (texdoc doc; texdoc docstrip).
 %   - Macro interna do TeX para realizar a ordenação lexicográfica
 %   das listas de siglas e abreviaturas. Ver 'Sorting Within TeX',
-%,  de Kees Van der Laan, TUGboat, volume 14 (1993), No. 3 (http://www.ctan.org/pkg/laansort).
+%   de Kees Van der Laan, TUGboat, volume 14 (1993), No. 3
+%   (http://www.ctan.org/pkg/laansort).
 %
 % Obs.: este modelo foi criado inicialmente apenas para suprir as
 % necessidades do autor quanto à conformidade ao formato do
@@ -68,7 +69,13 @@
 % falte alguma formatação em particular do padrão, ou por ventura
 % tenha sugestões, comentários, ou ainda, tenha encontrado um erro
 % no formato, por favor entre em contato com o autor pelo e-mail
-% <rfbpiccoli at gmail.com> (Ricardo Piccoli).
+% <rfbpiccoli at gmail dot com> (Ricardo Piccoli).
+%
+% Alguns trechos de código (i.e. "macros") foram obtidos e
+% modificados a partir da classe base 'report.cls' do LaTeX e do
+% kernel 'latex.ltx', distribuídos sob a licença LPPL (veja
+% http://www.latex-project.org/lppl.txt).  Tais mudanças estão
+% devidamente documentadas e justificadas neste arquivo.
 %----------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{pucrs-ppgcc}[2012/04/26 ^^J
@@ -76,7 +83,7 @@
 Classe para monografias, teses e dissertações -- PPGCC/PUCRS^^J
 ^^J
 Para resolução de problemas ou sugestões, entre em contato pelo^^J
-e-mail <rfbpiccoli at gmail.com>^^J
+e-mail <rfbpiccoli at gmail dot com>^^J
 ------------------------------------------------------------]
 
 \global\gdef\PP@english{english}
@@ -624,7 +631,8 @@ at \PP@Uni{}.}%
 \fi
 \newcommand\listofacronyms{\chapter*{\listacronymname}\@starttoc{loa}}
 %----------------------------------------------------------------------------------
-% Comando para inserir novas siglas:
+% Comando para inserir novas siglas. Este trecho foi modificado a
+% partir do comando interno \@dottedtocline do LaTeX.
 %
 % \sigla{DDS}{Definição da Sigla}
 %----------------------------------------------------------------------------------
@@ -1115,3 +1123,4 @@ at \PP@Uni{}.}%
    \global\let\PP@fichaname\@empty
    \global\let\PP@termoname\@empty
 }
+%% End of file 'pucrs-ppgcc.cls'

@@ -1,6 +1,6 @@
 # Exemplo de arquivo Makefile para construção de um documento
 # LaTeX, utilizando a classe pucrs-ppgcc.cls.
-# por Ricardo Piccoli <rfbpiccoli at gmail.com>
+# por Ricardo Piccoli <rfbpiccoli at gmail dot com>
 #
 # !!ATENÇÃO!! O uso incorreto deste script pode causar a perda ou
 # sobrescrita de arquivos no diretório onde estiver sendo
