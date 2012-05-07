@@ -150,9 +150,8 @@ e-mail <rfbpiccoli at gmail.com>^^J
 % depuração. Evitei o \framebox{} pois desconheço qualquer possível
 % efeito colateral do mesmo.
 %----------------------------------------------------------------------------------
-\long\def\PP@boxit#1{\leavevmode\vbox{
-\hrule\hbox{\vrule\kern.5pt\vbox{
-\kern.5pt\parindent0pt\hbox{#1}\kern.5pt}%
+\long\def\PP@boxit#1{\vbox{\boxmaxdepth=0pt\hrule\hbox{%
+\vrule\kern.5pt\vbox{\kern.5pt#1\par\nointerlineskip\kern.5pt}%
 \kern.5pt\vrule}\hrule}}
 
 %----------------------------------------------------------------------------------
