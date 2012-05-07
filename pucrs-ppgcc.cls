@@ -71,7 +71,7 @@
 % no formato, por favor entre em contato com o autor pelo e-mail
 % <rfbpiccoli at gmail dot com> (Ricardo Piccoli).
 %
-% Alguns trechos de código (i.e. "macros") foram obtidos e
+% Alguns trechos de código (i. e., "macros") foram obtidos e
 % modificados a partir da classe base 'report.cls' do LaTeX e do
 % kernel 'latex.ltx', distribuídos sob a licença LPPL (veja
 % http://www.latex-project.org/lppl.txt).  Tais mudanças estão
@@ -86,8 +86,8 @@ Para resolução de problemas ou sugestões, entre em contato pelo^^J
 e-mail <rfbpiccoli at gmail dot com>^^J
 ------------------------------------------------------------]
 
-\global\gdef\PP@english{english}
-\global\gdef\PP@brazil{brazil}
+\gdef\PP@english{english}
+\gdef\PP@brazil{brazil}
 \global\let\PP@language\PP@brazil
 \def\PP@erro{\ClassError{Opção '\CurrentOption' não permitida para este formato!}}
 \DeclareOption{letterpaper}{\PP@erro}
@@ -313,7 +313,7 @@ at \PP@Uni{}.}%
 \global\let\@title=\@titleen
 % #1: título em português
 % #2: título em inglês
-\def\title#1#2{\gdef\@titlept{#1}\gdef\@titleen{#2}
+\def\title#1#2{\gdef\@titlept{#1}\gdef\@titleen{#2}%
 \ifx\PP@language\PP@brazil \global\let\@title=\@titlept
 \else \global\let\@title=\@titleen\fi}
 
@@ -355,7 +355,9 @@ at \PP@Uni{}.}%
         \parskip0pt
         \leftskip0pt
         \rightskip0pt
-        \kern4ex
+        \lineskiplimit0pt
+        \lineskip0pt
+        \kern4ex\par\nointerlineskip
         %----------------------------------------------------------------------------------
         % Cabeçalho (universidade + faculdade + programa)
         %----------------------------------------------------------------------------------
@@ -369,28 +371,33 @@ at \PP@Uni{}.}%
             \noindent\hbox{\MakeUppercase{\PP@Dep}}\par
         }%
         \PP@tmpdim=9.5cm
-        \advance \PP@tmpdim by-\ht\PP@tmpbox
-        \advance \PP@tmpdim by-\dp\PP@tmpbox
-        \advance \PP@tmpdim by-4ex
-        \box\PP@tmpbox
-        \vskip\PP@tmpdim
+        \advance\PP@tmpdim by-4ex
+        \advance\PP@tmpdim by-\ht\PP@tmpbox
+        \advance\PP@tmpdim by-\dp\PP@tmpbox
+        \box\PP@tmpbox\par\nointerlineskip
+        \kern\PP@tmpdim\par\nointerlineskip
         %----------------------------------------------------------------------------------
         % Retângulo central (título + autor)
         %----------------------------------------------------------------------------------
-        \leavevmode\kern5cm\vbox to 7.7cm{%
+        \hbox{\kern5cm\vbox to 7.7cm{%
             \hsize=11.5cm
-            \parskip 6ex
+            \parskip6ex
+            \parindent0pt
             \leftskip0pt plus1fil
             \rightskip0pt plus1fil
-            \noindent\leavevmode\kern2.5em\vbox{%
-                \advance\hsize by-5em
-                \noindent\hbox{}\par
-                \noindent{\Large\bfseries\expandafter\uppercase\expandafter{\@title}}\par
-                \noindent{\large\bfseries\expandafter\uppercase\expandafter{\@author}}\par\nointerlineskip
-                \vfil\hbox{}%
-            }\kern2.5em
-        }%
-        \vskip7.5ex
+            \hbox{%
+                \kern2.5em
+                \vbox{%
+                    \advance\hsize by-5em
+                    \noindent\hbox{}\par\nointerlineskip
+                    \noindent{\Large\bfseries\expandafter\uppercase\expandafter{\@title}}\par
+                    \noindent{\large\bfseries\expandafter\uppercase\expandafter{\@author}}\par\nointerlineskip
+                    \vfil\hbox{}%
+                }%
+                \kern2.5em
+            }%
+        }}\par\nointerlineskip
+        \kern7.5ex\par\nointerlineskip
         %----------------------------------------------------------------------------------
         % Descrição da monografia ("Tese apresentada como requisito...")
         %----------------------------------------------------------------------------------
@@ -400,34 +407,33 @@ at \PP@Uni{}.}%
             \divide\hsize by3\relax
             \leftskip0pt
             \rightskip0pt
-            \hyphenpenalty 10000\relax
+            \hyphenpenalty=10000\relax
             \emergencystretch=2em
-            \noindent\PP@descricao\par\nointerlineskip%
-        }%
-        \hskip35pt\hbox{}\par\nointerlineskip
-        \vskip7.5ex
+            \noindent\PP@descricao%
+        }\kern35pt\par\nointerlineskip
+        \kern7.5ex\par\nointerlineskip
         %----------------------------------------------------------------------------------
         % Orientador / Co-Orientador
         %----------------------------------------------------------------------------------
-        \hbox{\vbox{%
+        \vbox{%
             \leftskip0pt plus1fil
             \rightskip0pt plus1fil
             \noindent\hbox{\PP@orientadorname{}: Prof.\ \PP@orientador}%
             \ifx\PP@coorientado\PP@undef\relax
-            \else\break\hbox{Co-\PP@orientadorname{}: Prof.\ \PP@coorientador}\fi
-        }}%
-        \vfill
+            \else\par\noindent\hbox{Co-\PP@orientadorname{}: Prof.\ \PP@coorientador}\fi
+        }\par\nointerlineskip%
+        \vfill\par\nointerlineskip
         %----------------------------------------------------------------------------------
         % Cidade / ano
         %----------------------------------------------------------------------------------
-        \hbox{\vbox{%
+        \vbox{%
             \leftskip0pt plus1fil
             \rightskip0pt plus1fil
             \bfseries
-            \noindent\hbox{\PP@Cid}\break
-            \hbox{\number\year}%
-        }}%
-        \kern3ex
+            \noindent\hbox{\PP@Cid}\par
+            \noindent\hbox{\number\year}%
+        }\par\nointerlineskip
+        \kern3ex\par\nointerlineskip
     }%
 \end{titlepage}%
 \global\let\maketitle\relax
