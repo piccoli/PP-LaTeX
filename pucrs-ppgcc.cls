@@ -419,7 +419,7 @@ at \PP@Uni{}.}%
             \leftskip0pt plus1fil
             \rightskip0pt plus1fil
             \noindent\hbox{\PP@orientadorname{}: Prof.\ \PP@orientador}%
-            \ifx\PP@coorientado\PP@undef\relax
+            \ifx\PP@coorientador\PP@undef\relax
             \else\par\noindent\hbox{Co-\PP@orientadorname{}: Prof.\ \PP@coorientador}\fi
         }\par\nointerlineskip%
         \vfill\par\nointerlineskip
@@ -651,7 +651,7 @@ at \PP@Uni{}.}%
   \leavevmode
   \@tempdima 2.3em\relax
   \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-  {#1}\nobreak\par}%
+  {#1}\nobreak\hfill\hbox{}\par}%
 }
 
 %----------------------------------------------------------------------------------
