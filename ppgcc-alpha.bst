@@ -823,18 +823,28 @@ FUNCTION {format.booktitle}
 {
   booktitle "booktitle" bibinfo.check
 }
-FUNCTION {format.in.ed.booktitle}
+
+FUNCTION {format.in.bbooktitle}
 { format.booktitle duplicate$ empty$ 'skip$
     {
-      editor "editor" format.names.ed duplicate$ empty$ 'pop$
-        {
-          " " *
-          get.bbl.editor
-          capitalize
-          "(" swap$ * "), " *
-          * swap$
-          * }
-      if$
+      emphasize
+      word.in swap$ *
+    }
+  if$
+}
+%FUNCTION {format.in.ed.booktitle}
+FUNCTION {format.in.booktitle}
+{ format.booktitle duplicate$ empty$ 'skip$
+    {
+%      editor "editor" format.names.ed duplicate$ empty$ 'pop$
+%        {
+%          " " *
+%          get.bbl.editor
+%          capitalize
+%          "(" swap$ * "), " *
+%          * swap$
+%          * }
+%      if$
       word.in swap$ *
     }
   if$
@@ -947,11 +957,13 @@ FUNCTION {format.incoll.inproc.crossref}
   or
     { key empty$
         { format.booktitle duplicate$ empty$
-            { "need editor, key, or booktitle for " cite$ * " to crossref " *
+            { %"need editor, key, or booktitle for " cite$ * " to crossref " *
+              "need key, or booktitle for " cite$ * " to crossref " *
               crossref * warning$
             }
             { word.in swap$ * }
           if$
+          %format.editors
         }
         { word.in key * " " *}
       if$
@@ -1124,8 +1136,8 @@ FUNCTION {inbook}
     }
   if$
   %format.edition output
-  format.pages "pages" output.check
-  format.chapter.pages "chapter and pages" output.check
+  format.chapter.pages "chapter" output.check
+  format.pages "pages and chapter" output.check
   format.note output
   format.eprint output
   %format.url output
@@ -1140,19 +1152,21 @@ FUNCTION {incollection}
   new.sentence
   crossref missing$
     {
-      format.publisher.address "publisher or year or address" output.check
-      %format.year "year" output.check
+      format.in.bbooktitle capitalize "booktitle" output.check
+      %new.sentence
       format.edition output
-      format.in.ed.booktitle "booktitle" output.check
+      %format.number.series output
+      format.editors "editor" output.check
+      format.publisher.address "publisher or year or address" output.check
       format.bvolume output
-      format.number.series output
+      %format.year "year" output.check
     }
     { format.incoll.inproc.crossref output.nonnull
-      format.chapter.pages output
+      %format.chapter.pages output
     }
   if$
-  format.pages "pages" output.check
-  format.chapter.pages "chapter and pages" output.check
+  format.chapter.pages "chapter" output.check
+  format.pages "pages and chapter" output.check
   format.note output
   format.eprint output
   %format.url output
@@ -1196,7 +1210,8 @@ FUNCTION {inproceedings}
   format.title "title" output.check
   new.sentence
   crossref missing$
-    { format.in.ed.booktitle "booktitle" output.check
+    { format.in.booktitle "booktitle" output.check
+      format.editors output
       % TODO
 %      format.bvolume output
 %      format.number.series output
