@@ -125,13 +125,6 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage{amsfonts}[2009/06/22]
 \RequirePackage{url}
 \RequirePackage[table]{xcolor}[2007/01/21]
-%\RequirePackage[colorlinks=true,hidelinks,urlcolor=blue]{hyperref}[2011/04/07]
-%\RequirePackage[colorlinks=true,allcolors=,urlcolor=blue]{hyperref}[2011/04/07]
-% Este pacote sofreu muitas alterações recentemente. Neste caso, é
-% melhor fazer justiça com versões um pouco mais antigas.
-\RequirePackage[colorlinks=true,anchorcolor=,citecolor=,%
-                filecolor=,linkcolor=,menucolor=,runcolor=,%
-                urlcolor=blue]{hyperref}[2009/10/09]
 %\RequirePackage{algorithm}[2009/08/24]
 %\RequirePackage{algorithmic}[2009/08/24]
 %\RequirePackage{subfigure}[2002/03/15]
@@ -357,7 +350,7 @@ at \PP@Uni{}.}%
         \rightskip0pt
         \lineskiplimit0pt
         \lineskip0pt
-        \kern4ex\par\nointerlineskip
+        \kern4ex\par
         %----------------------------------------------------------------------------------
         % Cabeçalho (universidade + faculdade + programa)
         %----------------------------------------------------------------------------------
@@ -375,7 +368,7 @@ at \PP@Uni{}.}%
         \advance\PP@tmpdim by-\ht\PP@tmpbox
         \advance\PP@tmpdim by-\dp\PP@tmpbox
         \box\PP@tmpbox\par\nointerlineskip
-        \kern\PP@tmpdim\par\nointerlineskip
+        \kern\PP@tmpdim\par
         %----------------------------------------------------------------------------------
         % Retângulo central (título + autor)
         %----------------------------------------------------------------------------------
@@ -397,7 +390,7 @@ at \PP@Uni{}.}%
                 \kern2.5em
             }%
         }}\par\nointerlineskip
-        \kern7.5ex\par\nointerlineskip
+        \kern7.5ex\par
         %----------------------------------------------------------------------------------
         % Descrição da monografia ("Tese apresentada como requisito...")
         %----------------------------------------------------------------------------------
@@ -411,7 +404,7 @@ at \PP@Uni{}.}%
             \emergencystretch=2em
             \noindent\PP@descricao%
         }\kern35pt\par\nointerlineskip
-        \kern7.5ex\par\nointerlineskip
+        \kern7.5ex\par
         %----------------------------------------------------------------------------------
         % Orientador / Co-Orientador
         %----------------------------------------------------------------------------------
@@ -422,7 +415,7 @@ at \PP@Uni{}.}%
             \ifx\PP@coorientador\PP@undef\relax
             \else\par\noindent\hbox{Co-\PP@orientadorname{}: Prof.\ \PP@coorientador}\fi
         }\par\nointerlineskip%
-        \vfill\par\nointerlineskip
+        \vfill\par
         %----------------------------------------------------------------------------------
         % Cidade / ano
         %----------------------------------------------------------------------------------
@@ -433,7 +426,7 @@ at \PP@Uni{}.}%
             \noindent\hbox{\PP@Cid}\par
             \noindent\hbox{\number\year}%
         }\par\nointerlineskip
-        \kern3ex\par\nointerlineskip
+        \kern3ex\par
     }%
 \end{titlepage}%
 \global\let\maketitle\relax
@@ -455,7 +448,7 @@ at \PP@Uni{}.}%
 \global\let\grau\relax
 \global\let\orientador\relax
 \global\let\coorientador\relax
-\newpage\thispagestyle{empty}%
+\newpage
 }
 
 %----------------------------------------------------------------------------------
@@ -463,18 +456,24 @@ at \PP@Uni{}.}%
 % catalográfica ou termo de apresentação)
 %----------------------------------------------------------------------------------
 \newcommand*\PP@replacepage[1]{%
-\hbox{}\newpage\thispagestyle{empty}%
-\vbox to \vsize{%
-\parfillskip0pt
-\parskip0pt
-%\baselineskip0pt
-\parindent0pt
-\leftskip 0pt plus1fil
-\rightskip 0pt plus1fil
-\hbox{}\vfil
-\hbox{}\hfil\hbox{\vbox{\hsize=5in\bfseries\Huge\MakeTextUppercase{#1}}}%
-\hfil\hbox{}\vfil\hbox{}}%
-\newpage\thispagestyle{empty}%
+   \cleardoublepage\thispagestyle{empty}%
+   \vbox to\vsize{%
+      \parfillskip0pt
+      \parskip0pt
+      %\baselineskip0pt
+      \parindent0pt
+      \leftskip0pt plus1fil
+      \rightskip0pt plus1fil
+      \vss\par\nointerlineskip
+      \hbox to\hsize{%
+         \hss
+         \vbox{\hsize=11.5cm\bfseries\Huge\MakeTextUppercase{#1}}%
+         \hss
+      }%
+      \par\nointerlineskip
+      \vss
+   }%
+   \newpage
 }
 
 %----------------------------------------------------------------------------------
@@ -484,7 +483,6 @@ at \PP@Uni{}.}%
 \newcommand*{\fillers}{%
    \PP@replacepage{\PP@fichaname}%
    \PP@replacepage{\PP@termoname}%
-   \hbox{}\newpage
    %\renewcommand*{\baselinestretch}{1.5}
 }
 
@@ -493,17 +491,19 @@ at \PP@Uni{}.}%
 %----------------------------------------------------------------------------------
 \newenvironment{pretextual}[1]
      {%
-       \cleardoublepage%
+       \cleardoublepage
        \thispagestyle{empty}%
-       {\parindent\z@%
-        \centering%
-        \normalfont%
-        \interlinepenalty\@M%
-        \bfseries\MakeUppercase{#1}\par\nobreak%
-        \normalfont\normalsize%
+%      \@afterindentfalse
+       {\parindent\z@
+        \centering
+        \normalfont
+        \interlinepenalty\@M
+        \bfseries\MakeUppercase{#1}\par\nointerlineskip\nobreak
+        \normalfont\normalsize
         \vskip 19.5ex}%
-       \@afterheading%
-    }{\newpage\thispagestyle{empty}}%
+       \@afterheading
+     }%
+     {\newpage}
 
 %----------------------------------------------------------------------------------
 % Dedicatória
@@ -511,10 +511,10 @@ at \PP@Uni{}.}%
 % #1: texto da dedicatória.
 %----------------------------------------------------------------------------------
 \newcommand*{\dedicatoria}[1]{%
-\begin{pretextual}{\PP@dedicatorianame}%
-#1%
-\end{pretextual}%
-\global\let\PP@dedicatorianame\@empty%
+    \begin{pretextual}{\PP@dedicatorianame}%
+      #1\relax
+    \end{pretextual}%
+    \global\let\PP@dedicatorianame\@empty
 }
 
 %----------------------------------------------------------------------------------
@@ -524,12 +524,19 @@ at \PP@Uni{}.}%
 % #2: autor.
 %----------------------------------------------------------------------------------
 \newcommand*{\PP@epigrafe}[2]{%
-\null\vfill\null\hfill%
-\parbox[t]{3.32in}{%
-\noindent\parskip0pt%
-``#1''\par
-(#2)\par
-}}
+    \vbox to\textheight{%
+        \parskip0pt
+        \parindent0pt
+        \vss
+        \hbox to\textwidth{%
+            \hss\vbox{%
+              \hsize=3.32in
+              ``#1''\par
+              (#2)\par\nointerlineskip
+            }%
+        }\par\nointerlineskip
+    }%
+}
 
 %----------------------------------------------------------------------------------
 % Epígrafe
@@ -538,11 +545,11 @@ at \PP@Uni{}.}%
 % #2: autor (sem parênteses)
 %----------------------------------------------------------------------------------
 \newcommand*{\epigrafe}[2]{%
-\cleardoublepage%
-\thispagestyle{empty}%
-\normalfont\normalsize%
-\PP@epigrafe{#1}{#2}%
-\newpage\thispagestyle{empty}%
+    \cleardoublepage
+    \thispagestyle{empty}%
+    \normalfont\normalsize
+    \PP@epigrafe{#1}{#2}%
+    \newpage
 }
 
 %----------------------------------------------------------------------------------
@@ -553,7 +560,7 @@ at \PP@Uni{}.}%
 % #3: autor (sem parênteses)
 %----------------------------------------------------------------------------------
 \newcommand*{\dedigrafe}[3]{%
-\dedicatoria{#1\par\PP@epigrafe{#2}{#3}}%
+    \dedicatoria{#1\par\PP@epigrafe{#2}{#3}}%
 }%
 
 %----------------------------------------------------------------------------------
@@ -563,7 +570,8 @@ at \PP@Uni{}.}%
 %----------------------------------------------------------------------------------
 \newenvironment{agradecimentos}
   {\begin{pretextual}{\PP@agradecimentosname}}%
-  {\end{pretextual}\global\let\PP@agradecimentosname\@empty}
+  {\end{pretextual}%
+   \global\let\PP@agradecimentosname\@empty}
 
 %----------------------------------------------------------------------------------
 % Abstract/Resumo (comando interno)
@@ -574,34 +582,38 @@ at \PP@Uni{}.}%
 % #4: palavras chave
 %----------------------------------------------------------------------------------
 \newenvironment{PP@abstract}[4]
-     {%
-       \def\PP@kwname{#2}%
-       \def\PP@kwtext{#4}%
-       \cleardoublepage%
-       \thispagestyle{empty}{%
-        \parindent\z@%
-        \centering%
-        \normalfont%
-        \interlinepenalty\@M%
-        \large\bfseries\MakeUppercase{#3}\par\nobreak%
-        \normalfont\normalsize%
-        \vskip 19.5ex}{%
-        \parindent\z@%
-        \centering%
-        \normalfont%
-        \interlinepenalty\@M%
-        \bfseries\MakeUppercase{#1}\par\nobreak%
-        \normalfont\normalsize%
-        \vskip 19.5ex}%
-       \@afterheading%
-    }%
-    {\null\vskip 2cm%
-    \begin{description}%
-      \item[\PP@kwname{}:] \PP@kwtext{}.%
-    \end{description}%
-    \let\PP@kwname\@empty%
-    \let\PP@kwtext\@empty%
-    \newpage\thispagestyle{empty}}
+    {%
+      \def\PP@kwname{#2}%
+      \def\PP@kwtext{#4}%
+      \cleardoublepage%
+      \thispagestyle{empty}%
+      {%
+       \parindent\z@
+       \centering
+       \normalfont
+       \interlinepenalty\@M
+       \large\bfseries\MakeUppercase{#3}\par\nointerlineskip\nobreak
+       \normalfont\normalsize
+       \vskip 19.5ex
+      }%
+      {%
+       \parindent\z@
+       \centering
+       \normalfont
+       \interlinepenalty\@M
+       \bfseries\MakeUppercase{#1}\par\nointerlineskip\nobreak
+       \normalfont\normalsize
+       \vskip 19.5ex
+      }%
+      \@afterheading
+   }%
+   {\null\vskip 2cm
+   \begin{description}%
+     \item[\PP@kwname{}:] \PP@kwtext{}.%
+   \end{description}%
+   \let\PP@kwname\@empty
+   \let\PP@kwtext\@empty
+   \newpage}
 
 %----------------------------------------------------------------------------------
 % Resumo em língua portuguesa
@@ -636,6 +648,7 @@ at \PP@Uni{}.}%
   \newcommand*\listacronymname{List of Acronyms}
 \fi
 \newcommand\listofacronyms{\chapter*{\listacronymname}\@starttoc{loa}}
+
 %----------------------------------------------------------------------------------
 % Comando para inserir novas siglas. Este trecho foi modificado a
 % partir do comando interno \@dottedtocline do LaTeX.
@@ -645,11 +658,14 @@ at \PP@Uni{}.}%
 \newcommand{\sigla}[2]{\addcontentsline{loa}{acronym}{\MakeTextUppercase{#1}\nobreakspace--\nobreakspace #2}}
 \newcommand*{\l@acronym}[2]{%
  \vskip \z@ \@plus.2\p@
- {\leftskip 1.5em\relax \rightskip \@tocrmarg \parfillskip -\rightskip
-  \parindent 1.5em\relax\@afterindenttrue
+ {\leftskip 1.5em
+  \rightskip \@tocrmarg
+  \parfillskip -\rightskip
+  \parindent 1.5em
+  \@afterindenttrue
   \interlinepenalty\@M
   \leavevmode
-  \@tempdima 2.3em\relax
+  \@tempdima 2.3em
   \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
   {#1}\nobreak\hfill\hbox{}\par}%
 }
@@ -713,13 +729,15 @@ at \PP@Uni{}.}%
     ##1}}}}
 
 %----------------------------------------------------------------------------------
-% Redefinindo o comando de legendas da classe report para
-% incluir 'Figura' ou 'Tabela' ao lado do número de cada uma
+% Redefinindo o comando interno do LaTeX para formatar legendas,
+% para incluir 'Figura' ou 'Tabela' ao lado do número de cada uma
 % nas listas de figuras e tabelas.
 %----------------------------------------------------------------------------------
 \long\def\@caption#1[#2]#3{%
   \par
   \addcontentsline{\csname ext@#1\endcsname}{#1}%
+    % Aqui
+   %{\protect\numberline{\csname the#1\endcsname}{\ignorespaces #2}}%
     {\csname #1name\endcsname\nobreakspace\protect\numberline{\csname the#1\endcsname\hfil\nobreakspace--\nobreakspace}{\ignorespaces #2}}%
   \begingroup
     \@parboxrestore
@@ -740,7 +758,9 @@ at \PP@Uni{}.}%
 %  \sbox\@tempboxa{#1: #2}%
   \sbox\@tempboxa{#1 -- #2}%
   \ifdim \wd\@tempboxa >\hsize
-    #1: #2\par
+  % Aqui
+%    #1: #2\par
+    #1 -- #2\par
   \else
     \global \@minipagefalse
     \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
@@ -752,18 +772,18 @@ at \PP@Uni{}.}%
 % configurar o estilo da página para o resto do trabalho.
 %----------------------------------------------------------------------------------
 \renewcommand\tableofcontents{%
-% Desnecessário
-%    \if@twocolumn
-%      \@restonecoltrue\onecolumn
-%    \else
-%      \@restonecolfalse
-%    \fi
+    % Desnecessário
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
     \chapter*{\contentsname
         \@mkboth{%
            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
     \@starttoc{toc}%
-% Desnecessário
-%    \if@restonecol\twocolumn\fi
+    % Desnecessário
+    \if@restonecol\twocolumn\fi
     % Aqui
     \cleardoublepage
     \pagestyle{headings}%
@@ -773,8 +793,10 @@ at \PP@Uni{}.}%
 % Redefinindo o formato dos capítulos e seções...
 %----------------------------------------------------------------------------------
 \renewcommand\chapter{\cleardoublepage
+                     % Aqui
 %                    \thispagestyle{plain}%
                     \global\@topnum\z@
+                     % Aqui
 %                    \@afterindentfalse
                     \secdef\@chapter\@schapter}
 % Capítulos com numeração ficam alinhados à esquerda com número e
@@ -783,23 +805,32 @@ at \PP@Uni{}.}%
                          \refstepcounter{chapter}%
                          \typeout{\thechapter.}%
                          \addcontentsline{toc}{chapter}%
+                         % Aqui
                          {\protect\numberline{\thechapter}\expandafter\uppercase\expandafter{#1}}%
                     \else
+                        % Aqui
                         \addcontentsline{toc}{chapter}{\expandafter\uppercase\expandafter{#1}}%
                     \fi
                     \chaptermark{#1}%
+                    % Coloca um espaço vertical entre figuras de capítulos diferentes.
+                    % Aqui
 %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
 %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
-                    \@makechapterhead{#2}%
-                    \@afterheading}
+                    \if@twocolumn
+                      \@topnewpage[\@makechapterhead{#2}]%
+                    \else
+                      \@makechapterhead{#2}%
+                      \@afterheading
+                    \fi}
 \def\@makechapterhead#1{%
   {\parindent\z@ \raggedright
     \normalfont
     \interlinepenalty\@M
     \leavevmode\hbox to 4em{\large\bfseries\thechapter.\ }%
-%    \large\bfseries\expandafter\uppercase\expandafter{#1}\par\nobreak%
-    \large\bfseries\MakeTextUppercase{#1}\par\nobreak%
-    \normalfont\normalsize%
+%    \large\bfseries\expandafter\uppercase\expandafter{#1}\par\nointerlineskip\nobreak%
+    % Aqui
+    \large\bfseries\MakeTextUppercase{#1}\par\nointerlineskip\nobreak
+    \normalfont\normalsize
     \vskip 6ex
   }}
 % Capítulos sem numeração ficam centralizados (sumário, listas, resumo, etc.)
@@ -811,8 +842,8 @@ at \PP@Uni{}.}%
     \normalfont
     \interlinepenalty\@M
     % Aqui
-    \large\bfseries\MakeTextUppercase{#1}\par\nobreak%
-    \normalfont\normalsize%
+    \large\bfseries\MakeTextUppercase{#1}\par\nointerlineskip\nobreak
+    \normalfont\normalsize
     \vskip 6ex
   }}
 %----------------------------------------------------------------------------------
@@ -827,7 +858,7 @@ at \PP@Uni{}.}%
      \parindent \z@ \relax\@afterindenttrue
      \interlinepenalty\@M
      \leavevmode
-     \@tempdima 3.2em\relax
+     \@tempdima 3.2em
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
 %     % Aqui
 %     \setbox\PP@tmpbox=\hbox{#2}%
@@ -980,28 +1011,32 @@ at \PP@Uni{}.}%
   \setcounter{chapter}{0}%
   \setcounter{section}{0}%
   \gdef\@chapapp{\appendixname}%
-  %\gdef\thechapter{\expandafter\uppercase\expandafter{\ifx\PP@language\PP@brazil Ap\^{e}ndice\else Appendix\fi}\nobreakspace\@Alph\c@chapter}
   \gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
   \gdef\@chapter[##1]##2{\ifnum \c@secnumdepth >\m@ne
                            \refstepcounter{chapter}%
                            \typeout{\thechapter.}%
                            \addcontentsline{toc}{chapter}%
-                               {\protect\numberline{}\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
+                           {\protect\numberline{}\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
                       \else
                           \addcontentsline{toc}{chapter}{##1}%
                       \fi
                       \chaptermark{##1}%
                       % Coloca um espaço vertical entre figuras de capítulos diferentes.
+                      % Aqui
   %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
   %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
-                      \@makechapterhead{##2}%
-                      \@afterheading}%
+                      \if@twocolumn
+                        \@topnewpage[\@makechapterhead{##2}]%
+                      \else
+                        \@makechapterhead{##2}%
+                        \@afterheading
+                      \fi}%
   \gdef\@makechapterhead##1{%
     {\parindent\z@
       \centering
       \normalfont
       \interlinepenalty\@M
-      \large\bfseries\MakeTextUppercase{\thechapter\nobreakspace--\nobreakspace ##1}\par\nobreak
+      \large\bfseries\MakeTextUppercase{\thechapter\nobreakspace--\nobreakspace ##1}\par\nointerlineskip\nobreak
       \normalfont\normalsize
       \vskip 6ex
     }}%
@@ -1020,26 +1055,32 @@ at \PP@Uni{}.}%
   \global\let\PP@anexoname\@empty
   \gdef\@chapapp{\appendixname}%
   \gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
+
   \gdef\@chapter[##1]##2{\ifnum \c@secnumdepth >\m@ne
                            \refstepcounter{chapter}%
                            \typeout{\thechapter.}%
                            \addcontentsline{toc}{chapter}%
-                               {\protect\numberline{}\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
+                           {\protect\numberline{}\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
                       \else
                           \addcontentsline{toc}{chapter}{##1}%
                       \fi
                       \chaptermark{##1}%
                       % Coloca um espaço vertical entre figuras de capítulos diferentes.
+                      % Aqui
   %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
   %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
-                      \@makechapterhead{##2}%
-                      \@afterheading}%
+                      \if@twocolumn
+                        \@topnewpage[\@makechapterhead{##2}]%
+                      \else
+                        \@makechapterhead{##2}%
+                        \@afterheading
+                      \fi}%
   \gdef\@makechapterhead##1{%
     {\parindent\z@
       \centering
       \normalfont
       \interlinepenalty\@M
-      \large\bfseries\thechapter\nobreakspace--\nobreakspace ##1\par\nobreak
+      \large\bfseries\thechapter\nobreakspace--\nobreakspace ##1\par\nointerlineskip\nobreak
       \normalfont\normalsize
       \vskip 6ex
     }}%
@@ -1117,10 +1158,21 @@ at \PP@Uni{}.}%
    %\addto\captionsportuges{\renewcommand*{\contentsname}{Sum\'{a}rio}}
    %\addto\captionsportuges{\renewcommand*{\figurename}{Figura}}
    %\addto\captionsportuges{\renewcommand*{\tablename}{Tabela}}
+   % O pacote 'hyperref' automaticamente cria links para navegação no
+   % documento. Como ele reescreve muitos comandos internos do LaTeX,
+   % deve ser o ÚLTIMO pacote inserido antes do início do documento.
+   % Obs.: A versão estável do TeXLive instalada no Ubuntu
+   % ainda não tem a versão mais recente do hyperref,
+   % então usamos as opções antigas para garantir a compatibilidade
+   %\RequirePackage[colorlinks=true,hidelinks,urlcolor=blue]{hyperref}[2011/04/07]
+   %\RequirePackage[colorlinks=true,allcolors=,urlcolor=blue]{hyperref}[2011/04/07]
+   %\RequirePackage[colorlinks=true,anchorcolor=,citecolor=,%
+   %               filecolor=,linkcolor=,menucolor=,runcolor=,%
+   %               breaklinks=true,urlcolor=blue]{hyperref}[2009/10/09]
 }
 
-\AtBeginDocument{
-   \expandafter\selectlanguage\expandafter{\PP@language}
+\AtBeginDocument{%
+   \expandafter\selectlanguage\expandafter{\PP@language}%
    \maketitle
    \onehalfspacing
    \ifx\PP@tipo\tese\fillers\else

@@ -43,7 +43,11 @@ Ver Figura~\ref{fig:fig1}.
 % Um exemplo de figura
 \begin{figure}[htb!]
 \centering\includegraphics[width=.65\textwidth]{fig/exemplo.eps}
-\caption{\label{fig:fig1}This is a figure}
+\caption%[This figure has a shorter caption now]%
+        {\label{fig:fig1}This is a figure with a very long
+    caption which looks ugly in the corresponding list of figures.
+    Fortunately, there is an optional parameter for a shorter
+    replacement of this monstrosity}%
 \end{figure}
 
 tempor invidunt~\cite{SKIENAC698} ut labore et dolore magna
@@ -59,7 +63,7 @@ mostra este processo.
       \algsetup{linenosize=\small,linenodelimiter=.}
       \begin{algorithmic}[1]
          \STATE \textbf{function} $\sigma\left(i,j\right)$
-         \STATE \COMMENT{\texttt{table} is a global object to contain the best matching templates for each pair $\left(i,j\right)$}
+         \STATE \COMMENT{\texttt{table} lorem ipsum dolor consetetur sadipscing elitr sed $\left(i,j\right)$}
            \IF{$table\left[i,j\right].memoized$}
              \RETURN $table\left[i,j\right].error$
            \ENDIF
@@ -77,7 +81,10 @@ mostra este processo.
          \STATE $table\left[i,j\right].error\leftarrow{}minerror$
          \RETURN $minerror$
       \end{algorithmic}
-      \caption{\label{fig:algo}Template scoring and selection function}
+      \caption[A figure with an alternate, shorter caption]%
+        {\label{fig:algo}This is another figure with a very long
+            caption. However, this time we will actually use the shorter
+            version.}%
 \end{center}
 \end{figure}
 
