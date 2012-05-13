@@ -9,13 +9,14 @@
 % PPGCC e não implementa todas as normas de formatação propostas
 % pelo PPGCC, ou ainda, pela Biblioteca Central da PUCRS. Desta
 % forma, não é possível garantir que sua tese ou dissertação será
-% homologada pelo simples uso esta classe. Fique atento às normas
+% homologada apenas pelo uso esta classe. Fique atento às normas
 % documentadas neste link:
+%
 % http://www.inf.pucrs.br/alunos/PPGCC/ModeloTeseDiMono/padrao_dissertacoes_teses_ataCC21_2010_v3.pdf
 %
 % IMPORTANTE: examine os arquivos 'makefile' e 'sort.sh' antes de
-% utilizá-los para compilar o seu documento, pois não me
-% responsabilizo pelo uso incorreto destes.
+% utilizá-los para compilar o seu documento, pois a
+% responsabilidade pelo uso destes é inteiramente do usuário.
 %
 % Requisitos: É recomendado a instalação da versão mais
 % recente da distribuição TeXLive (para Windows e UNIXes):
@@ -30,8 +31,8 @@
 %   - texlive-latexrecommended
 %   - xcolor
 %
-% Para a distribuição Ubuntu Linux, provavelmente o mais fácil é
-% instalar o pacote texlive-full.
+% Para a distribuição Ubuntu Linux, o mais fácil é
+% instalar o pacote 'texlive-full'.
 %
 % Limitações:
 %   - funciona apenas com impressão em frente e verso.
@@ -47,7 +48,7 @@
 % PPGCC/PUCRS (especialmente o estilo bibliográfico). Caso lhe
 % falte alguma formatação em particular do padrão, ou por ventura
 % tenha sugestões, comentários, ou ainda, tenha encontrado um erro
-% no formato, por favor entre em contato pelo e-mail
+% no formato, por favor entre em contato com o autor pelo e-mail
 % <rfbpiccoli at gmail dot com> (Ricardo Piccoli).
 %
 %----------------------------------------------------------------------------------

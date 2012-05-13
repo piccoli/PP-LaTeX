@@ -86,9 +86,9 @@ Para resolução de problemas ou sugestões, entre em contato pelo^^J
 e-mail <rfbpiccoli at gmail dot com>^^J
 ------------------------------------------------------------]
 
-\gdef\PP@english{english}
-\gdef\PP@brazil{brazil}
-\global\let\PP@language\PP@brazil
+\def\PP@english{english}
+\def\PP@brazil{brazil}
+\let\PP@language\PP@brazil
 \def\PP@erro{\ClassError{Opção '\CurrentOption' não permitida para este formato!}}
 \DeclareOption{letterpaper}{\PP@erro}
 \DeclareOption{legalpaper}{\PP@erro}
@@ -146,14 +146,30 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % \renewcommand\large{\@setfontsize\large{14}{18}}
 
 %----------------------------------------------------------------------------------
-% Faz um retângulo em volta da caixa #1 com 0.5pt de margem, para
+% Faz um retângulo em volta da caixa #1 com \PP@boxsep de margem, para
 % depuração. Evitei o \framebox{} pois desconheço qualquer possível
 % efeito colateral do mesmo.
 %----------------------------------------------------------------------------------
-\long\def\PP@boxit#1{\vbox{\boxmaxdepth=0pt\hrule\hbox{%
-\vrule\kern.5pt\vbox{\kern.5pt#1\par\nointerlineskip\kern.5pt}%
-\kern.5pt\vrule}\hrule}}
-
+\newdimen\PP@boxsep
+\PP@boxsep0pt
+\long\def\PP@boxit#1{%
+    \vbox{%
+        \hrule
+        \hbox{%
+            \vrule
+            \kern\PP@boxsep
+            \vbox{%
+                \kern\PP@boxsep
+                #1\relax
+                \kern\PP@boxsep
+            }%
+            \kern
+            \PP@boxsep
+            \vrule
+       }%
+       \hrule
+   }%
+}
 %----------------------------------------------------------------------------------
 % Preenche a caixa atual com uma linha horizontal
 %----------------------------------------------------------------------------------
@@ -186,7 +202,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
   \newcommand*{\PP@descricao}{%
 \PP@tipo{} apresentada como requisito parcial \`{a}
 obten\c{c}\~{a}o do grau de \PP@grau{} em Ci\^{e}ncia da
-Computa\c{c}\~{a}o na \PP@Uni{}.}%
+Computa\c{c}\~{a}o na \PP@Uni{}.}
   \newcommand*{\PP@fichaname}{Substitua esta p\'{a}gina pela Ficha Catalogr\'{a}fica}
   \newcommand*{\PP@termoname}{Substitua esta p\'{a}gina pelo Termo de Apresenta\c{c}\~{a}o}
   \newcommand*{\PP@dedicatorianame}{Dedicat\'{o}ria}
@@ -243,7 +259,7 @@ Computa\c{c}\~{a}o na \PP@Uni{}.}%
   \newcommand*{\PP@descricao}{%
 \PP@tipo{} presented as partial requirement for
 obtaining the degree of \PP@grau{} in Computer Science
-at \PP@Uni{}.}%
+at \PP@Uni{}.}
   \newcommand*{\PP@fichaname}{Replace this page with the Library Catalog Information}
   \newcommand*{\PP@termoname}{Replace this page with the Presentation Term}
   \newcommand*{\PP@dedicatorianame}{\null}
@@ -303,7 +319,7 @@ at \PP@Uni{}.}%
 %----------------------------------------------------------------------------------
 \def\@titleen{\@latex@error{No \noexpand\title given}\@ehc}
 \def\@titlept{\@latex@error{Nenhum \noexpand\title informado}\@ehc}
-\global\let\@title=\@titleen
+\let\@title=\@titleen
 % #1: título em português
 % #2: título em inglês
 \def\title#1#2{\gdef\@titlept{#1}\gdef\@titleen{#2}%
@@ -402,7 +418,7 @@ at \PP@Uni{}.}%
             \rightskip0pt
             \hyphenpenalty=10000\relax
             \emergencystretch=2em
-            \noindent\PP@descricao%
+            \noindent\PP@descricao
         }\kern35pt\par\nointerlineskip
         \kern7.5ex\par
         %----------------------------------------------------------------------------------
@@ -510,7 +526,7 @@ at \PP@Uni{}.}%
 %
 % #1: texto da dedicatória.
 %----------------------------------------------------------------------------------
-\newcommand*{\dedicatoria}[1]{%
+\newcommand{\dedicatoria}[1]{%
     \begin{pretextual}{\PP@dedicatorianame}%
       #1\relax
     \end{pretextual}%
@@ -523,18 +539,14 @@ at \PP@Uni{}.}%
 % #1: frase.
 % #2: autor.
 %----------------------------------------------------------------------------------
-\newcommand*{\PP@epigrafe}[2]{%
-    \vbox to\textheight{%
-        \parskip0pt
-        \parindent0pt
-        \vss
-        \hbox to\textwidth{%
-            \hss\vbox{%
-              \hsize=3.32in
-              ``#1''\par
-              (#2)\par\nointerlineskip
-            }%
-        }\par\nointerlineskip
+\newcommand{\PP@epigrafe}[2]{%
+    \hbox to\textwidth{%
+        \hss\vbox{%
+           \hsize=3.32in
+           \parindent0pt
+          ``#1''\par
+          (#2)\relax
+        }%
     }%
 }
 
@@ -544,11 +556,16 @@ at \PP@Uni{}.}%
 % #1: texto do pensamento (sem aspas)
 % #2: autor (sem parênteses)
 %----------------------------------------------------------------------------------
-\newcommand*{\epigrafe}[2]{%
+\newcommand{\epigrafe}[2]{%
     \cleardoublepage
     \thispagestyle{empty}%
     \normalfont\normalsize
-    \PP@epigrafe{#1}{#2}%
+    \vbox to\textheight{%
+        \parskip0pt
+        \parindent0pt
+        \vss
+        \noindent\PP@epigrafe{#1}{#2}%
+    }%
     \newpage
 }
 
@@ -559,8 +576,14 @@ at \PP@Uni{}.}%
 % #2: texto do pensamento (sem aspas)
 % #3: autor (sem parênteses)
 %----------------------------------------------------------------------------------
-\newcommand*{\dedigrafe}[3]{%
-    \dedicatoria{#1\par\PP@epigrafe{#2}{#3}}%
+\newcommand{\dedigrafe}[3]{%
+    \dedicatoria{%
+        \parskip0pt
+        #1\par\nointerlineskip
+        \vfill
+        \normalfont\normalsize
+        \noindent\PP@epigrafe{#2}{#3}%
+    }%
 }%
 
 %----------------------------------------------------------------------------------
@@ -974,8 +997,8 @@ at \PP@Uni{}.}%
 %
 %----------------------------------------------------------------------------------
 \newenvironment{directcite}%
-{\par\bgroup\hangafter=0\hangindent=4cm\small}%
-{\par\egroup}%
+    {\par\begin{singlespace}\hangafter=0\hangindent=4cm\footnotesize}%\small}%
+    {\end{singlespace}\par}%
 
 %----------------------------------------------------------------------------------
 % Redefinindo bibliografias, para aparecer no sumário.
@@ -1172,7 +1195,7 @@ at \PP@Uni{}.}%
 }
 
 \AtBeginDocument{%
-   \expandafter\selectlanguage\expandafter{\PP@language}%
+   \expandafter\selectlanguage\expandafter{\PP@language}
    \maketitle
    \onehalfspacing
    \ifx\PP@tipo\tese\fillers\else
