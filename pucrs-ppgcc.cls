@@ -375,9 +375,9 @@ at \PP@Uni{}.}
             \rightskip0pt plus1fil
             \hyphenpenalty 10000\relax
             \bfseries
-            \noindent\hbox{\MakeUppercase{\PP@Uni}}\par
-            \noindent\hbox{\MakeUppercase{\PP@Fac}}\par
-            \noindent\hbox{\MakeUppercase{\PP@Dep}}\par
+            \noindent\MakeUppercase{\PP@Uni}\par
+            \noindent\MakeUppercase{\PP@Fac}\par
+            \noindent\MakeUppercase{\PP@Dep}\par
         }%
         \PP@tmpdim=9.5cm
         \advance\PP@tmpdim by-4ex
@@ -394,17 +394,15 @@ at \PP@Uni{}.}
             \parindent0pt
             \leftskip0pt plus1fil
             \rightskip0pt plus1fil
-            \hbox{%
-                \kern2.5em
-                \vbox{%
-                    \advance\hsize by-5em
-                    \noindent\hbox{}\par\nointerlineskip
-                    \noindent{\Large\bfseries\expandafter\uppercase\expandafter{\@title}}\par
-                    \noindent{\large\bfseries\expandafter\uppercase\expandafter{\@author}}\par\nointerlineskip
-                    \vfil\hbox{}%
-                }%
-                \kern2.5em
-            }%
+            \leavevmode\kern2.5em\vbox{%
+                \advance\hsize by-5em
+                \bfseries
+                \lineskip.25\baselineskip
+                \noindent\hbox{}\par\nointerlineskip
+                \noindent{\Large\expandafter\uppercase\expandafter{\@title}}\par
+                \noindent{\large\expandafter\uppercase\expandafter{\@author}}\par\nointerlineskip
+                \vfil\hbox{}%
+            }\kern2.5em
         }}\par\nointerlineskip
         \kern7.5ex\par
         %----------------------------------------------------------------------------------
