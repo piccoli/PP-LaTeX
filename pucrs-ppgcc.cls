@@ -114,7 +114,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage[a4paper]{geometry}[2010/09/12]
 \RequirePackage{textcomp}[2005/09/27]
 \RequirePackage{lmodern}[2009/10/30]
-\RequirePackage[lm]{sfmath}[2007/08/27]
+%\RequirePackage[lm]{sfmath}[2007/08/27]
 \RequirePackage{indentfirst}[1995/11/23]
 \RequirePackage{setspace}[2000/12/01]
 \RequirePackage{textcase}[2004/10/07]
@@ -1006,7 +1006,8 @@ at \PP@Uni{}.}
       % Aqui
       \addcontentsline{toc}{chapter}%
       % e aqui
-      {\protect\numberline{\thechapter}\expandafter\uppercase\expandafter{\PP@bibname}}%
+      %{\protect\numberline{\thechapter}\expandafter\uppercase\expandafter{\PP@bibname}}%
+      {\protect\numberline{\null}\expandafter\uppercase\expandafter{\PP@bibname}}%
       \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
