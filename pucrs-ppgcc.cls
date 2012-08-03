@@ -398,6 +398,7 @@ at \PP@Uni{}.}
                 \advance\hsize by-5em
                 \bfseries
                 \lineskip.25\baselineskip
+                \baselineskip1.2\baselineskip
                 \noindent\hbox{}\par\nointerlineskip
                 \noindent{\Large\expandafter\uppercase\expandafter{\@title}}\par
                 \noindent{\large\expandafter\uppercase\expandafter{\@author}}\par\nointerlineskip
