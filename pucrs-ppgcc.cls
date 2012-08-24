@@ -39,7 +39,7 @@
 %   - texlive-latexrecommended
 %   - xcolor
 %
-% Para a distribuição Ubuntu Linux, o mais fácil é
+% Para a distribuição Ubuntu Linux, provavelmente o mais fácil é
 % instalar o pacote 'texlive-full'.
 %
 % Limitações:
@@ -1146,7 +1146,7 @@ at \PP@Uni{}.}
    \setlength{\marginparpush}{1mm}
    \setlength{\marginparsep}{2mm}
    \setlength{\marginparwidth}{1.6cm}
-   % Indentação do parágrafo.
+   % Indentação de parágrafos.
    \setlength{\parindent}{4em}
    % Distância vertical entre dois parágrafos.
    \setlength{\parskip}{1mm}

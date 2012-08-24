@@ -4,8 +4,8 @@
 #
 # !!ATENÇÃO!! O uso incorreto deste script pode causar a perda ou
 # sobrescrita de arquivos no diretório onde estiver sendo
-# utilizado! Examine este arquivo com cuidado e, em caso de
-# dúvidas, NÃO o utilize para compilar o seu documento! Não me
+# utilizado. Examine este arquivo com cuidado e, em caso de
+# dúvidas, NÃO o utilize para compilar o seu documento. Não me
 # responsabilizo pela perda acidental de arquivos!
 
 # Coloque em TARGET o nome (sem a extensão .tex) do seu documento
@@ -18,7 +18,7 @@ PDFDIR=pdf
 RM=rm -f
 #RM=rm -i # para evitar remoções indesejadas de arquivos.
 
-# Substitua por 'pdflatex', caso deseje incluir figuras .png ou
+# Substitua por 'pdflatex' caso deseje incluir figuras .png ou
 # .jpg no seu documento.
 LATEX=latex
 #LATEX=pdflatex
@@ -26,7 +26,7 @@ BIBTEX=bibtex
 SORT=./sort.sh
 
 # Verifique se sua instalação do LaTeX e Ghostscript
-# possuem estes comandos.
+# possuem estes comandos:
 PDFOPT=pdfopt
 ifeq ($(LATEX),latex)
 DVIPS=dvips
@@ -62,5 +62,5 @@ endif
 # este comportamento.
 clean:
 	$(RM) *.aux *.log *.bbl *.blg *.out *.toc *.loa *.lob *.lof *.los *.lot *.dvi *.ps *.pdf
-# Essa sintaxe aparentemente só funciona no bash:
+# A sintaxe abaixo aparentemente só funciona no bash:
 #	$(RM) *.{aux,log,bbl,blg,out,toc,loa,lob,lof,los,lot,dvi,ps,pdf}

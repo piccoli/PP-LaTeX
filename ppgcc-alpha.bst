@@ -1377,6 +1377,7 @@ FUNCTION {format.lab.names}
   s num.names$ 'numnames :=
   numnames #1 >
     { numnames #4 >
+        % TODO #4
         { #3 'namesleft := }
         { numnames 'namesleft := }
       if$
@@ -1405,7 +1406,9 @@ FUNCTION {format.lab.names}
       if$
     }
     { s #1 "{v{}}{l{}}" format.name$
-      duplicate$ text.length$ #2 <
+      % TODO
+      duplicate$ text.length$ #3 <
+      %duplicate$ text.length$ #2 <
         { pop$ s #1 "{ll}" format.name$ #3 text.prefix$ }
         'skip$
       if$
