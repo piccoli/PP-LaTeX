@@ -1,4 +1,4 @@
 PP-LaTeX
 ========
 
-LaTeX class for the accepted standard for thesis&#39; and dissertations at PPGCC/PUCRS, Brazil
+LaTeX class for the accepted standard for theses and dissertations at PPGCC/PUCRS, Brazil

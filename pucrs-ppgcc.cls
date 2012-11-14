@@ -43,19 +43,17 @@
 % instalar o pacote 'texlive-full'.
 %
 % Limitações:
-%   - funciona apenas com impressão em frente e verso.
 %   - funciona apenas em dois idiomas: português e inglês
 %   - formata PEP's, monografias, teses e propostas de tese
 %   - a ordenação automática da lista de siglas/abreviaturas ainda
-%   requer um utilitário externo (sort.sh). Porém, por questões
-%   de usablidade e compatibilidade da classe, é desejável uma
-%   implementação interna deste procedimento.
+%   requer um utilitário externo (sort.sh). Porém, para
+%   simplificar a classe é desejável uma implementação interna
+%   deste procedimento.
 %
 % Desejável (para futuras versões):
-%   - Formatação para impressão em um lado da folha apenas.
-%   - Monografia em outros idiomas além de português e inglês
-%   - O código dependente de idioma está muito amarrado. Como
-%   fazer melhor?
+%   - Monografia em outros idiomas além de português e inglês.
+%   - O código dependente de idioma atualmente é acoplado à
+%   classe, sem uma abstração bem definida. Como fazer melhor?
 %   - Documentar a classe com o pacote 'doc' e organizar com o
 %   DocStrip (texdoc doc; texdoc docstrip).
 %   - Macro interna do TeX para realizar a ordenação lexicográfica
@@ -98,7 +96,6 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \DeclareOption{landscape}{\PP@erro}
 \DeclareOption{twocolumn}{\PP@erro}
 \DeclareOption{notitlepage}{\PP@erro}
-\DeclareOption{oneside}{\PP@erro}
 \DeclareOption{10pt}{\PP@erro}
 \DeclareOption{11pt}{\PP@erro}
 \DeclareOption{english}{\global\let\PP@language\PP@english}
@@ -106,7 +103,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions\relax
 %\ExecuteOptions{12pt,onecolumn,twoside,titlepage,a4paper,openright,final}
-\LoadClass[12pt,onecolumn,twoside,titlepage,a4paper,openright,final]{report}[2007/10/19]
+%\LoadClass[12pt,onecolumn,twoside,titlepage,a4paper,openright,final]{report}[2007/10/19]
+\LoadClass[12pt,onecolumn,titlepage,a4paper,openright,final]{report}[2007/10/19]
 
 \RequirePackage[T1]{fontenc}[2005/09/27]
 \RequirePackage[utf8x]{inputenc}[2008/03/30]
@@ -471,7 +469,9 @@ at \PP@Uni{}.}
 % catalográfica ou termo de apresentação)
 %----------------------------------------------------------------------------------
 \newcommand*\PP@replacepage[1]{%
-   \cleardoublepage\thispagestyle{empty}%
+   %\if@openright\cleardoublepage\else\clearpage\fi
+   \cleardoublepage
+   \thispagestyle{empty}%
    \vbox to\vsize{%
       \parfillskip0pt
       \parskip0pt
@@ -506,6 +506,7 @@ at \PP@Uni{}.}
 %----------------------------------------------------------------------------------
 \newenvironment{pretextual}[1]
      {%
+       %\if@openright\cleardoublepage\else\clearpage\fi
        \cleardoublepage
        \thispagestyle{empty}%
 %      \@afterindentfalse
@@ -556,6 +557,7 @@ at \PP@Uni{}.}
 % #2: autor (sem parênteses)
 %----------------------------------------------------------------------------------
 \newcommand{\epigrafe}[2]{%
+    %\if@openright\cleardoublepage\else\clearpage\fi
     \cleardoublepage
     \thispagestyle{empty}%
     \normalfont\normalsize
@@ -607,7 +609,8 @@ at \PP@Uni{}.}
     {%
       \def\PP@kwname{#2}%
       \def\PP@kwtext{#4}%
-      \cleardoublepage%
+      %\if@openright\cleardoublepage\else\clearpage\fi
+      \cleardoublepage
       \thispagestyle{empty}%
       {%
        \parindent\z@
@@ -790,7 +793,7 @@ at \PP@Uni{}.}
   \vskip\belowcaptionskip}
 
 %----------------------------------------------------------------------------------
-% Redefinindo o sumário para automaticamente usar frente e verso e
+% Redefinindo o sumário para usar frente e verso automaticamente e
 % configurar o estilo da página para o resto do trabalho.
 %----------------------------------------------------------------------------------
 \renewcommand\tableofcontents{%
@@ -807,6 +810,7 @@ at \PP@Uni{}.}
     % Desnecessário
     \if@restonecol\twocolumn\fi
     % Aqui
+    %\if@openright\cleardoublepage\else\clearpage\fi
     \cleardoublepage
     \pagestyle{headings}%
     }
@@ -814,7 +818,8 @@ at \PP@Uni{}.}
 %----------------------------------------------------------------------------------
 % Redefinindo o formato dos capítulos e seções...
 %----------------------------------------------------------------------------------
-\renewcommand\chapter{\cleardoublepage
+\renewcommand\chapter{%\if@openright\cleardoublepage\else\clearpage\fi
+                      \cleardoublepage
                      % Aqui
 %                    \thispagestyle{plain}%
                     \global\@topnum\z@
@@ -1197,6 +1202,10 @@ at \PP@Uni{}.}
 \AtBeginDocument{%
    \expandafter\selectlanguage\expandafter{\PP@language}
    \maketitle
+   % Com a opção oneside, o ambiente titlepage reinicia o contador
+   % de páginas para 1 após gerar a página de título, então
+   % precisamos corrigir para 2.
+   \if@twoside\else\setcounter{page}\tw@\fi
    \onehalfspacing
    \ifx\PP@tipo\tese\fillers\else
    \ifx\PP@tipo\dissertacao\fillers\fi\fi

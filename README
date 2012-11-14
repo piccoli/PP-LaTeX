@@ -35,13 +35,12 @@
 % instalar o pacote 'texlive-full'.
 %
 % Limitações:
-%   - funciona apenas com impressão em frente e verso.
 %   - funciona apenas em dois idiomas: português e inglês
 %   - formata PEP's, monografias, teses e propostas de tese
 %   - a ordenação automática da lista de siglas/abreviaturas ainda
-%   requer um utilitário externo (sort.sh). Porém, por questões
-%   de usablidade e compatibilidade da classe, é desejável uma
-%   implementação interna deste procedimento.
+%   requer um utilitário externo (sort.sh). Porém, para
+%   simplificar a classe é desejável uma implementação interna
+%   deste procedimento.
 %
 % Obs.: este modelo foi criado inicialmente apenas para suprir as
 % necessidades do autor quanto à conformidade ao formato do
