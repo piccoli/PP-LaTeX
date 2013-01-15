@@ -1039,12 +1039,15 @@ at \PP@Uni{}.}
   \setcounter{chapter}{0}%
   \setcounter{section}{0}%
   \gdef\@chapapp{\appendixname}%
-  \gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
+  % Aqui
+  \gdef\@chapupp{\expandafter\uppercase\expandafter{\appendixname}}%
+  %\gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
+  \gdef\thechapter{\@Alph\c@chapter}%
   \gdef\@chapter[##1]##2{\ifnum \c@secnumdepth >\m@ne
                            \refstepcounter{chapter}%
-                           \typeout{\thechapter.}%
+                           \typeout{\@chapupp\space\thechapter.}%
                            \addcontentsline{toc}{chapter}%
-                           {\protect\numberline{}\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
+                           {\protect\numberline{}\@chapupp\nobreakspace\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
                       \else
                           \addcontentsline{toc}{chapter}{##1}%
                       \fi
@@ -1064,7 +1067,7 @@ at \PP@Uni{}.}
       \centering
       \normalfont
       \interlinepenalty\@M
-      \large\bfseries\MakeTextUppercase{\thechapter\nobreakspace--\nobreakspace ##1}\par\nointerlineskip\nobreak
+      \large\bfseries\MakeTextUppercase{\@chapapp\nobreakspace\thechapter\nobreakspace--\nobreakspace ##1}\par\nointerlineskip\nobreak
       \normalfont\normalsize
       \vskip 6ex
     }}%
@@ -1082,13 +1085,15 @@ at \PP@Uni{}.}
   \xdef\appendixname{\PP@anexoname}%
   \global\let\PP@anexoname\@empty
   \gdef\@chapapp{\appendixname}%
-  \gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
-
+  % Aqui
+  \gdef\@chapupp{\expandafter\uppercase\expandafter{\appendixname}}%
+  %\gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
+  \gdef\thechapter{\@Alph\c@chapter}%
   \gdef\@chapter[##1]##2{\ifnum \c@secnumdepth >\m@ne
                            \refstepcounter{chapter}%
-                           \typeout{\thechapter.}%
+                           \typeout{\@chapupp\space\thechapter.}%
                            \addcontentsline{toc}{chapter}%
-                           {\protect\numberline{}\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
+                           {\protect\numberline{}\@chapupp\nobreakspace\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
                       \else
                           \addcontentsline{toc}{chapter}{##1}%
                       \fi
@@ -1108,7 +1113,7 @@ at \PP@Uni{}.}
       \centering
       \normalfont
       \interlinepenalty\@M
-      \large\bfseries\thechapter\nobreakspace--\nobreakspace ##1\par\nointerlineskip\nobreak
+      \large\bfseries\@chapupp\nobreakspace\thechapter\nobreakspace--\nobreakspace ##1\par\nointerlineskip\nobreak
       \normalfont\normalsize
       \vskip 6ex
     }}%
