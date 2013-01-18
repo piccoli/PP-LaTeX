@@ -601,9 +601,9 @@ at \PP@Uni{}.}
 % Abstract/Resumo (comando interno)
 %
 % #1: título da página ("Resumo" ou "Abstract")
-% #2: título das palavras chave ("Palavras Chave" ou "Keywords")
+% #2: título das palavras-chave ("Palavras-Chave" ou "Keywords")
 % #3: título da monografia
-% #4: palavras chave
+% #4: palavras-chave
 %----------------------------------------------------------------------------------
 \newenvironment{PP@abstract}[4]
     {%
@@ -643,11 +643,11 @@ at \PP@Uni{}.}
 %----------------------------------------------------------------------------------
 % Resumo em língua portuguesa
 %
-% #1: palavras chave
+% #1: palavras-chave
 %----------------------------------------------------------------------------------
 \newenvironment{resumo}[1]%
     {\begin{hyphenrules}{brazil}%
-     \begin{PP@abstract}{Resumo}{Palavras Chave}{\@titlept}{#1}}%
+     \begin{PP@abstract}{Resumo}{Palavras-Chave}{\@titlept}{#1}}%
     {\global\let\@titlept\@empty
      \end{PP@abstract}%
      \end{hyphenrules}}
@@ -655,7 +655,7 @@ at \PP@Uni{}.}
 %----------------------------------------------------------------------------------
 % Resumo em língua inglesa
 %
-% #1: palavras chave
+% #1: palavras-chave
 %----------------------------------------------------------------------------------
 \renewenvironment{abstract}[1]%
     {\begin{hyphenrules}{english}%
