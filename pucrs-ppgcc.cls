@@ -144,6 +144,14 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % \renewcommand\large{\@setfontsize\large{14}{18}}
 
 %----------------------------------------------------------------------------------
+% Redefinindo \eqref para que as referências para equações
+% funcionem normalmente dentro de \MakeTextUppercase (usado no
+% sumário e títulos de capítulos e seções).
+%----------------------------------------------------------------------------------
+\let\PP@eqref\eqref
+\renewcommand{\eqref}[1]{\protect\NoCaseChange{\PP@eqref{#1}}}
+
+%----------------------------------------------------------------------------------
 % Faz um retângulo em volta da caixa #1 com \PP@boxsep de margem, para
 % depuração. Evitei o \framebox{} pois desconheço qualquer possível
 % efeito colateral do mesmo.
@@ -833,10 +841,10 @@ at \PP@Uni{}.}
                          \typeout{\thechapter.}%
                          \addcontentsline{toc}{chapter}%
                          % Aqui
-                         {\protect\numberline{\thechapter}\expandafter\uppercase\expandafter{#1}}%
+                         {\protect\numberline{\thechapter}\MakeTextUppercase{#1}}%
                     \else
                         % Aqui
-                        \addcontentsline{toc}{chapter}{\expandafter\uppercase\expandafter{#1}}%
+                        \addcontentsline{toc}{chapter}{\MakeTextUppercase{#1}}%
                     \fi
                     \chaptermark{#1}%
                     % Coloca um espaço vertical entre figuras de capítulos diferentes.
@@ -939,7 +947,7 @@ at \PP@Uni{}.}
       \fi
 %      #7}%
       % Aqui
-      \expandafter\uppercase\expandafter{#7}}%
+      \MakeTextUppercase{#7}}%
   \else
     \def\@svsechd{%
       #6{\hskip #3\relax
@@ -951,7 +959,7 @@ at \PP@Uni{}.}
         \fi
 %        #7}}%
         % Aqui
-        \expandafter\uppercase\expandafter{#7}}}%
+        \MakeTextUppercase{#7}}}%
   \fi
   \@xsect{#5}}
 
