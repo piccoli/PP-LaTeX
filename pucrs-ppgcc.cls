@@ -917,6 +917,12 @@ at \PP@Uni{}.}
 \renewcommand*\l@subsection{\@dottedtocline{2}{0em}{3.2em}}
 
 %----------------------------------------------------------------------------------
+% Redefinindo comando para formatar figuras e tabelas no sumário.
+%----------------------------------------------------------------------------------
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.2em}}%{2.3em}} Aqui
+\let\l@table\l@figure
+
+%----------------------------------------------------------------------------------
 % Redefinindo distância entre pontinhos no sumário
 % para ficarem mais próximos...
 %----------------------------------------------------------------------------------
