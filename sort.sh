@@ -47,8 +47,8 @@ if [[ $# -lt 1 ]]; then
     abort "Sintaxe: $0 <documento.tex>."
 fi
 
-if [[ ! -f "${FILE}.loa" ]] ||\
-   [[ ! -f "${FILE}.lob" ]]; then
+if [[ ! -f "${FILE}.los" ]] ||\
+   [[ ! -f "${FILE}.lov" ]]; then
 # FIXME O usuário pode simplesmente não estar usando estas
 # listas, então deve-se sair silenciosamente.
 #   abort "Execute o LaTeX pelo menos uma vez sobre o documento '${FILE}', utilizando a classe '$CLS'."
@@ -58,7 +58,7 @@ fi
 check mv
 check sort
 
-for i in a b; do
+for i in s v; do
     LFILE="${FILE}.lo${i}"
     sort -d -f -o "${LFILE}~" "$LFILE" &&\
     mv -f "${LFILE}~" "$LFILE"

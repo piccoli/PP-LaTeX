@@ -123,7 +123,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage{amsfonts}[2009/06/22]
 \RequirePackage{url}
 \RequirePackage[table]{xcolor}[2007/01/21]
-%\RequirePackage{algorithm}[2009/08/24]
+\RequirePackage{algorithm}[2009/08/24]
 %\RequirePackage{algorithmic}[2009/08/24]
 %\RequirePackage{subfigure}[2002/03/15]
 %\RequirePackage{multirow}
@@ -673,6 +673,16 @@ at \PP@Uni{}.}
      \end{hyphenrules}}
 
 %----------------------------------------------------------------------------------
+% Lista de algoritmos
+%----------------------------------------------------------------------------------
+\ifx\PP@language\PP@brazil
+  \renewcommand{\listalgorithmname}{Lista de Algoritmos}
+\else
+  \renewcommand{\listalgorithmname}{List of Algorithms}
+\fi
+% O comando \listofalgorithms já é definido pelo pacote algorithm, então só
+% providenciamos a tradução para o português quando necessário).
+%----------------------------------------------------------------------------------
 % Lista de siglas
 %----------------------------------------------------------------------------------
 \ifx\PP@language\PP@brazil
@@ -680,7 +690,7 @@ at \PP@Uni{}.}
 \else
   \newcommand*\listacronymname{List of Acronyms}
 \fi
-\newcommand\listofacronyms{\chapter*{\listacronymname}\@starttoc{loa}}
+\newcommand\listofacronyms{\chapter*{\listacronymname}\@starttoc{los}}
 
 %----------------------------------------------------------------------------------
 % Comando para inserir novas siglas. Este trecho foi modificado a
@@ -688,7 +698,7 @@ at \PP@Uni{}.}
 %
 % \sigla{DDS}{Definição da Sigla}
 %----------------------------------------------------------------------------------
-\newcommand{\sigla}[2]{\addcontentsline{loa}{acronym}{\MakeTextUppercase{#1}\nobreakspace--\nobreakspace #2}}
+\newcommand{\sigla}[2]{\addcontentsline{los}{acronym}{\MakeTextUppercase{#1}\nobreakspace--\nobreakspace #2}}
 \newcommand*{\l@acronym}[2]{%
  \vskip \z@ \@plus.2\p@
  {\leftskip 1.5em
@@ -711,13 +721,13 @@ at \PP@Uni{}.}
 \else
   \newcommand*\listabbrevname{List of Abbreviations}
 \fi
-\newcommand\listofabbreviations{\chapter*{\listabbrevname}\@starttoc{lob}}
+\newcommand\listofabbreviations{\chapter*{\listabbrevname}\@starttoc{lov}}
 %----------------------------------------------------------------------------------
 % Comando para inserir novas abreviaturas:
 %
 % \abrev{Abrev}{Abreviatura} ("Abrev" SEM PONTO no final)
 %----------------------------------------------------------------------------------
-\newcommand{\abrev}[2]{\addcontentsline{lob}{abbreviation}{#1.\nobreakspace--\nobreakspace #2}}
+\newcommand{\abrev}[2]{\addcontentsline{lov}{abbreviation}{#1.\nobreakspace--\nobreakspace #2}}
 \global\let\l@abbreviation\l@acronym
 
 %----------------------------------------------------------------------------------
@@ -728,13 +738,13 @@ at \PP@Uni{}.}
 \else
   \newcommand*\listsymbolname{List of Symbols}
 \fi
-\newcommand\listofsymbols{\chapter*{\listsymbolname}\@starttoc{los}}
+\newcommand\listofsymbols{\chapter*{\listsymbolname}\@starttoc{lob}}
 %----------------------------------------------------------------------------------
 % Comando para inserir novos símbolos:
 %
 % \simbolo{Hz}{Hertz}
 %----------------------------------------------------------------------------------
-\newcommand{\simbolo}[2]{\addcontentsline{los}{symbol}{#1\nobreakspace--\nobreakspace #2}}
+\newcommand{\simbolo}[2]{\addcontentsline{lob}{symbol}{#1\nobreakspace--\nobreakspace #2}}
 \newcommand*\l@symbol{\@dottedtocline{1}{1.5em}{2.3em}}
 
 %----------------------------------------------------------------------------------
