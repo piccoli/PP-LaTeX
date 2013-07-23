@@ -38,7 +38,6 @@
 % \RequirePackage{amsfonts}[2009/06/22]
 % \RequirePackage{url}
 % \RequirePackage[table]{xcolor}[2007/01/21]
-% \RequirePackage{algorithm}[2009/08/24]
 %----------------------------------------------------------------
 % Para inserção de figuras.
 \usepackage{graphicx}
@@ -53,7 +52,13 @@
 % Para inserir figuras lado a lado.
 % \usepackage{subfigure}
 % Para formatar algoritmos.
+% A opção [algo2e] é necessária para evitar conflitos
+% com as definições da classe.
+%\usepackage[algo2e]{algorithm2e}
 \usepackage{algorithmic}
+% Um float do tipo algoritmo. No momento
+% este pacote é incompatível com a classe.
+%\usepackage{algorithm}
 
 %----------------------------------------------------------------
 % Autor (OBRIGATÓRIO)
@@ -168,10 +173,10 @@ erat sed diam voluptua at
 %----------------------------------------------------------------
 \listoffigures       % Lista de figuras      (OPCIONAL)
 \listoftables        % Lista de tabelas      (OPCIONAL)
+\listofalgorithms    % Lista de algoritmos   (OPCIONAL)
 \listofacronyms      % Lista de siglas       (OPCIONAL)
 \listofabbreviations % Lista de abreviaturas (OPCIONAL)
 \listofsymbols       % Lista de símbolos     (OPCIONAL)
-\listofalgorithms    % Lista de algoritmos   (OPCIONAL)
 \tableofcontents     % Sumário               (OBRIGATÓRIO)
 
 %----------------------------------------------------------------

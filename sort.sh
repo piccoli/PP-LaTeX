@@ -31,32 +31,28 @@
 # dúvidas, NÃO o utilize para compilar o seu documento! Não me
 # responsabilizo pela perda acidental de arquivos!
 
-function abort() {
+function message() {
    echo "$@" > /dev/stderr
-   exit 1
 }
 
-function check() {
-   command -v $1 >& /dev/null || abort "Utilitário '$1' não encontrado. Abortando..."
+function abort() {
+   message "$@ Abortando..."
+   exit 1
 }
 
 FILE="$1"
 CLS="pucrs-ppgcc.cls"
 
 if [[ $# -lt 1 ]]; then
-    abort "Sintaxe: $0 <documento.tex>."
+    abort "Uso: $0 <documento.tex>."
 fi
 
-if [[ ! -f "${FILE}.los" ]] ||\
-   [[ ! -f "${FILE}.lov" ]]; then
-# FIXME O usuário pode simplesmente não estar usando estas
+if [[ ! -f ${FILE}.los || ! -f ${FILE}.lov ]]; then
+# XXX O usuário pode simplesmente não estar usando estas
 # listas, então deve-se sair silenciosamente.
 #   abort "Execute o LaTeX pelo menos uma vez sobre o documento '${FILE}', utilizando a classe '$CLS'."
-   exit 0
+    exit 0
 fi
-
-check mv
-check sort
 
 for i in s v; do
     LFILE="${FILE}.lo${i}"
@@ -64,5 +60,4 @@ for i in s v; do
     mv -f "${LFILE}~" "$LFILE"
 done
 
-echo "'$0 $@' concluído." > /dev/stderr
-exit 0
+message "'$0 $@' concluído."

@@ -1,0 +1,39 @@
+--- ppgcc-num.bst	2013-04-19 15:57:46.275855724 -0300
++++ ppgcc-num.bst.1	2013-04-19 16:12:06.992761746 -0300
+@@ -50,6 +50,7 @@
+     howpublished
+     institution
+     journal
++    location
+     key
+     language
+     month
+@@ -1014,6 +1015,17 @@
+ { organization "organization" bibinfo.check format.org.or.pub
+ }
+ 
++FUNCTION {location.or.address}
++{ location empty$
++    { address empty$
++	{ "" }
++	{ address }
++      if$
++    }
++    { location }
++  if$
++}
++
+ % Referência a Livros
+ FUNCTION {book}
+ { output.bibitem
+@@ -1225,8 +1237,9 @@
+     { format.incoll.inproc.crossref output.nonnull
+     }
+   if$
+-  format.year "year" output.check
+   format.pages "pages" output.check
++  location.or.address output
++  format.year "year" output.check
+   format.note output
+   % TODO
+   format.eprint output

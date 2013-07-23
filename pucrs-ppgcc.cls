@@ -123,7 +123,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage{amsfonts}[2009/06/22]
 \RequirePackage{url}
 \RequirePackage[table]{xcolor}[2007/01/21]
-\RequirePackage{algorithm}[2009/08/24]
+%\RequirePackage[ruled]{algorithm}[2009/08/24]
+%\RequirePackage[algo2e]{algorithm2e}[2009/08/24]
 %\RequirePackage{algorithmic}[2009/08/24]
 %\RequirePackage{subfigure}[2002/03/15]
 %\RequirePackage{multirow}
@@ -189,7 +190,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \newdimen\PP@tmpdim
 \newdimen\PP@tmpdimi
 % Definições dependentes de idioma.
-% TODO Ficou nojento. Tem como ser mais elegante usando o pacote babel?
+% FIXME Ficou nojento. Tem como ser mais elegante usando o pacote babel?
+% TODO usar o \addto\captionsportuges{...}
 \ifx\PP@language\PP@brazil
   \newcommand*{\PP@Uni}{Pontif\'{i}cia Universidade Cat\'{o}lica do Rio Grande do Sul}
   \newcommand*{\PP@Fac}{Faculdade de Inform\'{a}tica}
@@ -253,12 +255,12 @@ Computa\c{c}\~{a}o na \PP@Uni{}.}
   \newcommand*{\PP@Dep}{Graduate Program in Computer Science}
 %  \newcommand*{\PP@undef}{not defined}
   \edef\PP@undef{not defined}
-  \newcommand*{\tese}{Thesis}
+  \newcommand*{\tese}{Dissertation}
   \newcommand*{\pep}{Research plan}
-  \newcommand*{\ptese}{Thesis proposal}
-  \newcommand*{\dissertacao}{Dissertation}
-  \newcommand*{\monografia}{Monograph}
-  \newcommand*{\doutor}{Ph.\ D.}
+  \newcommand*{\ptese}{Dissertation proposal}
+  \newcommand*{\dissertacao}{Thesis}
+  \newcommand*{\monografia}{Thesis}
+  \newcommand*{\doutor}{Ph.\ D.\ }
   \newcommand*{\mestre}{Master}
   \newcommand*{\bacharel}{Bachelor}
   \newcommand*{\PP@orientadorname}{Advisor}
@@ -676,12 +678,26 @@ at \PP@Uni{}.}
 % Lista de algoritmos
 %----------------------------------------------------------------------------------
 \ifx\PP@language\PP@brazil
-  \renewcommand{\listalgorithmname}{Lista de Algoritmos}
+  \newcommand*\listalgorithmname{Lista de Algoritmos}
+  \newcommand*\algorithmname{Algoritmo}
 \else
-  \renewcommand{\listalgorithmname}{List of Algorithms}
+  \newcommand*\listalgorithmname{List of Algorithms}
+  \newcommand*\algorithmname{Algorithm}
 \fi
-% O comando \listofalgorithms já é definido pelo pacote algorithm, então só
-% providenciamos a tradução para o português quando necessário).
+\newcounter{algorithm}[chapter]
+\renewcommand \thealgorithm
+     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@algorithm}
+\def\ftype@algorithm{2}
+\def\fps@algorithm{htbp}
+\def\ext@algorithm{loa}
+\def\fnum@algorithm{\algorithmname\nobreakspace\thealgorithm}
+\newenvironment{algorithm}
+               {\@float{algorithm}}
+               {\end@float}
+\newenvironment{algorithm*}
+               {\@dblfloat{algorithm}}
+               {\end@dblfloat}
+\newcommand\listofalgorithms{\chapter*{\listalgorithmname}\@starttoc{loa}}
 %----------------------------------------------------------------------------------
 % Lista de siglas
 %----------------------------------------------------------------------------------
@@ -927,10 +943,11 @@ at \PP@Uni{}.}
 \renewcommand*\l@subsection{\@dottedtocline{2}{0em}{3.2em}}
 
 %----------------------------------------------------------------------------------
-% Redefinindo comando para formatar figuras e tabelas no sumário.
+% Redefinindo comando para formatar figuras, algoritmos e tabelas no sumário.
 %----------------------------------------------------------------------------------
 \renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.2em}}%{2.3em}} Aqui
 \let\l@table\l@figure
+\let\l@algorithm\l@table
 
 %----------------------------------------------------------------------------------
 % Redefinindo distância entre pontinhos no sumário
