@@ -107,11 +107,13 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \LoadClass[12pt,onecolumn,titlepage,a4paper,openright,final]{report}[2007/10/19]
 
 \RequirePackage[T1]{fontenc}[2005/09/27]
-\RequirePackage[utf8x]{inputenc}[2008/03/30]
+\RequirePackage[utf8]{inputenc}[2008/03/30]
 \RequirePackage[english,brazil]{babel}[2008/07/06]
 \RequirePackage[a4paper]{geometry}[2010/09/12]
 \RequirePackage{textcomp}[2005/09/27]
-\RequirePackage{lmodern}[2009/10/30]
+\RequirePackage{helvet}[2005/04/12]
+\RequirePackage[helvet]{sfmath}[2007/08/27]
+%\RequirePackage{lmodern}[2009/10/30]
 %\RequirePackage[lm]{sfmath}[2007/08/27]
 \RequirePackage{indentfirst}[1995/11/23]
 \RequirePackage{setspace}[2000/12/01]
@@ -123,14 +125,23 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage{amsfonts}[2009/06/22]
 \RequirePackage{url}
 \RequirePackage[table]{xcolor}[2007/01/21]
+\RequirePackage{array}[2008/09/09]
+
 %\RequirePackage[ruled]{algorithm}[2009/08/24]
 %\RequirePackage[algo2e]{algorithm2e}[2009/08/24]
 %\RequirePackage{algorithmic}[2009/08/24]
 %\RequirePackage{subfigure}[2002/03/15]
 %\RequirePackage{multirow}
 
+
 %----------------------------------------------------------------------------------
-% Seleciona o idioma o mais cedo possível
+% Para usuários do LyX.
+%----------------------------------------------------------------------------------
+\newcommand{\LyXTType}[1]{\lowercase{\edef\t{\expandafter\csname#1\endcsname}}\tipotrabalho{\t}}
+\newcommand{\LyXDegree}[1]{\lowercase{\edef\g{\expandafter\csname#1\endcsname}}\grau{\g}}
+
+%----------------------------------------------------------------------------------
+% Seleciona o idioma o mais cedo possível.
 %
 % TODO Necessário?
 %----------------------------------------------------------------------------------
@@ -178,7 +189,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
    }%
 }
 %----------------------------------------------------------------------------------
-% Preenche a caixa atual com uma linha horizontal
+% Preenche a caixa atual com uma linha horizontal.
 %----------------------------------------------------------------------------------
 \def\PP@hrulefill{\leavevmode\leaders\hrule\hfill}
 
@@ -186,129 +197,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % Novos comandos e alocação de registradores (públicos e internos). Comandos
 % internos começam com o prefixo PP@.
 %----------------------------------------------------------------------------------
-\newbox\PP@tmpbox
-\newdimen\PP@tmpdim
-\newdimen\PP@tmpdimi
-% Definições dependentes de idioma.
-% FIXME Ficou nojento. Tem como ser mais elegante usando o pacote babel?
-% TODO usar o \addto\captionsportuges{...}
-\ifx\PP@language\PP@brazil
-  \newcommand*{\PP@Uni}{Pontif\'{i}cia Universidade Cat\'{o}lica do Rio Grande do Sul}
-  \newcommand*{\PP@Fac}{Faculdade de Inform\'{a}tica}
-  \newcommand*{\PP@Dep}{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
-%  \newcommand*{\PP@undef}{n\~{a}o definido}
-  \edef\PP@undef{n\~{a}o definido}
-  \newcommand*{\tese}{Tese}
-  \newcommand*{\pep}{Plano de estudo e pesquisa}
-  \newcommand*{\ptese}{Proposta de tese}
-  \newcommand*{\dissertacao}{Disserta\c{c}\~{a}o}
-  \newcommand*{\monografia}{Monografia}
-  \newcommand*{\doutor}{Doutor}
-  \newcommand*{\mestre}{Mestre}
-  \newcommand*{\bacharel}{Bacharel}
-  \newcommand*{\PP@orientadorname}{Orientador}
-  \newcommand*{\PP@descricao}{%
-\PP@tipo{} apresentad\ifx\PP@tipo\pep o\else a\fi{} como requisito parcial \`{a}
-obten\c{c}\~{a}o do grau de \PP@grau{} em Ci\^{e}ncia da
-Computa\c{c}\~{a}o na \PP@Uni{}.}
-  \newcommand*{\PP@fichaname}{Substitua esta p\'{a}gina pela Ficha Catalogr\'{a}fica}
-  \newcommand*{\PP@termoname}{Substitua esta p\'{a}gina pelo Termo de Apresenta\c{c}\~{a}o}
-  \newcommand*{\PP@dedicatorianame}{Dedicat\'{o}ria}
-  \newcommand*{\PP@agradecimentosname}{Agradecimentos}
-  \newcommand*{\PP@bibname}{Refer\^{e}ncias}
-  \newcommand*{\PP@anexoname}{Anexo}
-  % TODO Para usar os estilos bibliográficos de forma independente desta
-  % classe, copie estas definições para o seu documento.
-  \gdef\bbland{e}
-  \gdef\bbletal{et~al.}
-  \gdef\bbleditors{editores}
-  \gdef\bbleditor{editor}
-  \gdef\bbledby{editado por}
-  \gdef\bbledn{ed.}
-  \gdef\bblvol{vol.}
-  \gdef\bblof{de}
-  \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
-  \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
-  \gdef\bblin{in}
-  \gdef\bblpp{pp.}
-  \gdef\bblp{pp.}
-  \gdef\bbleidpp{p}
-  \gdef\bblchap{cap.}
-  \gdef\bbltechrep{Relat\'{o}rio T\'{e}cnico}
-  \gdef\bblmthesis{Disserta\c{c}\~{a}o de Mestrado}
-  \gdef\bblphdthesis{Tese de Doutorado}
-  \gdef\bbljan{Jan}
-  \gdef\bblfeb{Fev}
-  \gdef\bblmar{Mar}
-  \gdef\bblapr{Abr}
-  \gdef\bblmay{Maio}
-  \gdef\bbljun{Jun}
-  \gdef\bbljul{Jul}
-  \gdef\bblaug{Ago}
-  \gdef\bblsep{Set}
-  \gdef\bbloct{Out}
-  \gdef\bblnov{Nov}
-  \gdef\bbldec{Dez}
-\else
-  \newcommand*{\PP@Uni}{Pontifical Catholic University of Rio Grande do Sul}
-  \newcommand*{\PP@Fac}{Faculty of Informatics}
-  \newcommand*{\PP@Dep}{Graduate Program in Computer Science}
-%  \newcommand*{\PP@undef}{not defined}
-  \edef\PP@undef{not defined}
-  \newcommand*{\tese}{Dissertation}
-  \newcommand*{\pep}{Research plan}
-  \newcommand*{\ptese}{Dissertation proposal}
-  \newcommand*{\dissertacao}{Thesis}
-  \newcommand*{\monografia}{Thesis}
-  \newcommand*{\doutor}{Ph.\ D.\ }
-  \newcommand*{\mestre}{Master}
-  \newcommand*{\bacharel}{Bachelor}
-  \newcommand*{\PP@orientadorname}{Advisor}
-  \newcommand*{\PP@descricao}{%
-\PP@tipo{} presented as partial requirement for
-obtaining the degree of \PP@grau{} in Computer Science
-at \PP@Uni{}.}
-  \newcommand*{\PP@fichaname}{Replace this page with the Library Catalog Information}
-  \newcommand*{\PP@termoname}{Replace this page with the Presentation Term}
-  \newcommand*{\PP@dedicatorianame}{\null}
-  \newcommand*{\PP@agradecimentosname}{Acknowledgments}
-  \newcommand*{\PP@bibname}{References}
-  \newcommand*{\PP@anexoname}{Attachment}
-  % TODO Para usar os estilos bibliográficos de forma independente desta
-  % classe, copie estas definições para o seu documento.
-  \gdef\bbland{and}
-  \gdef\bbletal{et~al.}
-  \gdef\bbleditors{editors}
-  \gdef\bbleditor{editor}
-  \gdef\bbledby{edited by}
-  \gdef\bbledn{ed.}
-  \gdef\bblvol{vol.}
-  \gdef\bblof{of}
-  \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
-  \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
-  \gdef\bblin{in}
-  \gdef\bblpp{pp.}
-  \gdef\bblp{pp.}
-  \gdef\bbleidpp{p}
-  \gdef\bblchap{chap.}
-  \gdef\bbltechrep{Technical Report}
-  \gdef\bblmthesis{Master's Thesis}
-  \gdef\bblphdthesis{Ph.D. Thesis}
-  \gdef\bbljan{Jan}
-  \gdef\bblfeb{Feb}
-  \gdef\bblmar{Mar}
-  \gdef\bblapr{Apr}
-  \gdef\bblmay{May}
-  \gdef\bbljun{Jun}
-  \gdef\bbljul{Jul}
-  \gdef\bblaug{Aug}
-  \gdef\bblsep{Sep}
-  \gdef\bbloct{Oct}
-  \gdef\bblnov{Nov}
-  \gdef\bbldec{Dec}
-\fi
-
-\newcommand*{\PP@Cid}{Porto~Alegre}
+\edef\PP@undef{n\~{a}o definido}
+\newcommand*{\monografia}{Monografia}
 \let\PP@grau=\PP@undef
 \let\PP@tipo=\monografia
 \newcommand*{\tipotrabalho}[1]{\global\let\PP@tipo=#1
@@ -320,10 +210,128 @@ at \PP@Uni{}.}
 \edef\PP@coorientador{\PP@undef}
 \newcommand*{\orientador}[1]{\renewcommand*{\PP@orientador}{#1}}
 \newcommand*{\coorientador}[1]{\renewcommand*{\PP@coorientador}{#1}}
+\newcommand*{\PP@Cid}{Porto~Alegre}
+
+% Definições dependentes de idioma.
+%\addto\captionsbrazil{%
+    \newcommand*{\PP@Uni}{Pontif\'{i}cia Universidade Cat\'{o}lica do Rio Grande do Sul}
+    \newcommand*{\PP@Fac}{Faculdade de Inform\'{a}tica}
+    \newcommand*{\PP@Dep}{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
+    %\edef\PP@undef{n\~{a}o definido}
+    \newcommand*{\tese}{Tese}
+    \newcommand*{\pep}{Plano de estudo e pesquisa}
+    \newcommand*{\ptese}{Proposta de tese}
+    \newcommand*{\dissertacao}{Disserta\c{c}\~{a}o}
+    \newcommand*{\doutor}{Doutor}
+    \newcommand*{\mestre}{Mestre}
+    \newcommand*{\bacharel}{Bacharel}
+    \newcommand*{\PP@orientadorname}{Orientador}
+    \newcommand*{\PP@descricao}{%
+        \PP@tipo{} apresentad\ifx\PP@tipo\pep o\else a\fi{} como requisito parcial \`{a}
+        obten\c{c}\~{a}o do grau de \PP@grau{} em Ci\^{e}ncia da
+        Computa\c{c}\~{a}o na \PP@Uni{}.%
+    }
+    \newcommand*{\PP@fichaname}{Substitua esta p\'{a}gina pela Ficha Catalogr\'{a}fica}
+    \newcommand*{\PP@termoname}{Substitua esta p\'{a}gina pelo Termo de Apresenta\c{c}\~{a}o}
+    \newcommand*{\PP@dedicatorianame}{Dedicat\'{o}ria}
+    \newcommand*{\PP@agradecimentosname}{Agradecimentos}
+    \newcommand*{\PP@bibname}{Refer\^{e}ncias}
+    \newcommand*{\PP@anexoname}{Anexo}
+    % TODO Para usar os estilos bibliográficos de forma independente desta
+    % classe, copie estas definições para o seu documento.
+    \gdef\bbland{e}
+    \gdef\bbletal{et~al.}
+    \gdef\bbleditors{editores}
+    \gdef\bbleditor{editor}
+    \gdef\bbledby{editado por}
+    \gdef\bbledn{ed.}
+    \gdef\bblvol{vol.}
+    \gdef\bblof{de}
+    \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+    \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+    \gdef\bblin{in}
+    \gdef\bblpp{pp.}
+    \gdef\bblp{pp.}
+    \gdef\bbleidpp{p}
+    \gdef\bblchap{cap.}
+    \gdef\bbltechrep{Relat\'{o}rio T\'{e}cnico}
+    \gdef\bblmthesis{Disserta\c{c}\~{a}o de Mestrado}
+    \gdef\bblphdthesis{Tese de Doutorado}
+    \gdef\bbljan{Jan}
+    \gdef\bblfeb{Fev}
+    \gdef\bblmar{Mar}
+    \gdef\bblapr{Abr}
+    \gdef\bblmay{Maio}
+    \gdef\bbljun{Jun}
+    \gdef\bbljul{Jul}
+    \gdef\bblaug{Ago}
+    \gdef\bblsep{Set}
+    \gdef\bbloct{Out}
+    \gdef\bblnov{Nov}
+    \gdef\bbldec{Dez}
+%}
+\addto\captionsenglish{%
+    \renewcommand*{\PP@Uni}{Pontifical Catholic University of Rio Grande do Sul}
+    \renewcommand*{\PP@Fac}{Faculty of Informatics}
+    \renewcommand*{\PP@Dep}{Computer Science Graduate Program}
+    \edef\PP@undef{not defined}
+    \renewcommand*{\tese}{Dissertation}
+    \renewcommand*{\pep}{Research plan}
+    \renewcommand*{\ptese}{Dissertation proposal}
+    \renewcommand*{\dissertacao}{Thesis}
+    \renewcommand*{\monografia}{Thesis}
+    \renewcommand*{\doutor}{Ph.\ D.\ }
+    \renewcommand*{\mestre}{Master}
+    \renewcommand*{\bacharel}{Bachelor}
+    \renewcommand*{\PP@orientadorname}{Advisor}
+    \renewcommand*{\PP@descricao}{%
+        \PP@tipo{} submitted to the \PP@Uni{} in partial fullfillment of
+        the requirements for the degree of \PP@grau{} in Computer
+        Science.%
+    }
+    \renewcommand*{\PP@fichaname}{Replace this page with the Library Catalog Page}
+    \renewcommand*{\PP@termoname}{Replace this page with the Committee Forms}
+    \renewcommand*{\PP@dedicatorianame}{\null}
+    \renewcommand*{\PP@agradecimentosname}{Acknowledgments}
+    \renewcommand*{\PP@bibname}{References}
+    \renewcommand*{\PP@anexoname}{Attachment}
+    % TODO Para usar os estilos bibliográficos de forma independente desta
+    % classe, copie estas definições para o seu documento.
+    \gdef\bbland{and}
+    \gdef\bbletal{et~al.}
+    \gdef\bbleditors{editors}
+    \gdef\bbleditor{editor}
+    \gdef\bbledby{edited by}
+    \gdef\bbledn{ed.}
+    \gdef\bblvol{vol.}
+    \gdef\bblof{of}
+    \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+    \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+    \gdef\bblin{in}
+    \gdef\bblpp{pp.}
+    \gdef\bblp{pp.}
+    \gdef\bbleidpp{p}
+    \gdef\bblchap{chap.}
+    \gdef\bbltechrep{Technical Report}
+    \gdef\bblmthesis{Master's Thesis}
+    \gdef\bblphdthesis{Ph.D. Thesis}
+    \gdef\bbljan{Jan}
+    \gdef\bblfeb{Feb}
+    \gdef\bblmar{Mar}
+    \gdef\bblapr{Apr}
+    \gdef\bblmay{May}
+    \gdef\bbljun{Jun}
+    \gdef\bbljul{Jul}
+    \gdef\bblaug{Aug}
+    \gdef\bblsep{Sep}
+    \gdef\bbloct{Oct}
+    \gdef\bblnov{Nov}
+    \gdef\bbldec{Dec}
+}
 
 %----------------------------------------------------------------------------------
 % Redefinindo o comando interno do LaTeX para armazenar títulos,
-% pois precisamos do título em dois idiomas
+% pois precisamos do título em dois idiomas.
 %----------------------------------------------------------------------------------
 \def\@titleen{\@latex@error{No \noexpand\title given}\@ehc}
 \def\@titlept{\@latex@error{Nenhum \noexpand\title informado}\@ehc}
@@ -335,8 +343,10 @@ at \PP@Uni{}.}
 \else \global\let\@title=\@titleen\fi}
 
 %----------------------------------------------------------------------------------
-% Formatação da capa
+% Formatação da capa.
 %----------------------------------------------------------------------------------
+\newbox\PP@tmpbox
+\newdimen\PP@tmpdim
 \renewcommand\maketitle{%
 \begin{titlepage}%
     \renewcommand*{\baselinestretch}{1.0}%
@@ -471,7 +481,7 @@ at \PP@Uni{}.}
 \global\let\grau\relax
 \global\let\orientador\relax
 \global\let\coorientador\relax
-\newpage
+\newpage%
 }
 
 %----------------------------------------------------------------------------------
@@ -480,9 +490,9 @@ at \PP@Uni{}.}
 %----------------------------------------------------------------------------------
 \newcommand*\PP@replacepage[1]{%
    %\if@openright\cleardoublepage\else\clearpage\fi
-   \cleardoublepage
+   \cleardoublepage%
    \thispagestyle{empty}%
-   \vbox to\vsize{%
+   \vbox to\textheight{%
       \parfillskip0pt
       \parskip0pt
       %\baselineskip0pt
@@ -498,7 +508,7 @@ at \PP@Uni{}.}
       \par\nointerlineskip
       \vss
    }%
-   \newpage
+   \newpage%
 }
 
 %----------------------------------------------------------------------------------
@@ -577,7 +587,7 @@ at \PP@Uni{}.}
         \vss
         \noindent\PP@epigrafe{#1}{#2}%
     }%
-    \newpage
+    \newpage%
 }
 
 %----------------------------------------------------------------------------------
@@ -677,13 +687,14 @@ at \PP@Uni{}.}
 %----------------------------------------------------------------------------------
 % Lista de algoritmos
 %----------------------------------------------------------------------------------
-\ifx\PP@language\PP@brazil
+%\addto\captionsbrazil{%
   \newcommand*\listalgorithmname{Lista de Algoritmos}
   \newcommand*\algorithmname{Algoritmo}
-\else
-  \newcommand*\listalgorithmname{List of Algorithms}
-  \newcommand*\algorithmname{Algorithm}
-\fi
+%}
+\addto\captionsenglish{%
+  \renewcommand*\listalgorithmname{List of Algorithms}
+  \renewcommand*\algorithmname{Algorithm}
+}
 \newcounter{algorithm}[chapter]
 \renewcommand \thealgorithm
      {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@algorithm}
@@ -701,11 +712,12 @@ at \PP@Uni{}.}
 %----------------------------------------------------------------------------------
 % Lista de siglas
 %----------------------------------------------------------------------------------
-\ifx\PP@language\PP@brazil
+%\addto\captionsbrazil{%
   \newcommand*\listacronymname{Lista de Siglas}
-\else
-  \newcommand*\listacronymname{List of Acronyms}
-\fi
+%}
+\addto\captionsenglish{%
+  \renewcommand*\listacronymname{List of Acronyms}
+}
 \newcommand\listofacronyms{\chapter*{\listacronymname}\@starttoc{los}}
 
 %----------------------------------------------------------------------------------
@@ -732,11 +744,12 @@ at \PP@Uni{}.}
 %----------------------------------------------------------------------------------
 % Lista de abreviaturas
 %----------------------------------------------------------------------------------
-\ifx\PP@language\PP@brazil
+%\addto\captionsbrazil{%
   \newcommand*\listabbrevname{Lista de Abreviaturas}
-\else
-  \newcommand*\listabbrevname{List of Abbreviations}
-\fi
+%}
+\addto\captionsenglish{%
+  \renewcommand*\listabbrevname{List of Abbreviations}
+}
 \newcommand\listofabbreviations{\chapter*{\listabbrevname}\@starttoc{lov}}
 %----------------------------------------------------------------------------------
 % Comando para inserir novas abreviaturas:
@@ -749,11 +762,12 @@ at \PP@Uni{}.}
 %----------------------------------------------------------------------------------
 % Lista de símbolos
 %----------------------------------------------------------------------------------
-\ifx\PP@language\PP@brazil
+%\addto\captionsbrazil{%
   \newcommand*\listsymbolname{Lista de S\'{i}mbolos}
-\else
-  \newcommand*\listsymbolname{List of Symbols}
-\fi
+%}
+\addto\captionsenglish{%
+  \renewcommand*\listsymbolname{List of Symbols}
+}
 \newcommand\listofsymbols{\chapter*{\listsymbolname}\@starttoc{lob}}
 %----------------------------------------------------------------------------------
 % Comando para inserir novos símbolos:
@@ -1201,6 +1215,7 @@ at \PP@Uni{}.}
    \setlength{\parindent}{4em}
    % Distância vertical entre dois parágrafos.
    \setlength{\parskip}{1mm}
+   \setlength{\itemsep}{1mm}
    %\setlength{\parskip}{\medskipamount}
    % Distância do início do corpo da página até a primeira linha
    % (baseline) de texto.
@@ -1228,10 +1243,11 @@ at \PP@Uni{}.}
    % Evita ao máximo linhas viúvas e órfãs em parágrafos.
    \global\widowpenalty=10000
    \global\clubpenalty=10000
-   %\addto\captionsportuges{\renewcommand*{\bibname}{Refer\^{e}ncias~Bibliogr\'{a}ficas}}
-   %\addto\captionsportuges{\renewcommand*{\contentsname}{Sum\'{a}rio}}
-   %\addto\captionsportuges{\renewcommand*{\figurename}{Figura}}
-   %\addto\captionsportuges{\renewcommand*{\tablename}{Tabela}}
+   %\addto\captionsbrazil{\renewcommand*{\bibname}{Refer\^{e}ncias~Bibliogr\'{a}ficas}}
+   \addto\captionsenglish{\renewcommand*{\bibname}{References}}
+   %\addto\captionsbrazil{\renewcommand*{\contentsname}{Sum\'{a}rio}}
+   %\addto\captionsbrazil{\renewcommand*{\figurename}{Figura}}
+   %\addto\captionsbrazil{\renewcommand*{\tablename}{Tabela}}
    % O pacote 'hyperref' automaticamente cria links para navegação no
    % documento. Como ele reescreve muitos comandos internos do LaTeX,
    % deve ser o ÚLTIMO pacote inserido antes do início do documento.
@@ -1243,20 +1259,21 @@ at \PP@Uni{}.}
    %\RequirePackage[colorlinks=true,anchorcolor=,citecolor=,%
    %               filecolor=,linkcolor=,menucolor=,runcolor=,%
    %               breaklinks=true,urlcolor=blue]{hyperref}[2009/10/09]
+   \expandafter\selectlanguage\expandafter{\PP@language}
 }
 
 \AtBeginDocument{%
-   \expandafter\selectlanguage\expandafter{\PP@language}
-   \maketitle
-   % Com a opção oneside, o ambiente titlepage reinicia o contador
-   % de páginas para 1 após gerar a página de título, então
-   % precisamos corrigir para 2.
-   \if@twoside\else\setcounter{page}\tw@\fi
-   \onehalfspacing
-   \ifx\PP@tipo\tese\fillers\else
-   \ifx\PP@tipo\dissertacao\fillers\fi\fi
-   \global\let\PP@tipo\@empty
-   \global\let\PP@fichaname\@empty
-   \global\let\PP@termoname\@empty
+    \expandafter\selectlanguage\expandafter{\PP@language}
+    \maketitle
+    % Com a opção oneside, o ambiente titlepage reinicia o contador
+    % de páginas para 1 após gerar a página de título, então
+    % precisamos corrigir para 2.
+    \if@twoside\else\setcounter{page}\tw@\fi
+    \onehalfspacing
+    \ifx\PP@tipo\tese\fillers\else
+    \ifx\PP@tipo\dissertacao\fillers\fi\fi
+    \global\let\PP@tipo\@empty
+    \global\let\PP@fichaname\@empty
+    \global\let\PP@termoname\@empty
 }
 %% End of file 'pucrs-ppgcc.cls'

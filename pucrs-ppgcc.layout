@@ -1,0 +1,444 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[pucrs-ppgcc,report]{PUCRS-PPGCC}
+# Created on 11/26/2013 by Ricardo Piccoli <rfbpiccoli@gmail.com>
+# for the pucrs-ppgcc.cls document class.
+Format 35
+Input stdclass.inc
+Input numreport.inc
+
+OutputType latex
+
+NoStyle Title
+NoStyle Abstract
+NoStyle Author
+NoStyle Date
+NoStyle Address
+NoStyle Right_Address
+NoStyle Part*
+NoStyle Chapter*
+NoStyle Section*
+NoStyle Subsection*
+NoStyle Subsubsection*
+NoStyle Paragraph*
+NoStyle Subparagraph*
+
+Provides fontenc     1
+Provides pagestyle   1
+Provides inputenc    1
+Provides hyperref    1
+Provides float       1
+Provides indentfirst 1
+Provides setspace    1
+Provides textcase    1
+Provides amsmath     1
+Provides amssymb     1
+Provides amsfonts    1
+Provides url         1
+Provides xcolor      1
+Provides array       1
+Provides textcomp    1
+Provides babel       1
+Provides geometry    1
+Provides helvet      1
+
+ClassOptions
+    FontSize "12"
+    Other "portuguese,twoside"
+    #english
+    #oneside
+    #PageStyle headings
+End
+
+#PageStyle headings
+Columns 1
+
+#Preamble
+#AddToPreamble
+#EndPreamble
+
+# A classe já sabe colocar a capa automaticamente,
+# por isso programamos o LyX para não fazer nada.
+TitleLatexName "relax"
+TitleLatexType CommandAfter
+
+# TODO
+#CiteFormat
+#    xxx
+#End
+
+DefaultFont
+    Family Sans
+    Series Medium
+    Shape  Up
+    Size   normal
+    Color  none
+EndFont
+
+DefaultStyle Standard
+
+Float
+    Type         algorithm
+    GuiName      Algorithm
+    Placement    htbp
+    Extension    loa
+    NumberWithin none
+    Style        ruled
+    ListName     "List of Algorithms"
+    ListCommand  "listofalgorithms"
+    IsPredefined 1
+    UsesFloatPkg 0
+    RefPrefix    alg
+End
+
+# XXX Copiado do arquivo layouts/stdclass.inc do LyX.
+Style Standard
+    Category      MainText
+    Margin        Static
+    LatexType     Paragraph
+    LatexName     dummy
+    ParIndent     MM
+    ParSkip       0.4
+    Align         Block
+    AlignPossible Block, Left, Right, Center
+    LabelType     No_Label
+    # FIXME This ought to be set dynamically.
+    HTMLStyle
+        div.standard {
+            margin-bottom: 2ex;
+        }
+    EndHTMLStyle
+End
+
+Style Autor
+    CopyStyle  "Author"
+    Align      Center
+    LatexType  Command
+    LatexName  "author"
+    Category   "Capa"
+    InPreamble 1
+    Spellcheck 0
+    TopSep     1.2
+    Spacing    single
+    TextFont
+        Family Sans
+        Shape  SmallCaps
+        Size   Largest
+    EndFont
+End
+
+Style Título_em_português
+    Align       center
+    Category    "Capa"
+    LatexType   Command
+    LatexName   "xdef\LyXTitle"
+    InPreamble  1
+    LabelType   No_Label
+    Spacing     single
+    TopSep      1.2
+    TextFont
+        Family Sans
+        Color  black
+        Series Bold
+        Shape  Up
+        Size   huge
+    EndFont
+    LabelFont
+        Family Sans
+        Color  red
+        Shape  Italic
+        Series Bold
+        Size   huge
+    EndFont
+End
+
+Style Título_em_inglês
+    CopyStyle   "Título_em_português"
+    LabelString "Título em inglês:"
+    LatexName   "expandafter\title\expandafter{\LyXTitle}"
+End
+
+Style Tipo_de_trabalho
+    Align       Left
+    Margin      First_Dynamic
+    LatexType   Command
+    LatexName   "LyXTType"
+    InPreamble  1
+    Spellcheck  0
+    LabelString "Tipo de trabalho:"
+    LabelType   Static
+    Labelsep    M
+    TopSep      1.2
+    LabelFont
+        Series Bold
+        Size   normal
+        Color  red
+    EndFont
+End
+
+#InsetLayout "Flex:Tipo: Monografia"
+#    LyxType     custom
+#    Decoration  Classic
+#    LatexType   Command
+#    LatexName   "LyXMono"
+#    InPreamble  1
+#    Spellcheck  0
+#    LabelString "Tipo: Monografia"
+#    Labelsep    MM
+#    LabelIndent M
+#    KeepEmpty   1
+#End
+
+Style Grau_almejado
+    CopyStyle   Tipo_de_trabalho
+    LabelString "Grau almejado:"
+    LatexName   "LyXDegree"
+End
+
+#InsetLayout "Flex:Grau: Bacharel"
+#    LyxType     custom
+#    Decoration  Classic
+#    LatexType   Command
+#    LatexName   "LyXBachelor"
+#    InPreamble  1
+#    Spellcheck  0
+#    LabelString "Grau: Bacharel"
+#    Labelsep    MM
+#    LabelIndent MMMM
+#    KeepEmpty   1
+#End
+
+Style Orientador
+    Align       Left
+    Margin      First_Dynamic
+    Category    "Capa"
+    LatexType   Command
+    LatexName   "orientador"
+    LabelType   Static
+    LabelString "Orientador:"
+    Labelsep    M
+    InPreamble  1
+    TopSep      1.2
+    Spacing     single
+    TextFont
+        Family Sans
+        Color  black
+        Series Italic
+        Shape  Up
+        Size   large
+    EndFont
+    LabelFont
+        Family Sans
+        Color  red
+        Shape  Up
+        Series Bold
+        Size   large
+    EndFont
+End
+
+Style Co-orientador
+    CopyStyle   Orientador
+    LatexName   "coorientador"
+    LabelString "Co-orientador:"
+End
+
+Style Dedicatória
+    Align       Right
+    Margin      First_Dynamic
+    Category    "Elementos Pré-Textuais"
+    LatexType   Command
+    LatexName   "dedicatoria"
+    LabelType   Static
+    LabelString "Dedicatória:"
+    Labelsep    M
+    TopSep      1.2
+    Spacing     single
+    TextFont
+        Family Sans
+        Shape  Italic
+        Size   large
+    EndFont
+    LabelFont
+        Family Sans
+        Color  black
+        Series Bold
+        Size   large
+    EndFont
+End
+
+# TODO
+#Style Dedicatória_e_epígrafre
+#    CopyStyle   Dedicatória
+#    LatexName   "xdef\LyXDedicate"
+#End
+
+Style Epígrafe
+    Align       Right
+    Category    "Elementos Pré-Textuais"
+    LatexName   "xdef\LyXQuote"
+    LatexType   Command
+    LabelType   Static
+    LabelString "Epígrafe:"
+    Labelsep    M
+    Spacing     single
+    TopSep      1.2
+    TextFont
+        Family Sans
+        Shape  Italic
+        Size   large
+    EndFont
+    LabelFont
+        Family Sans
+        Color  black
+        Series Bold
+        Size   large
+    EndFont
+End
+
+Style Autor_da_epígrafe
+    Align       Right
+    Category    "Elementos Pré-Textuais"
+    LatexName   "expandafter\epigrafe\expandafter{\LyXQuote}"
+    LabelType   Static
+    LabelString "Autor da epígrafe:"
+    Labelsep    M
+    LatexType   Command
+    Spacing     single
+    TopSep      1.2
+    TextFont
+        Family Sans
+        Size   large
+    EndFont
+    LabelFont
+        Family Sans
+        Color  black
+        Series Bold
+        Size   large
+    EndFont
+End
+
+Style Agradecimentos
+    Margin      Static
+    Align       Block
+    Category    "Elementos Pré-Textuais"
+    LatexName   "agradecimentos"
+    LatexType   Environment
+    LabelType   Centered_Top_Environment
+    LabelString "Agradecimentos"
+    LeftMargin  MMMMMMMMMMMM
+    RightMargin MMMMMMMMMMMM
+    Parsep      0.3
+    TopSep      1.2
+    LabelFont
+        Series Bold
+        Size   huge
+    EndFont
+    Spacing     single
+End
+
+Style Resumo
+    Margin      Static
+    Align        Block
+    Category     "Elementos Pré-Textuais"
+    LatexName    "resumo"
+    RequiredArgs 1
+    LatexType    Environment
+    Spacing      single
+    LabelType    Centered_Top_Environment
+    TopSep       1.2
+    LeftMargin   MMMMMMMMMMMM
+    RightMargin  MMMMMMMMMMMM
+    Parsep       0.3
+    LabelString  "Resumo"
+    LabelFont
+        Series Bold
+        Size   huge
+    EndFont
+End
+
+Style Abstract
+    CopyStyle   Resumo
+    LatexName   "abstract"
+    LabelString "Resumo (abstract)"
+End
+
+Style Sigla
+    Margin      First_Dynamic
+    Category    "Entradas em listas"
+    LatexName    "sigla"
+    LatexType    Command
+    Align        Block
+    Spellcheck   0
+    RequiredArgs 1
+    LabelType    Static
+    Spacing      single
+    LabelString  "Sigla:"
+    Labelsep     M
+    TopSep       1.2
+    BottomSep    1.2
+    LabelFont
+        Series Bold
+        Size   large
+        Color  red
+    EndFont
+    TextFont
+        Shape Italic
+        Size  large
+    EndFont
+End
+
+Style Abreviatura
+    CopyStyle   Sigla
+    LatexName   "abrev"
+    LabelString "Abreviatura:"
+End
+
+Style Símbolo
+    CopyStyle   Sigla
+    LatexName   "simbolo"
+    LabelString "Símbolo:"
+End
+
+Style Citação_direta
+    Category   "Elementos Textuais"
+    LatexType  Environment
+    LatexName  "directcite"
+    LeftMargin MMMMMMMM
+    Margin     Static
+    Align      Block
+    Spacing    single
+    TopSep     1.2
+    BottomSep  1.2
+    TextFont
+        Size small
+    EndFont
+End
+
+Style Bibliography
+    TopSep      4
+    Category    "Elementos Pós-Textuais"
+    LabelString "Bibliography"
+    LabelFont
+        Series Bold
+        Size   Huge
+    EndFont
+End
+
+Counter anexo
+    LabelString         "\Alph{anexo}"
+    LabelStringAppendix "\Alph{anexo}"
+    PrettyFormat        "Anexo \Alph{anexo}"
+	Within              ""
+End
+
+Style Anexo
+    CopyStyle           Chapter
+    Margin              First_Dynamic
+    Align               Block
+    LabelType           Counter
+    Category            "Elementos Pós-Textuais"
+    LabelString         "Anexo \theanexo:"
+    LabelStringAppendix "Anexo \theanexo:"
+    LabelCounter        anexo
+    Labelsep            M
+    TocLevel            0
+End

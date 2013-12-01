@@ -57,35 +57,35 @@ sanctus est lorem ipsum dolor sit amet lorem
 ipsum~\cite{NAGAPACKING07}. O Algoritmo~\ref{alg:alg1}
 mostra este processo.
 
-\begin{algorithm}[htb!]
+\begin{algorithm}[htb]
 \begin{center}
-      % Um exemplo de algoritmo utilizando a pacote 'algorithmic'
-      %\algsetup{linenosize=\small,linenodelimiter=.}
-      \begin{algorithmic}[1]
-         \STATE \textbf{function} $\sigma\left(i,j\right)$
-         \STATE \COMMENT{\texttt{table} lorem ipsum dolor consetetur sadipscing elitr sed $\left(i,j\right)$}
-           \IF{$table\left[i,j\right].memoized$}
-             \RETURN $table\left[i,j\right].error$
-           \ENDIF
-         \STATE $minerror\leftarrow\infty$
-         \STATE $bestt\leftarrow{}nil$
-         \FOR { each template $t$ in $T$ }
-           \STATE $error\leftarrow{}allocate\left(t,i,j\right)$
-           \IF{$error<minerror$}
-             \STATE $minerror\leftarrow{}error$
-             \STATE $bestt\leftarrow{}t$
-           \ENDIF
-         \ENDFOR
-         \STATE $table\left[i,j\right].memoized\leftarrow{}true$
-         \STATE $table\left[i,j\right].template\leftarrow{}bestt$
-         \STATE $table\left[i,j\right].error\leftarrow{}minerror$
-         \RETURN $minerror$
-      \end{algorithmic}
+    % Um exemplo de algoritmo utilizando a pacote 'algorithmic'
+    %\algsetup{linenosize=\small,linenodelimiter=.}
+    \begin{algorithmic}[1]
+        \STATE \textbf{function} $\sigma\left(i,j\right)$
+        \STATE \COMMENT{\texttt{table} lorem ipsum dolor consetetur sadipscing elitr sed $\left(i,j\right)$}
+        \IF{$\text{table}\left[i,j\right].\text{memoized}$}
+            \RETURN $\text{table}\left[i,j\right].\text{error}$
+        \ENDIF
+        \STATE $\text{minerror}\leftarrow\infty$
+        \STATE $\text{bestt}\leftarrow{}\text{nil}$
+        \FOR { each template $t$ in $T$ }
+            \STATE $\text{error}\leftarrow{}\text{allocate}\left(t,i,j\right)$
+            \IF{$\text{error}<\text{minerror}$}
+                \STATE $\text{minerror}\leftarrow{}\text{error}$
+                \STATE $\text{bestt}\leftarrow{}t$
+            \ENDIF
+        \ENDFOR
+        \STATE $\text{table}\left[i,j\right].\text{memoized}\leftarrow{}\text{true}$
+        \STATE $\text{table}\left[i,j\right].\text{template}\leftarrow{}\text{bestt}$
+        \STATE $\text{table}\left[i,j\right].\text{error}\leftarrow{}\text{minerror}$
+        \RETURN $\text{minerror}$
+    \end{algorithmic}
 \end{center}
-\caption[An algorithm with an optional shorter caption]%
+\caption[An algorithm with an optional, shorter caption]%
     {\label{alg:alg1}This is an algorithm with a very long
     caption. However, we replaced it with a shorter version
-    in the TOC, for legibility reasons.}%
+    in the Outline for legibility reasons}%
 \end{algorithm}
 
 tempor invidunt ut labore et dolore magna aliquyam erat sed diam
@@ -115,7 +115,7 @@ clita.~\cite{OLIVEIRAAPL08}
 
 % Um exemplo de fórmula
 \begin{equation}\label{eq:eq1}
-    \int_{0}^{\infty}{x^2 + \frac{\pi}{\sum_{i=0}^{n}{\frac{1}{i^2}}}}
+    \intop_{0}^{\infty}{x^2 + \frac{\pi}{\sum_{i=0}^{n}{\frac{1}{i^2}}}}
 \end{equation}
 
 kasd gubergren no sea Equação~\eqref{eq:eq1} takimata sanctus est
