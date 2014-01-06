@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 ##
 ## Copyright (C) 2012 Ricardo Piccoli <rfbpiccoli at gmail dot com>
 ##

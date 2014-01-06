@@ -1539,7 +1539,7 @@ FUNCTION {begin.bib}
 %  write$ newline$
   "\newcommand{\enquote}[1]{``#1''}"
   write$ newline$
-  "\providecommand{\urlprefix}{Capturado em: }"
+  "\providecommand{\urlprefix}{\bblcaptured}"
   write$ newline$
   "\providecommand{\selectlanguage}[1]{\relax}"
   write$ newline$

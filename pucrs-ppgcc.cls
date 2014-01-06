@@ -127,7 +127,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage[table]{xcolor}[2007/01/21]
 \RequirePackage{array}[2008/09/09]
 
-%\RequirePackage[ruled]{algorithm}[2009/08/24]
+\RequirePackage[ruled]{algorithm}[2009/08/24]
 %\RequirePackage[algo2e]{algorithm2e}[2009/08/24]
 %\RequirePackage{algorithmic}[2009/08/24]
 %\RequirePackage{subfigure}[2002/03/15]
@@ -197,7 +197,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % Novos comandos e alocação de registradores (públicos e internos). Comandos
 % internos começam com o prefixo PP@.
 %----------------------------------------------------------------------------------
-\edef\PP@undef{n\~{a}o definido}
+%\edef\PP@undef{n\~{a}o definido}
+\edef\PP@undef{not defined}
 \newcommand*{\monografia}{Monografia}
 \let\PP@grau=\PP@undef
 \let\PP@tipo=\monografia
@@ -257,6 +258,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \gdef\bbltechrep{Relat\'{o}rio T\'{e}cnico}
     \gdef\bblmthesis{Disserta\c{c}\~{a}o de Mestrado}
     \gdef\bblphdthesis{Tese de Doutorado}
+    \gdef\bblcaptured{Capturado em: }
     \gdef\bbljan{Jan}
     \gdef\bblfeb{Fev}
     \gdef\bblmar{Mar}
@@ -274,7 +276,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \renewcommand*{\PP@Uni}{Pontifical Catholic University of Rio Grande do Sul}
     \renewcommand*{\PP@Fac}{Faculty of Informatics}
     \renewcommand*{\PP@Dep}{Computer Science Graduate Program}
-    \edef\PP@undef{not defined}
+    %\edef\PP@undef{not defined}
     \renewcommand*{\tese}{Dissertation}
     \renewcommand*{\pep}{Research plan}
     \renewcommand*{\ptese}{Dissertation proposal}
@@ -315,6 +317,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \gdef\bbltechrep{Technical Report}
     \gdef\bblmthesis{Master's Thesis}
     \gdef\bblphdthesis{Ph.D. Thesis}
+    \gdef\bblcaptured{Source: }
     \gdef\bbljan{Jan}
     \gdef\bblfeb{Feb}
     \gdef\bblmar{Mar}
@@ -684,31 +687,31 @@ e-mail <rfbpiccoli at gmail dot com>^^J
      \end{PP@abstract}%
      \end{hyphenrules}}
 
-%----------------------------------------------------------------------------------
-% Lista de algoritmos
-%----------------------------------------------------------------------------------
-%\addto\captionsbrazil{%
-  \newcommand*\listalgorithmname{Lista de Algoritmos}
-  \newcommand*\algorithmname{Algoritmo}
+%%----------------------------------------------------------------------------------
+%% Lista de algoritmos
+%%----------------------------------------------------------------------------------
+%%\addto\captionsbrazil{%
+%  \newcommand*\listalgorithmname{Lista de Algoritmos}
+%  \newcommand*\algorithmname{Algoritmo}
+%%}
+%\addto\captionsenglish{%
+%  \renewcommand*\listalgorithmname{List of Algorithms}
+%  \renewcommand*\algorithmname{Algorithm}
 %}
-\addto\captionsenglish{%
-  \renewcommand*\listalgorithmname{List of Algorithms}
-  \renewcommand*\algorithmname{Algorithm}
-}
-\newcounter{algorithm}[chapter]
-\renewcommand \thealgorithm
-     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@algorithm}
-\def\ftype@algorithm{2}
-\def\fps@algorithm{htbp}
-\def\ext@algorithm{loa}
-\def\fnum@algorithm{\algorithmname\nobreakspace\thealgorithm}
-\newenvironment{algorithm}
-               {\@float{algorithm}}
-               {\end@float}
-\newenvironment{algorithm*}
-               {\@dblfloat{algorithm}}
-               {\end@dblfloat}
-\newcommand\listofalgorithms{\chapter*{\listalgorithmname}\@starttoc{loa}}
+%\newcounter{algorithm}[chapter]
+%\renewcommand \thealgorithm
+%     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@algorithm}
+%\def\ftype@algorithm{2}
+%\def\fps@algorithm{htbp}
+%\def\ext@algorithm{loa}
+%\def\fnum@algorithm{\algorithmname\nobreakspace\thealgorithm}
+%\newenvironment{algorithm}
+%               {\@float{algorithm}}
+%               {\end@float}
+%\newenvironment{algorithm*}
+%               {\@dblfloat{algorithm}}
+%               {\end@dblfloat}
+%\newcommand\listofalgorithms{\chapter*{\listalgorithmname}\@starttoc{loa}}
 %----------------------------------------------------------------------------------
 % Lista de siglas
 %----------------------------------------------------------------------------------
@@ -961,7 +964,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.2em}}%{2.3em}} Aqui
 \let\l@table\l@figure
-\let\l@algorithm\l@table
+%\let\l@algorithm\l@table
 
 %----------------------------------------------------------------------------------
 % Redefinindo distância entre pontinhos no sumário
@@ -1277,3 +1280,4 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \global\let\PP@termoname\@empty
 }
 %% End of file 'pucrs-ppgcc.cls'
+% vim:foldmethod=indent:textwidth=10000
