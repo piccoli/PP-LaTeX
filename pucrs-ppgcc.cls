@@ -127,12 +127,11 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage[table]{xcolor}[2007/01/21]
 \RequirePackage{array}[2008/09/09]
 
-\RequirePackage[ruled]{algorithm}[2009/08/24]
+%\RequirePackage[ruled]{algorithm}[2009/08/24]
 %\RequirePackage[algo2e]{algorithm2e}[2009/08/24]
 %\RequirePackage{algorithmic}[2009/08/24]
 %\RequirePackage{subfigure}[2002/03/15]
 %\RequirePackage{multirow}
-
 
 %----------------------------------------------------------------------------------
 % Para usuários do LyX.
@@ -687,31 +686,31 @@ e-mail <rfbpiccoli at gmail dot com>^^J
      \end{PP@abstract}%
      \end{hyphenrules}}
 
-%%----------------------------------------------------------------------------------
-%% Lista de algoritmos
-%%----------------------------------------------------------------------------------
-%%\addto\captionsbrazil{%
-%  \newcommand*\listalgorithmname{Lista de Algoritmos}
-%  \newcommand*\algorithmname{Algoritmo}
-%%}
-%\addto\captionsenglish{%
-%  \renewcommand*\listalgorithmname{List of Algorithms}
-%  \renewcommand*\algorithmname{Algorithm}
+%----------------------------------------------------------------------------------
+% Lista de algoritmos
+%----------------------------------------------------------------------------------
+%\addto\captionsbrazil{%
+  \newcommand*\listalgorithmname{Lista de Algoritmos}
+  \newcommand*\algorithmname{Algoritmo}
 %}
-%\newcounter{algorithm}[chapter]
-%\renewcommand \thealgorithm
-%     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@algorithm}
-%\def\ftype@algorithm{2}
-%\def\fps@algorithm{htbp}
-%\def\ext@algorithm{loa}
-%\def\fnum@algorithm{\algorithmname\nobreakspace\thealgorithm}
-%\newenvironment{algorithm}
-%               {\@float{algorithm}}
-%               {\end@float}
-%\newenvironment{algorithm*}
-%               {\@dblfloat{algorithm}}
-%               {\end@dblfloat}
-%\newcommand\listofalgorithms{\chapter*{\listalgorithmname}\@starttoc{loa}}
+\addto\captionsenglish{%
+  \renewcommand*\listalgorithmname{List of Algorithms}
+  \renewcommand*\algorithmname{Algorithm}
+}
+\newcounter{algorithm}[chapter]
+\renewcommand \thealgorithm
+     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@algorithm}
+\def\ftype@algorithm{2}
+\def\fps@algorithm{htbp}
+\def\ext@algorithm{loa}
+\def\fnum@algorithm{\algorithmname\nobreakspace\thealgorithm}
+\newenvironment{algorithm}
+               {\@float{algorithm}}
+               {\end@float}
+\newenvironment{algorithm*}
+               {\@dblfloat{algorithm}}
+               {\end@dblfloat}
+\newcommand\listofalgorithms{\chapter*{\listalgorithmname}\@starttoc{loa}}
 %----------------------------------------------------------------------------------
 % Lista de siglas
 %----------------------------------------------------------------------------------
@@ -964,7 +963,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.2em}}%{2.3em}} Aqui
 \let\l@table\l@figure
-%\let\l@algorithm\l@table
+\let\l@algorithm\l@table
 
 %----------------------------------------------------------------------------------
 % Redefinindo distância entre pontinhos no sumário
