@@ -40,24 +40,19 @@ function abort() {
    exit 1
 }
 
-FILE="$1"
-CLS="pucrs-ppgcc.cls"
+readonly FILE="$1"
+readonly CLS="pucrs-ppgcc.cls"
 
 if [[ $# -lt 1 ]]; then
     abort "Uso: $0 <documento.tex>."
 fi
 
-if [[ ! -f ${FILE}.los || ! -f ${FILE}.lov ]]; then
-# XXX O usuário pode simplesmente não estar usando estas
-# listas, então deve-se sair silenciosamente.
-#   abort "Execute o LaTeX pelo menos uma vez sobre o documento '${FILE}', utilizando a classe '$CLS'."
-    exit 0
-fi
-
+set -e
 for i in s v; do
-    LFILE="${FILE}.lo${i}"
-    sort -d -f -o "${LFILE}~" "$LFILE" &&\
+    LFILE="${FILE}.lo$i"
+    if [[ ! -f $LFILE ]]; then continue; fi
+    sort -d -f -o "${LFILE}~" "$LFILE"
     mv -f "${LFILE}~" "$LFILE"
 done
 
-message "'$0 $@' concluído."
+message 'Concluído.'
