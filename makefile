@@ -27,7 +27,6 @@ SORT=./sort.sh
 
 # Verifique se sua instalação do LaTeX e Ghostscript
 # possuem estes comandos:
-PDFOPT=pdfopt
 ifeq ($(LATEX),latex)
 DVIPS=dvips
 DVIPSOPTS=-P pdf -t a4 -Pdownload35
@@ -36,7 +35,7 @@ endif
 
 all: $(TARGET).pdf
 	mkdir -p $(PDFDIR)
-	$(PDFOPT) $< $(PDFDIR)/$<
+	mv $< $(PDFDIR)/$<
 
 ifeq ($(LATEX),pdflatex)
 $(TARGET).pdf: $(TARGET).tex

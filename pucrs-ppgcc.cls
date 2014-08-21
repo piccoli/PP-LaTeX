@@ -417,8 +417,10 @@ e-mail <rfbpiccoli at gmail dot com>^^J
             \leavevmode\kern2.5em\vbox{%
                 \advance\hsize by-5em
                 \bfseries
-                \lineskip.25\baselineskip
+                %\lineskip.25\baselineskip
                 \baselineskip1.2\baselineskip
+                \lineskip0pt
+                \lineskiplimit0pt
                 \noindent\hbox{}\par\nointerlineskip
                 \noindent{\Large\expandafter\uppercase\expandafter{\@title}}\par
                 \noindent{\large\expandafter\uppercase\expandafter{\@author}}\par\nointerlineskip
