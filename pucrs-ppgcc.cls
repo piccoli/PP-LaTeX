@@ -105,6 +105,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage[table]{xcolor}[2007/01/21]
 \RequirePackage{array}[2008/09/09]
 \RequirePackage{longtable}
+\RequirePackage{chngcntr}[2009/09/02]
 
 %\RequirePackage[ruled]{algorithm}[2009/08/24]
 %\RequirePackage[algo2e]{algorithm2e}[2009/08/24]
@@ -852,6 +853,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % Redefinindo o sumário para usar frente e verso automaticamente e
 % configurar o estilo da página para o resto do trabalho.
 %----------------------------------------------------------------------------------
+\setcounter{tocdepth}{4} % Seções aninhadas em até `tocdepth` níveis serão mostradas no sumário.
+\setcounter{secnumdepth}{4} % Seções aninhadas em até `secnumdepth` níveis serão numeradas no sumário.
 \renewcommand\tableofcontents{%
     % Desnecessário
     \if@twocolumn
@@ -940,7 +943,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % i. e., com linhas e tudo mais.
 %----------------------------------------------------------------------------------
 \newlength\PP@tocitemindent
-\setlength\PP@tocitemindent{3.2em}
+\setlength\PP@tocitemindent{4.8em}
 \renewcommand*\l@chapter[2]{%
   \ifnum \c@tocdepth >\m@ne
     \addpenalty{-\@highpenalty}%
@@ -1024,12 +1027,22 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \def\@seccntformat#1{\hbox to \parindent{\csname the#1\endcsname}}
 
+\newcounter{subsubsubsection}[subsubsection]
+\counterwithin{paragraph}{subsubsubsection}
+\renewcommand\thesubsubsubsection{\thesubsubsection.\@arabic\c@subsubsubsection}
+\renewcommand\theparagraph{\thesubsubsubsection.\@arabic\c@paragraph}
+\newcommand{\subsubsubsectionmark}[1]{}
+
 %----------------------------------------------------------------------------------
 % Redefinindo comando para formatar seções no sumário,
 % sem indentação.
 %----------------------------------------------------------------------------------
-\renewcommand*\l@section{\@dottedtocline{1}{0em}{3.2em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{0em}{3.2em}}
+\renewcommand*\l@section{\@dottedtocline{1}{0em}{\PP@tocitemindent}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{0em}{\PP@tocitemindent}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{0em}{\PP@tocitemindent}}
+\newcommand*\l@subsubsubsection{\@dottedtocline{4}{0em}{\PP@tocitemindent}}
+\renewcommand*\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\renewcommand*\l@subparagraph{\@dottedtocline{6}{12em}{6em}}
 
 %----------------------------------------------------------------------------------
 % Redefinindo formatação de seções da report.cls
@@ -1046,13 +1059,17 @@ e-mail <rfbpiccoli at gmail dot com>^^J
                                      {\normalfont\normalsize}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {3.25ex \@plus 1ex \@minus .2ex}%
-                                     {1.5ex \@plus.2ex}%
+                                     {5.2ex \@plus.2ex}%
                                      {\normalfont\normalsize}}
-\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+\newcommand\subsubsubsection{\@startsection{subsubsubsection}{4}{\z@}%
+                                     {3.25ex \@plus 1ex \@minus .2ex}%
+                                     {5.2ex \@plus.2ex}%
+                                     {\normalfont\normalsize}}
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
                                     {3.25ex \@plus 1ex \@minus .2ex}%
                                     {1em}%
                                     {\normalfont\normalsize}}
-\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
                                       {3.25ex \@plus 1ex \@minus .2ex}%
                                       {1em}%
                                       {\normalfont\normalsize}}
@@ -1200,7 +1217,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \setlength{\marginparsep}{2mm}
     \setlength{\marginparwidth}{1.6cm}
     % Indentação de parágrafos.
-    \setlength{\parindent}{4em}
+    \setlength{\parindent}{4.8em}
     % Distância vertical entre dois parágrafos.
     \setlength{\parskip}{1mm}
     \setlength{\itemsep}{1mm}
