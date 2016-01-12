@@ -126,6 +126,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage{url}
 \RequirePackage[table]{xcolor}[2007/01/21]
 \RequirePackage{array}[2008/09/09]
+\RequirePackage{longtable}
 
 %\RequirePackage[ruled]{algorithm}[2009/08/24]
 %\RequirePackage[algo2e]{algorithm2e}[2009/08/24]
@@ -843,6 +844,28 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
   \fi
   \vskip\belowcaptionskip}
+
+%----------------------------------------------------------------------------------
+% Respectivamente, redefinimos os comandos para legendas em long tables.
+%----------------------------------------------------------------------------------
+\def\LT@makecaption#1#2#3{%
+  \LT@mcol\LT@cols c{\hbox to\z@{\hss\parbox[t]\LTcapwidth{%
+    \sbox\@tempboxa{#1{#2 -- }#3}%
+    \ifdim\wd\@tempboxa>\hsize
+      #1{#2 -- }#3%
+    \else
+      \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+    \fi
+    \endgraf\vskip\baselineskip}%
+  \hss}}}
+
+\def\LT@c@ption#1[#2]#3{%
+  \LT@makecaption#1\fnum@table{#3}%
+  \def\@tempa{#2}%
+  \ifx\@tempa\@empty\else
+     {\let\\\space
+     \addcontentsline{lot}{table}{\tablename\nobreakspace\protect\numberline{\thetable\hfil\nobreakspace--\nobreakspace}{\ignorespaces #2}}}%
+  \fi}
 
 %----------------------------------------------------------------------------------
 % Redefinindo o sumário para usar frente e verso automaticamente e
