@@ -903,15 +903,20 @@ e-mail <rfbpiccoli at gmail dot com>^^J
                     \secdef\@chapter\@schapter}
 % Capítulos com numeração ficam alinhados à esquerda com número e
 % a mesma indentação do parágrafo (após o número).
+
+\def\PP@chaptertypeout{}
+\def\PP@chapternumberline{\thechapter}
+\def\PP@chapterfmt#1{\MakeTextUppercase{#1}}
+\def\PP@chapterfmtnodepth#1{\MakeTextUppercase{#1}}
 \def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
                          \refstepcounter{chapter}%
-                         \typeout{\thechapter.}%
+                         \typeout{\PP@chaptertypeout{}\thechapter.}%
                          \addcontentsline{toc}{chapter}%
                          % Aqui
-                         {\protect\numberline{\thechapter}\MakeTextUppercase{#1}}%
+                         {\protect\numberline{\PP@chapternumberline}\PP@chapterfmt{#1}}%
                     \else
                         % Aqui
-                        \addcontentsline{toc}{chapter}{\MakeTextUppercase{#1}}%
+                        \addcontentsline{toc}{chapter}{\PP@chapterfmtnodepth{#1}}%
                     \fi
                     \chaptermark{#1}%
                     % Coloca um espaço vertical entre figuras de capítulos diferentes.
@@ -1125,25 +1130,11 @@ e-mail <rfbpiccoli at gmail dot com>^^J
   \gdef\@chapupp{\expandafter\uppercase\expandafter{\appendixname}}%
   %\gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
   \gdef\thechapter{\@Alph\c@chapter}%
-  \gdef\@chapter[##1]##2{\ifnum \c@secnumdepth >\m@ne
-                           \refstepcounter{chapter}%
-                           \typeout{\@chapupp\space\thechapter.}%
-                           \addcontentsline{toc}{chapter}%
-                           {\protect\numberline{}\@chapupp\nobreakspace\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
-                      \else
-                          \addcontentsline{toc}{chapter}{##1}%
-                      \fi
-                      \chaptermark{##1}%
-                      % Coloca um espaço vertical entre figuras de capítulos diferentes.
-                      % Aqui
-  %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
-  %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
-                      \if@twocolumn
-                        \@topnewpage[\@makechapterhead{##2}]%
-                      \else
-                        \@makechapterhead{##2}%
-                        \@afterheading
-                      \fi}%
+  \gdef\PP@chaptertypeout{\@chapupp\space}%
+  \gdef\PP@chapternumberline{}%
+  \gdef\PP@chapterfmt##1{\@chapupp\nobreakspace\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
+  \gdef\PP@chapterfmtnodepth##1{##1}%
+
   \gdef\@makechapterhead##1{%
     {\parindent\z@
       \centering
@@ -1171,25 +1162,11 @@ e-mail <rfbpiccoli at gmail dot com>^^J
   \gdef\@chapupp{\expandafter\uppercase\expandafter{\appendixname}}%
   %\gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
   \gdef\thechapter{\@Alph\c@chapter}%
-  \gdef\@chapter[##1]##2{\ifnum \c@secnumdepth >\m@ne
-                           \refstepcounter{chapter}%
-                           \typeout{\@chapupp\space\thechapter.}%
-                           \addcontentsline{toc}{chapter}%
-                           {\protect\numberline{}\@chapupp\nobreakspace\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
-                      \else
-                          \addcontentsline{toc}{chapter}{##1}%
-                      \fi
-                      \chaptermark{##1}%
-                      % Coloca um espaço vertical entre figuras de capítulos diferentes.
-                      % Aqui
-  %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
-  %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
-                      \if@twocolumn
-                        \@topnewpage[\@makechapterhead{##2}]%
-                      \else
-                        \@makechapterhead{##2}%
-                        \@afterheading
-                      \fi}%
+  \gdef\PP@chaptertypeout{\@chapupp\space\thechapter.}%
+  \gdef\PP@chapternumberline{}%
+  \gdef\PP@chapterfmt##1{\@chapupp\nobreakspace\thechapter\nobreakspace--\nobreakspace\protect\normalfont##1}%
+  \gdef\PP@chapterfmtnodepth##1{##1}%
+
   \gdef\@makechapterhead##1{%
     {\parindent\z@
       \centering
