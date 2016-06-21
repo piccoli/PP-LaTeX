@@ -127,6 +127,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \RequirePackage[table]{xcolor}[2007/01/21]
 \RequirePackage{array}[2008/09/09]
 \RequirePackage{longtable}
+\RequirePackage{chngcntr}[2009/09/02]
 
 %\RequirePackage[ruled]{algorithm}[2009/08/24]
 %\RequirePackage[algo2e]{algorithm2e}[2009/08/24]
@@ -788,9 +789,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \def\ps@headings{%
   \let\@oddfoot\@empty\let\@evenfoot\@empty
-  % Aqui
+  % XXX
   \def\@evenhead{\small\thepage}%\hfil\slshape\leftmark}%
-  % e aqui
+  % XXX
   \def\@oddhead{\hfil\small\thepage}%{\slshape\rightmark}\hfil\thepage}%
   \let\@mkboth\markboth
 \def\chaptermark##1{%
@@ -814,7 +815,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \long\def\@caption#1[#2]#3{%
   \par
   \addcontentsline{\csname ext@#1\endcsname}{#1}%
-    % Aqui
+    % XXX
    %{\protect\numberline{\csname the#1\endcsname}{\ignorespaces #2}}%
     {\csname #1name\endcsname\nobreakspace\protect\numberline{\csname the#1\endcsname\hfil\nobreakspace--\nobreakspace}{\ignorespaces #2}}%
   \begingroup
@@ -832,11 +833,11 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
-  % Aqui
+  % XXX
 %  \sbox\@tempboxa{#1: #2}%
   \sbox\@tempboxa{#1 -- #2}%
   \ifdim \wd\@tempboxa >\hsize
-  % Aqui
+  % XXX
 %    #1: #2\par
     #1 -- #2\par
   \else
@@ -871,6 +872,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % Redefinindo o sumário para usar frente e verso automaticamente e
 % configurar o estilo da página para o resto do trabalho.
 %----------------------------------------------------------------------------------
+\setcounter{tocdepth}{4} % Seções aninhadas em até `tocdepth` níveis serão mostradas no sumário.
+\setcounter{secnumdepth}{4} % Seções aninhadas em até `secnumdepth` níveis serão numeradas no sumário.
 \renewcommand\tableofcontents{%
     % Desnecessário
     \if@twocolumn
@@ -884,7 +887,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \@starttoc{toc}%
     % Desnecessário
     \if@restonecol\twocolumn\fi
-    % Aqui
+    % XXX
     %\if@openright\cleardoublepage\else\clearpage\fi
     \cleardoublepage
     \pagestyle{headings}%
@@ -895,10 +898,10 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \renewcommand\chapter{%\if@openright\cleardoublepage\else\clearpage\fi
                       \cleardoublepage
-                     % Aqui
+                     % XXX
 %                    \thispagestyle{plain}%
                     \global\@topnum\z@
-                     % Aqui
+                     % XXX
 %                    \@afterindentfalse
                     \secdef\@chapter\@schapter}
 % Capítulos com numeração ficam alinhados à esquerda com número e
@@ -912,15 +915,15 @@ e-mail <rfbpiccoli at gmail dot com>^^J
                          \refstepcounter{chapter}%
                          \typeout{\PP@chaptertypeout{}\thechapter.}%
                          \addcontentsline{toc}{chapter}%
-                         % Aqui
+                         % XXX
                          {\protect\numberline{\PP@chapternumberline}\PP@chapterfmt{#1}}%
                     \else
-                        % Aqui
+                        % XXX
                         \addcontentsline{toc}{chapter}{\PP@chapterfmtnodepth{#1}}%
                     \fi
                     \chaptermark{#1}%
                     % Coloca um espaço vertical entre figuras de capítulos diferentes.
-                    % Aqui
+                    % XXX
 %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
 %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
                     \if@twocolumn
@@ -935,7 +938,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \interlinepenalty\@M
     \leavevmode\hbox to 4em{\large\bfseries\thechapter.\ }%
 %    \large\bfseries\expandafter\uppercase\expandafter{#1}\par\nointerlineskip\nobreak%
-    % Aqui
+    % XXX
     \large\bfseries\MakeTextUppercase{#1}\par\nointerlineskip\nobreak
     \normalfont\normalsize
     \vskip 6ex
@@ -948,15 +951,18 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \centering
     \normalfont
     \interlinepenalty\@M
-    % Aqui
+    % XXX
     \large\bfseries\MakeTextUppercase{#1}\par\nointerlineskip\nobreak
     \normalfont\normalsize
     \vskip 6ex
   }}
+
 %----------------------------------------------------------------------------------
 % Redefinindo comando para formatar capítulos no sumário,
 % i. e., com linhas e tudo mais.
 %----------------------------------------------------------------------------------
+\newlength\PP@tocitemindent
+\setlength\PP@tocitemindent{4.8em}
 \renewcommand*\l@chapter[2]{%
   \ifnum \c@tocdepth >\m@ne
     \addpenalty{-\@highpenalty}%
@@ -965,9 +971,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
      \parindent \z@ \relax\@afterindenttrue
      \interlinepenalty\@M
      \leavevmode
-     \@tempdima 3.2em
+     \@tempdima \PP@tocitemindent
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-%     % Aqui
+%     % XXX
 %     \setbox\PP@tmpbox=\hbox{#2}%
 %     \PP@tmpdim=\wd\PP@tmpbox
 %     \edef\@pnumwidth{\PP@tmpdim}%
@@ -982,16 +988,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
      \penalty\@highpenalty}%
   \fi}
 %----------------------------------------------------------------------------------
-% Redefinindo comando para formatar seções no sumário,
-% sem indentação.
-%----------------------------------------------------------------------------------
-\renewcommand*\l@section{\@dottedtocline{1}{0em}{3.2em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{0em}{3.2em}}
-
-%----------------------------------------------------------------------------------
 % Redefinindo comando para formatar figuras, algoritmos e tabelas no sumário.
 %----------------------------------------------------------------------------------
-\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.2em}}%{2.3em}} Aqui
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{\PP@tocitemindent}}%{2.3em}} XXX
 \let\l@table\l@figure
 \let\l@algorithm\l@table
 
@@ -1025,7 +1024,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         \protect\numberline{\csname the#1\endcsname}%
       \fi
 %      #7}%
-      % Aqui
+      % XXX
       \MakeTextUppercase{#7}}%
   \else
     \def\@svsechd{%
@@ -1037,7 +1036,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
           \protect\numberline{\csname the#1\endcsname}%
         \fi
 %        #7}}%
-        % Aqui
+        % XXX
         \MakeTextUppercase{#7}}}%
   \fi
   \@xsect{#5}}
@@ -1046,6 +1045,23 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % Redefinindo comando interno do LaTeX para substituir um espaço indesejado...
 %----------------------------------------------------------------------------------
 \def\@seccntformat#1{\hbox to \parindent{\csname the#1\endcsname}}
+
+\newcounter{subsubsubsection}[subsubsection]
+\counterwithin{paragraph}{subsubsubsection}
+\renewcommand\thesubsubsubsection{\thesubsubsection.\@arabic\c@subsubsubsection}
+\renewcommand\theparagraph{\thesubsubsubsection.\@arabic\c@paragraph}
+\newcommand{\subsubsubsectionmark}[1]{}
+
+%----------------------------------------------------------------------------------
+% Redefinindo comando para formatar seções no sumário,
+% sem indentação.
+%----------------------------------------------------------------------------------
+\renewcommand*\l@section{\@dottedtocline{1}{0em}{\PP@tocitemindent}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{0em}{\PP@tocitemindent}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{0em}{\PP@tocitemindent}}
+\newcommand*\l@subsubsubsection{\@dottedtocline{4}{0em}{\PP@tocitemindent}}
+\renewcommand*\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\renewcommand*\l@subparagraph{\@dottedtocline{6}{12em}{6em}}
 
 %----------------------------------------------------------------------------------
 % Redefinindo formatação de seções da report.cls
@@ -1062,13 +1078,17 @@ e-mail <rfbpiccoli at gmail dot com>^^J
                                      {\normalfont\normalsize}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {3.25ex \@plus 1ex \@minus .2ex}%
-                                     {1.5ex \@plus.2ex}%
+                                     {5.2ex \@plus.2ex}%
                                      {\normalfont\normalsize}}
-\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+\newcommand\subsubsubsection{\@startsection{subsubsubsection}{4}{\z@}%
+                                     {3.25ex \@plus 1ex \@minus .2ex}%
+                                     {5.2ex \@plus.2ex}%
+                                     {\normalfont\normalsize}}
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
                                     {3.25ex \@plus 1ex \@minus .2ex}%
                                     {1em}%
                                     {\normalfont\normalsize}}
-\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
                                       {3.25ex \@plus 1ex \@minus .2ex}%
                                       {1em}%
                                       {\normalfont\normalsize}}
@@ -1096,9 +1116,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \renewenvironment{thebibliography}[1]
      {\chapter*{\bibname}%
-      % Aqui
+      % XXX
       \addcontentsline{toc}{chapter}%
-      % e aqui
+      % XXX
       %{\protect\numberline{\thechapter}\expandafter\uppercase\expandafter{\PP@bibname}}%
       {\protect\numberline{\null}\expandafter\uppercase\expandafter{\PP@bibname}}%
       \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
@@ -1126,7 +1146,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
   \setcounter{chapter}{0}%
   \setcounter{section}{0}%
   \gdef\@chapapp{\appendixname}%
-  % Aqui
+  % XXX
   \gdef\@chapupp{\expandafter\uppercase\expandafter{\appendixname}}%
   %\gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
   \gdef\thechapter{\@Alph\c@chapter}%
@@ -1158,7 +1178,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
   \xdef\appendixname{\PP@anexoname}%
   \global\let\PP@anexoname\@empty
   \gdef\@chapapp{\appendixname}%
-  % Aqui
+  % XXX
   \gdef\@chapupp{\expandafter\uppercase\expandafter{\appendixname}}%
   %\gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
   \gdef\thechapter{\@Alph\c@chapter}%
@@ -1216,7 +1236,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
    \setlength{\marginparsep}{2mm}
    \setlength{\marginparwidth}{1.6cm}
    % Indentação de parágrafos.
-   \setlength{\parindent}{4em}
+   \setlength{\parindent}{4.8em}
    % Distância vertical entre dois parágrafos.
    \setlength{\parskip}{1mm}
    \setlength{\itemsep}{1mm}
@@ -1252,13 +1272,16 @@ e-mail <rfbpiccoli at gmail dot com>^^J
    %\addto\captionsbrazil{\renewcommand*{\contentsname}{Sum\'{a}rio}}
    %\addto\captionsbrazil{\renewcommand*{\figurename}{Figura}}
    %\addto\captionsbrazil{\renewcommand*{\tablename}{Tabela}}
-   % O pacote 'hyperref' automaticamente cria links para navegação no
-   % documento. Como ele reescreve muitos comandos internos do LaTeX,
-   % deve ser o ÚLTIMO pacote inserido antes do início do documento.
-   % Obs.: A versão estável do TeXLive instalada no Ubuntu
-   % ainda não tem a versão mais recente do hyperref,
-   % então usamos as opções antigas para garantir a compatibilidade
-   %\RequirePackage[colorlinks=true,hidelinks,urlcolor=blue]{hyperref}[2011/04/07]
+   % Re-adição do hyperref no documento, com os fixes de arquivo externo, para poder adicionar bookmarks
+   \let\MakeUppercase=\uppercase
+   \let\MakeTextUppercase=\uppercase
+   \RequirePackage[colorlinks=true,
+   				   hidelinks,
+				   urlcolor=blue,
+				   bookmarks,
+				   % pdftitle=\title,
+				   pdfauthor=\@author
+				   ]{hyperref}
    %\RequirePackage[colorlinks=true,allcolors=,urlcolor=blue]{hyperref}[2011/04/07]
    %\RequirePackage[colorlinks=true,anchorcolor=,citecolor=,%
    %               filecolor=,linkcolor=,menucolor=,runcolor=,%
