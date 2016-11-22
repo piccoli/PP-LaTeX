@@ -396,9 +396,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
             \rightskip0pt plus1fil
             \hyphenpenalty 10000\relax
             \bfseries
-            \noindent\MakeUppercase{\PP@Uni}\par
-            \noindent\MakeUppercase{\PP@Fac}\par
-            \noindent\MakeUppercase{\PP@Dep}\par
+            \noindent\MakeTextUppercase{\PP@Uni}\par
+            \noindent\MakeTextUppercase{\PP@Fac}\par
+            \noindent\MakeTextUppercase{\PP@Dep}\par
         }%
         \PP@tmpdim=9.5cm
         \advance\PP@tmpdim by-4ex
@@ -423,8 +423,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
                 \lineskip0pt
                 \lineskiplimit0pt
                 \noindent\hbox{}\par\nointerlineskip
-                \noindent{\Large\expandafter\uppercase\expandafter{\@title}}\par
-                \noindent{\large\expandafter\uppercase\expandafter{\@author}}\par\nointerlineskip
+                \noindent{\Large\expandafter\MakeTextUppercase\expandafter{\@title}}\par
+                \noindent{\large\expandafter\MakeTextUppercase\expandafter{\@author}}\par\nointerlineskip
                 \vfil\hbox{}%
             }\kern2.5em
         }}\par\nointerlineskip
@@ -539,7 +539,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         \centering
         \normalfont
         \interlinepenalty\@M
-        \bfseries\MakeUppercase{#1}\par\nointerlineskip\nobreak
+        \bfseries\MakeTextUppercase{#1}\par\nointerlineskip\nobreak
         \normalfont\normalsize
         \vskip 19.5ex}%
        \@afterheading
@@ -642,7 +642,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
        \centering
        \normalfont
        \interlinepenalty\@M
-       \large\bfseries\MakeUppercase{#3}\par\nointerlineskip\nobreak
+       \large\bfseries\MakeTextUppercase{#3}\par\nointerlineskip\nobreak
        \normalfont\normalsize
        \vskip 19.5ex
       }%
@@ -651,7 +651,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
        \centering
        \normalfont
        \interlinepenalty\@M
-       \bfseries\MakeUppercase{#1}\par\nointerlineskip\nobreak
+       \bfseries\MakeTextUppercase{#1}\par\nointerlineskip\nobreak
        \normalfont\normalsize
        \vskip 19.5ex
       }%
@@ -788,19 +788,19 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \def\ps@headings{%
   \let\@oddfoot\@empty\let\@evenfoot\@empty
-  % Aqui
+  % XXX
   \def\@evenhead{\small\thepage}%\hfil\slshape\leftmark}%
-  % e aqui
+  % XXX
   \def\@oddhead{\hfil\small\thepage}%{\slshape\rightmark}\hfil\thepage}%
   \let\@mkboth\markboth
 \def\chaptermark##1{%
-  \markboth {\MakeUppercase{%
+  \markboth {\MakeTextUppercase{%
     \ifnum \c@secnumdepth >\m@ne
         \@chapapp\ \thechapter. \ %
     \fi
     ##1}}{}}%
 \def\sectionmark##1{%
-  \markright {\MakeUppercase{%
+  \markright {\MakeTextUppercase{%
     \ifnum \c@secnumdepth >\z@
       \thesection. \ %
     \fi
@@ -814,7 +814,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \long\def\@caption#1[#2]#3{%
   \par
   \addcontentsline{\csname ext@#1\endcsname}{#1}%
-    % Aqui
+    % XXX
    %{\protect\numberline{\csname the#1\endcsname}{\ignorespaces #2}}%
     {\csname #1name\endcsname\nobreakspace\protect\numberline{\csname the#1\endcsname\hfil\nobreakspace--\nobreakspace}{\ignorespaces #2}}%
   \begingroup
@@ -832,11 +832,11 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
-  % Aqui
+  % XXX
 %  \sbox\@tempboxa{#1: #2}%
   \sbox\@tempboxa{#1 -- #2}%
   \ifdim \wd\@tempboxa >\hsize
-  % Aqui
+  % XXX
 %    #1: #2\par
     #1 -- #2\par
   \else
@@ -880,11 +880,11 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \fi
     \chapter*{\contentsname
         \@mkboth{%
-           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+           \MakeTextUppercase\contentsname}{\MakeTextUppercase\contentsname}}%
     \@starttoc{toc}%
     % Desnecessário
     \if@restonecol\twocolumn\fi
-    % Aqui
+    % XXX
     %\if@openright\cleardoublepage\else\clearpage\fi
     \cleardoublepage
     \pagestyle{headings}%
@@ -895,10 +895,10 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \renewcommand\chapter{%\if@openright\cleardoublepage\else\clearpage\fi
                       \cleardoublepage
-                     % Aqui
+                     % XXX
 %                    \thispagestyle{plain}%
                     \global\@topnum\z@
-                     % Aqui
+                     % XXX
 %                    \@afterindentfalse
                     \secdef\@chapter\@schapter}
 % Capítulos com numeração ficam alinhados à esquerda com número e
@@ -912,15 +912,15 @@ e-mail <rfbpiccoli at gmail dot com>^^J
                          \refstepcounter{chapter}%
                          \typeout{\PP@chaptertypeout{}\thechapter.}%
                          \addcontentsline{toc}{chapter}%
-                         % Aqui
+                         % XXX
                          {\protect\numberline{\PP@chapternumberline}\PP@chapterfmt{#1}}%
                     \else
-                        % Aqui
+                        % XXX
                         \addcontentsline{toc}{chapter}{\PP@chapterfmtnodepth{#1}}%
                     \fi
                     \chaptermark{#1}%
                     % Coloca um espaço vertical entre figuras de capítulos diferentes.
-                    % Aqui
+                    % XXX
 %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
 %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
                     \if@twocolumn
@@ -934,8 +934,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \normalfont
     \interlinepenalty\@M
     \leavevmode\hbox to 4em{\large\bfseries\thechapter.\ }%
-%    \large\bfseries\expandafter\uppercase\expandafter{#1}\par\nointerlineskip\nobreak%
-    % Aqui
+%    \large\bfseries\expandafter\MakeTextUppercase\expandafter{#1}\par\nointerlineskip\nobreak%
+    % XXX
     \large\bfseries\MakeTextUppercase{#1}\par\nointerlineskip\nobreak
     \normalfont\normalsize
     \vskip 6ex
@@ -948,15 +948,18 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \centering
     \normalfont
     \interlinepenalty\@M
-    % Aqui
+    % XXX
     \large\bfseries\MakeTextUppercase{#1}\par\nointerlineskip\nobreak
     \normalfont\normalsize
     \vskip 6ex
   }}
+
 %----------------------------------------------------------------------------------
 % Redefinindo comando para formatar capítulos no sumário,
 % i. e., com linhas e tudo mais.
 %----------------------------------------------------------------------------------
+\newlength\PP@tocitemindent
+\setlength\PP@tocitemindent{3.2em}
 \renewcommand*\l@chapter[2]{%
   \ifnum \c@tocdepth >\m@ne
     \addpenalty{-\@highpenalty}%
@@ -965,9 +968,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
      \parindent \z@ \relax\@afterindenttrue
      \interlinepenalty\@M
      \leavevmode
-     \@tempdima 3.2em
+     \@tempdima \PP@tocitemindent
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-%     % Aqui
+%     % XXX
 %     \setbox\PP@tmpbox=\hbox{#2}%
 %     \PP@tmpdim=\wd\PP@tmpbox
 %     \edef\@pnumwidth{\PP@tmpdim}%
@@ -982,16 +985,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
      \penalty\@highpenalty}%
   \fi}
 %----------------------------------------------------------------------------------
-% Redefinindo comando para formatar seções no sumário,
-% sem indentação.
-%----------------------------------------------------------------------------------
-\renewcommand*\l@section{\@dottedtocline{1}{0em}{3.2em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{0em}{3.2em}}
-
-%----------------------------------------------------------------------------------
 % Redefinindo comando para formatar figuras, algoritmos e tabelas no sumário.
 %----------------------------------------------------------------------------------
-\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.2em}}%{2.3em}} Aqui
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{\PP@tocitemindent}}%{2.3em}} XXX
 \let\l@table\l@figure
 \let\l@algorithm\l@table
 
@@ -1025,7 +1021,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         \protect\numberline{\csname the#1\endcsname}%
       \fi
 %      #7}%
-      % Aqui
+      % XXX
       \MakeTextUppercase{#7}}%
   \else
     \def\@svsechd{%
@@ -1037,7 +1033,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
           \protect\numberline{\csname the#1\endcsname}%
         \fi
 %        #7}}%
-        % Aqui
+        % XXX
         \MakeTextUppercase{#7}}}%
   \fi
   \@xsect{#5}}
@@ -1046,6 +1042,13 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % Redefinindo comando interno do LaTeX para substituir um espaço indesejado...
 %----------------------------------------------------------------------------------
 \def\@seccntformat#1{\hbox to \parindent{\csname the#1\endcsname}}
+
+%----------------------------------------------------------------------------------
+% Redefinindo comando para formatar seções no sumário,
+% sem indentação.
+%----------------------------------------------------------------------------------
+\renewcommand*\l@section{\@dottedtocline{1}{0em}{3.2em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{0em}{3.2em}}
 
 %----------------------------------------------------------------------------------
 % Redefinindo formatação de seções da report.cls
@@ -1096,12 +1099,12 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \renewenvironment{thebibliography}[1]
      {\chapter*{\bibname}%
-      % Aqui
+      % XXX
       \addcontentsline{toc}{chapter}%
-      % e aqui
-      %{\protect\numberline{\thechapter}\expandafter\uppercase\expandafter{\PP@bibname}}%
-      {\protect\numberline{\null}\expandafter\uppercase\expandafter{\PP@bibname}}%
-      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      % XXX
+      %{\protect\numberline{\thechapter}\expandafter\MakeTextUppercase\expandafter{\PP@bibname}}%
+      {\protect\numberline{\null}\expandafter\MakeTextUppercase\expandafter{\PP@bibname}}%
+      \@mkboth{\MakeTextUppercase\bibname}{\MakeTextUppercase\bibname}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
@@ -1126,9 +1129,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
   \setcounter{chapter}{0}%
   \setcounter{section}{0}%
   \gdef\@chapapp{\appendixname}%
-  % Aqui
-  \gdef\@chapupp{\expandafter\uppercase\expandafter{\appendixname}}%
-  %\gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
+  % XXX
+  \gdef\@chapupp{\expandafter\MakeTextUppercase\expandafter{\appendixname}}%
+  %\gdef\thechapter{\expandafter\MakeTextUppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
   \gdef\thechapter{\@Alph\c@chapter}%
   \gdef\PP@chaptertypeout{\@chapupp\space}%
   \gdef\PP@chapternumberline{}%
@@ -1158,9 +1161,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
   \xdef\appendixname{\PP@anexoname}%
   \global\let\PP@anexoname\@empty
   \gdef\@chapapp{\appendixname}%
-  % Aqui
-  \gdef\@chapupp{\expandafter\uppercase\expandafter{\appendixname}}%
-  %\gdef\thechapter{\expandafter\uppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
+  % XXX
+  \gdef\@chapupp{\expandafter\MakeTextUppercase\expandafter{\appendixname}}%
+  %\gdef\thechapter{\expandafter\MakeTextUppercase\expandafter{\appendixname}\nobreakspace\@Alph\c@chapter}%
   \gdef\thechapter{\@Alph\c@chapter}%
   \gdef\PP@chaptertypeout{\@chapupp\space\thechapter.}%
   \gdef\PP@chapternumberline{}%
@@ -1179,96 +1182,102 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 }
 
 \AtEndOfClass{%
-   \renewcommand*{\familydefault}{\sfdefault}
-   \renewcommand{\chaptername}{}
-   \urlstyle{same}
-   \normalfont\normalsize
-   %% Compensando o deslocamento de 1 polegada que o TeX sempre
-   %% coloca na hora de gerar a página...
-   %\setlength{\hoffset}{-1in}
-   %\setlength{\voffset}{-1in}
-   % A opção [a4paper] já toma conta destes valores...
-   %\setlength{\paperheight}{297mm}
-   %\setlength{\paperwidth}{210mm}
-   % Margens de 2cm na horizontal e na vertical
-   \setlength{\evensidemargin}{2cm}
-   \setlength{\oddsidemargin}{2cm}
-   \setlength{\topmargin}{2cm}
-   % O tamanho do corpo do texto é o tamanho da página sem as
-   % margens.
-   \setlength{\textheight}{\paperheight}
-   \setlength{\textwidth}{\paperwidth}
-   \addtolength{\textwidth}{-2\evensidemargin}
-   \addtolength{\textheight}{-4cm}
-   % Distância vertical entre o corpo do texto e o cabeçalho.
-   \setlength{\headsep}{3ex}
-   % Altura do cabeçalho.
-   \setlength{\headheight}{16pt}
-   % Remove o cabeçalho e a separação da margem vertical, que vai
-   % até o cabeçalho.
-   \addtolength{\topmargin}{-\headsep}
-   \addtolength{\topmargin}{-\headheight}
-   % Distância da base do texto até a base do rodapé.
-   \setlength{\footskip}{\headsep}
-   \addtolength{\footskip}{\baselineskip}
-   % Notas de margem.
-   \setlength{\marginparpush}{1mm}
-   \setlength{\marginparsep}{2mm}
-   \setlength{\marginparwidth}{1.6cm}
-   % Indentação de parágrafos.
-   \setlength{\parindent}{4em}
-   % Distância vertical entre dois parágrafos.
-   \setlength{\parskip}{1mm}
-   \setlength{\itemsep}{1mm}
-   %\setlength{\parskip}{\medskipamount}
-   % Distância do início do corpo da página até a primeira linha
-   % (baseline) de texto.
-   \setlength{\topskip}{4.5ex}
-   % Este layout não usa colunas, então não precisamos destes
-   % parâmetros.
-   \setlength{\columnsep}{0pt}
-   \setlength{\columnseprule}{0pt}
-   \setlength{\columnwidth}{0pt}
-   % Ao invés de mexer em \hoffset e \voffset, mexemos nas
-   % margens, que evita conflitos com outros pacotes.
-   \addtolength{\evensidemargin}{-1in}
-   \addtolength{\oddsidemargin}{-1in}
-   \addtolength{\topmargin}{-1in}
+    \renewcommand*{\familydefault}{\sfdefault}
+    \renewcommand{\chaptername}{}
+    \urlstyle{same}
+    \normalfont\normalsize
+    %% Compensando o deslocamento de 1 polegada que o TeX sempre
+    %% coloca na hora de gerar a página...
+    %\setlength{\hoffset}{-1in}
+    %\setlength{\voffset}{-1in}
+    % A opção [a4paper] já toma conta destes valores...
+    %\setlength{\paperheight}{297mm}
+    %\setlength{\paperwidth}{210mm}
+    % Margens de 2cm na horizontal e na vertical
+    \setlength{\evensidemargin}{2cm}
+    \setlength{\oddsidemargin}{2cm}
+    \setlength{\topmargin}{2cm}
+    % O tamanho do corpo do texto é o tamanho da página sem as
+    % margens.
+    \setlength{\textheight}{\paperheight}
+    \setlength{\textwidth}{\paperwidth}
+    \addtolength{\textwidth}{-2\evensidemargin}
+    \addtolength{\textheight}{-4cm}
+    % Distância vertical entre o corpo do texto e o cabeçalho.
+    \setlength{\headsep}{3ex}
+    % Altura do cabeçalho.
+    \setlength{\headheight}{16pt}
+    % Remove o cabeçalho e a separação da margem vertical, que vai
+    % até o cabeçalho.
+    \addtolength{\topmargin}{-\headsep}
+    \addtolength{\topmargin}{-\headheight}
+    % Distância da base do texto até a base do rodapé.
+    \setlength{\footskip}{\headsep}
+    \addtolength{\footskip}{\baselineskip}
+    % Notas de margem.
+    \setlength{\marginparpush}{1mm}
+    \setlength{\marginparsep}{2mm}
+    \setlength{\marginparwidth}{1.6cm}
+    % Indentação de parágrafos.
+    \setlength{\parindent}{4em}
+    % Distância vertical entre dois parágrafos.
+    \setlength{\parskip}{1mm}
+    \setlength{\itemsep}{1mm}
+    %\setlength{\parskip}{\medskipamount}
+    % Distância do início do corpo da página até a primeira linha
+    % (baseline) de texto.
+    \setlength{\topskip}{4.5ex}
+    % Este layout não usa colunas, então não precisamos destes
+    % parâmetros.
+    \setlength{\columnsep}{0pt}
+    \setlength{\columnseprule}{0pt}
+    \setlength{\columnwidth}{0pt}
+    % Ao invés de mexer em \hoffset e \voffset, mexemos nas
+    % margens, que evita conflitos com outros pacotes.
+    \addtolength{\evensidemargin}{-1in}
+    \addtolength{\oddsidemargin}{-1in}
+    \addtolength{\topmargin}{-1in}
 
-   % Posicionamento padrão de figuras e tabelas, aceitando:
-   % h - na posição pedida, se possível;
-   % ! - não respeita as regras "normais" de
-   %     posicionamento do LaTeX;
-   % t - no topo da página; ou
-   % b - no final da página
-   \floatplacement{figure}{htb!}
-   \floatplacement{table}{htb!}
-   \pagestyle{empty}
-   % Evita ao máximo linhas viúvas e órfãs em parágrafos.
-   \global\widowpenalty=10000
-   \global\clubpenalty=10000
-   %\addto\captionsbrazil{\renewcommand*{\bibname}{Refer\^{e}ncias~Bibliogr\'{a}ficas}}
-   \addto\captionsenglish{\renewcommand*{\bibname}{References}}
-   %\addto\captionsbrazil{\renewcommand*{\contentsname}{Sum\'{a}rio}}
-   %\addto\captionsbrazil{\renewcommand*{\figurename}{Figura}}
-   %\addto\captionsbrazil{\renewcommand*{\tablename}{Tabela}}
-   % O pacote 'hyperref' automaticamente cria links para navegação no
-   % documento. Como ele reescreve muitos comandos internos do LaTeX,
-   % deve ser o ÚLTIMO pacote inserido antes do início do documento.
-   % Obs.: A versão estável do TeXLive instalada no Ubuntu
-   % ainda não tem a versão mais recente do hyperref,
-   % então usamos as opções antigas para garantir a compatibilidade
-   %\RequirePackage[colorlinks=true,hidelinks,urlcolor=blue]{hyperref}[2011/04/07]
-   %\RequirePackage[colorlinks=true,allcolors=,urlcolor=blue]{hyperref}[2011/04/07]
-   %\RequirePackage[colorlinks=true,anchorcolor=,citecolor=,%
-   %               filecolor=,linkcolor=,menucolor=,runcolor=,%
-   %               breaklinks=true,urlcolor=blue]{hyperref}[2009/10/09]
-   \expandafter\selectlanguage\expandafter{\PP@language}
+    % Posicionamento padrão de figuras e tabelas, aceitando:
+    % h - na posição pedida, se possível;
+    % ! - não respeita as regras "normais" de
+    %     posicionamento do LaTeX;
+    % t - no topo da página; ou
+    % b - no final da página
+    \floatplacement{figure}{htb!}
+    \floatplacement{table}{htb!}
+    \pagestyle{empty}
+    % Evita ao máximo linhas viúvas e órfãs em parágrafos.
+    \global\widowpenalty=10000
+    \global\clubpenalty=10000
+    %\addto\captionsbrazil{\renewcommand*{\bibname}{Refer\^{e}ncias~Bibliogr\'{a}ficas}}
+    \addto\captionsenglish{\renewcommand*{\bibname}{References}}
+    %\addto\captionsbrazil{\renewcommand*{\contentsname}{Sum\'{a}rio}}
+    %\addto\captionsbrazil{\renewcommand*{\figurename}{Figura}}
+    %\addto\captionsbrazil{\renewcommand*{\tablename}{Tabela}}
+
+    % O pacote 'hyperref' automaticamente cria hyperlinks para navegação no
+    % documento. Como ele reescreve muitos comandos internos do LaTeX,
+    % deve ser o *último* pacote inserido antes do início do documento.
+    \RequirePackage[%
+        breaklinks=true,%
+        unicode,%
+        bookmarks,%
+        hidelinks,%
+        urlcolor=blue%
+    ]{hyperref-compat}
+
+    \expandafter\selectlanguage\expandafter{\PP@language}
 }
 
 \AtBeginDocument{%
     \expandafter\selectlanguage\expandafter{\PP@language}
     \maketitle
+
+    \hypersetup{
+        pdfauthor=\@author,
+        pdftitle=\@title
+    }
     % Com a opção oneside, o ambiente titlepage reinicia o contador
     % de páginas para 1 após gerar a página de título, então
     % precisamos corrigir para 2.
@@ -1280,5 +1289,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \global\let\PP@fichaname\@empty
     \global\let\PP@termoname\@empty
 }
+
+\endinput
 %% End of file 'pucrs-ppgcc.cls'
 % vim:foldmethod=indent:textwidth=10000

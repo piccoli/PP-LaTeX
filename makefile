@@ -20,8 +20,8 @@ RM=rm -f
 
 # Substitua por 'pdflatex' caso deseje incluir figuras .png ou
 # .jpg no seu documento.
-LATEX=latex
-#LATEX=pdflatex
+#LATEX=latex
+LATEX=pdflatex
 BIBTEX=bibtex
 SORT=./sort.sh
 

@@ -1,0 +1,87 @@
+%% Copyright (C) 2012 Ricardo Piccoli <rfbpiccoli at gmail dot com>
+%%
+%% This program is free software; you can redistribute it and/or modify
+%% it under the terms of the GNU General Public License as published by
+%% the Free Software Foundation; either version 2 of the License, or
+%% (at your option) any later version.
+%%
+%% This program is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+%%
+%% You should have received a copy of the GNU General Public License
+%% along with this program; if not, write to the Free Software
+%% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+%%
+%----------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{hyperref-compat}
+    [2016/11/24 v1 %
+    Compatibility package for using hyperref with pucrs-ppgcc.cls]
+
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{hyperref}}
+
+%\ExecuteOptions{}
+
+\ProcessOptions\relax
+
+\RequirePackage{hyperref}[2012/11/06]
+
+\pdfstringdefDisableCommands{%
+   \let\MakeUppercase\relax
+   \let\MakeTextUppercase\relax
+}
+
+\long\def\@caption#1[#2]#3{%
+  \expandafter\ifx\csname if@capstart\expandafter\endcsname
+                  \csname iftrue\endcsname
+    \global\let\@currentHref\hc@currentHref
+  \else
+    \hyper@makecurrent{\@captype}%
+  \fi
+  \@ifundefined{NR@gettitle}{%
+    \def\@currentlabelname{#2}%
+  }{%
+    \NR@gettitle{#2}%
+  }%
+  \par\addcontentsline{\csname ext@#1\endcsname}{#1}{%
+  % XXX
+  %  \protect\numberline{\csname the#1\endcsname}{\ignorespaces #2}%
+    \csname #1name\endcsname\nobreakspace\protect\numberline{\csname the#1\endcsname\hfil\nobreakspace--\nobreakspace}{\ignorespaces #2}%
+  }%
+
+  \begingroup
+    \@parboxrestore
+    \if@minipage
+      \@setminipage
+    \fi
+    \normalsize
+    \expandafter\ifx\csname if@capstart\expandafter\endcsname
+                    \csname iftrue\endcsname
+      \global\@capstartfalse
+      \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces#3}%
+    \else
+      \@makecaption{\csname fnum@#1\endcsname}{%
+        \ignorespaces
+        \ifHy@nesting
+          \expandafter\hyper@@anchor\expandafter{\@currentHref}{#3}%
+        \else
+          \Hy@raisedlink{%
+            \expandafter\hyper@@anchor\expandafter{%
+              \@currentHref
+            }{\relax}%
+          }%
+          #3%
+        \fi
+      }%
+    \fi
+    \par
+  \endgroup
+}
+
+\AtEndOfPackage{}
+
+\endinput
+%% End of file 'hyperref-compat.sty'
+% vim:foldmethod=indent:textwidth=10000
