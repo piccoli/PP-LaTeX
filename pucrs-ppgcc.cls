@@ -1069,7 +1069,6 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \renewcommand*\l@section{\@dottedtocline{1}{0em}{3.2em}}
 \renewcommand*\l@subsection{\@dottedtocline{2}{0em}{3.2em}}
-
 %----------------------------------------------------------------------------------
 % Redefinindo formatação de seções da report.cls
 %----------------------------------------------------------------------------------
