@@ -50,9 +50,15 @@ fi
 set -e
 for i in s v; do
     LFILE="${FILE}.lo$i"
-    if [[ ! -f $LFILE ]]; then continue; fi
+
+    if [[ ! -f $LFILE ]]; then
+        continue;
+    fi
+
     sort -d -f -o "${LFILE}~" "$LFILE"
     mv -f "${LFILE}~" "$LFILE"
 done
 
 message 'Concluído.'
+
+exit 0
