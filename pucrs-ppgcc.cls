@@ -295,7 +295,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \renewcommand*{\bacharel}{Bachelor}
     \renewcommand*{\PP@orientadorname}{Advisor}
     \renewcommand*{\PP@descricao}{%
-        \PP@tipo{} submitted to the \PP@Uni{} in partial fullfillment of
+        \PP@tipo{} submitted to the \PP@Uni{} in partial fulfillment of
         the requirements for the degree of \PP@grau{} in Computer
         Science.%
     }
