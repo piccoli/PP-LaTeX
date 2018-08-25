@@ -224,7 +224,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % Definições dependentes de idioma.
 %\addto\captionsbrazil{%
     \newcommand*{\PP@Uni}{Pontif\'{i}cia Universidade Cat\'{o}lica do Rio Grande do Sul}
-    \newcommand*{\PP@Fac}{Faculdade de Inform\'{a}tica}
+    \newcommand*{\PP@Fac}{Escola Polit\'{e}cnica}
     \newcommand*{\PP@Dep}{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
     %\edef\PP@undef{n\~{a}o definido}
     \newcommand*{\tese}{Tese}
