@@ -1,0 +1,15 @@
+diff --git a/pucrs-ppgcc.cls b/pucrs-ppgcc.cls
+index ef4dd7c..da82f39 100644
+--- a/pucrs-ppgcc.cls
++++ b/pucrs-ppgcc.cls
+@@ -417,8 +417,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
+         %----------------------------------------------------------------------------------
+         % Retângulo central (título + autor)
+         %----------------------------------------------------------------------------------
+-        \hbox{\kern5cm\vbox to 7.7cm{%
+-            \hsize=11.5cm
++        \hbox{\kern4cm{\vbox to 7.7cm{%
++            \hsize=13.5cm
+             \parskip6ex
+             \parindent0pt
+             \leftskip0pt plus1fil

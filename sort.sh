@@ -19,17 +19,6 @@
 # sort.sh: ordena as listas de abreviaturas e siglas para o
 # formato LaTeX do modelo de teses, monografias e dissertações do
 # PPGCC/PUCRS (2009).
-#
-# Requer uma distribuição UNIX com os utilitários 'sort', 'mv' e
-# 'bash'. Estes são comumente encontrados na maioria das
-# distribuições UNIX, ou ainda, Cygwin e MinGW para sistemas
-# Windows.
-#
-# !!ATENÇÃO!! O uso incorreto deste script pode causar a perda ou
-# sobrescrita de arquivos no diretório onde estiver sendo
-# utilizado! Examine este arquivo com cuidado e, em caso de
-# dúvidas, NÃO o utilize para compilar o seu documento! Não me
-# responsabilizo pela perda acidental de arquivos!
 
 function message() {
    echo "$@" > /dev/stderr

@@ -17,38 +17,17 @@
 %----------------------------------------------------------------------------------
 % Classe LaTeX para monografias, teses e dissertações -- PPGCC/PUCRS (modelo 2009)
 %
-% Para instruções de como utilizar a classe, veja o arquivo
-% exemplo.tex. Para facilitar, recomendo utilizar o mesmo
-% arquivo como template inicial para o seu trabalho.
+% Para instruções de como utilizar a classe, veja o arquivo exemplo.tex. Para
+% facilitar, recomendo utilizar o mesmo arquivo como template inicial para o seu
+% trabalho.
 %
-% ATENÇÃO! O modelo implementado por esta classe NÃO é oficial do
-% PPGCC e não implementa todas as normas de formatação propostas
-% pelo PPGCC, ou ainda, pela Biblioteca Central da PUCRS. Desta
-% forma, não é possível garantir que sua tese ou dissertação será
-% homologada apenas pelo uso esta classe. Fique atento às normas
-% documentadas neste link:
+% ATENÇÃO! O modelo implementado por esta classe NÃO é oficial do PPGCC e não
+% implementa todas as normas de formatação propostas pelo PPGCC, ou ainda, pela
+% Biblioteca Central da PUCRS. Desta forma, não é possível garantir que sua tese
+% ou dissertação será homologada apenas pelo uso esta classe. Fique atento às
+% normas documentadas neste link:
 %
 % http://www.inf.pucrs.br/alunos/PPGCC/ModeloTeseDiMono/padrao_dissertacoes_teses_ataCC21_2010_v3.pdf
-%
-% IMPORTANTE: examine os arquivos 'makefile' e 'sort.sh' antes de
-% utilizá-los para compilar o seu documento, pois a
-% responsabilidade pelo uso destes é inteiramente do usuário.
-%
-% Requisitos: É recomendado a instalação da versão mais
-% recente da distribuição TeXLive (para Windows e UNIXes):
-% www.tug.org/texlive/. Nas distribuições Linux, os nomes dos
-% pacotes necessários são:
-%   - texlive-basic
-%   - texlive-fontsrecommended
-%   - texlive-langenglish
-%   - texlive-langportuguese
-%   - texlive-latex
-%   - texlive-latexextra
-%   - texlive-latexrecommended
-%   - xcolor
-%
-% Para a distribuição Ubuntu Linux, provavelmente o mais fácil é
-% instalar o pacote 'texlive-full'.
 %
 % Limitações:
 %   - funciona apenas em dois idiomas: português e inglês
@@ -69,26 +48,17 @@
 %   de Kees Van der Laan, TUGboat, volume 14 (1993), No. 3
 %   (http://www.ctan.org/pkg/laansort).
 %
-% Obs.: este modelo foi criado inicialmente apenas para suprir as
-% necessidades do autor quanto à conformidade ao formato do
-% PPGCC/PUCRS (especialmente o estilo bibliográfico). Caso lhe
-% falte alguma formatação em particular do padrão, ou por ventura
-% tenha sugestões, comentários, ou ainda, tenha encontrado um erro
-% no formato, por favor entre em contato com o autor pelo e-mail
-% <rfbpiccoli at gmail dot com> (Ricardo Piccoli).
-%
-% Alguns trechos de código (i. e., "macros") foram obtidos e
-% modificados a partir da classe base 'report.cls' do LaTeX e do
-% kernel 'latex.ltx', distribuídos sob a licença LPPL (veja
-% http://www.latex-project.org/lppl.txt).  Tais mudanças estão
-% devidamente documentadas e justificadas neste arquivo.
+% Obs.: Alguns trechos de código (i. e., "macros") foram obtidos e modificados a
+% partir da classe base 'report.cls' do LaTeX e do kernel 'latex.ltx',
+% distribuídos sob a licença LPPL (veja http://www.latex-project.org/lppl.txt).
+% Tais mudanças estão devidamente documentadas e justificadas neste arquivo.
 %----------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{pucrs-ppgcc}[2012/04/26 ^^J
 ------------------------------------------------------------^^J
-Classe para monografias, teses e dissertações -- PPGCC/PUCRS^^J
+Classe para monografias, teses e dissertacoes -- PPGCC/PUCRS^^J
 ^^J
-Para resolução de problemas ou sugestões, entre em contato pelo^^J
+Para resolucao de problemas ou sugestoes, entre em contato pelo^^J
 e-mail <rfbpiccoli at gmail dot com>^^J
 ------------------------------------------------------------]
 
@@ -282,7 +252,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %}
 \addto\captionsenglish{%
     \renewcommand*{\PP@Uni}{Pontifical Catholic University of Rio Grande do Sul}
-    \renewcommand*{\PP@Fac}{Faculty of Informatics}
+    \renewcommand*{\PP@Fac}{Polytechnic Institute}
     \renewcommand*{\PP@Dep}{Computer Science Graduate Program}
     %\edef\PP@undef{not defined}
     \renewcommand*{\tese}{Dissertation}
