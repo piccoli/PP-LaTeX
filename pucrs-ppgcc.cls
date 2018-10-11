@@ -114,6 +114,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %\LoadClass[12pt,onecolumn,twoside,titlepage,a4paper,openright,final]{report}[2007/10/19]
 \LoadClass[12pt,onecolumn,titlepage,a4paper,openright,final]{report}[2007/10/19]
 
+\RequirePackage[round,sectionbib]{natbib}
 \RequirePackage[T1]{fontenc}[2005/09/27]
 \RequirePackage[utf8]{inputenc}[2008/03/30]
 \RequirePackage[english,brazil]{babel}[2008/07/06]
