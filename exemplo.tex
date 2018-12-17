@@ -6,7 +6,7 @@
 % suportadas são 'portuguese' e 'english'
 % Para impressão em frente e verso, use a opção 'twoside'. Da
 % mesma forma, use 'oneside' para impressão em um lado apenas.
-\documentclass[portuguese,twoside]{pucrs-ppgcc}
+\documentclass[english,oneside]{pucrs-ppgcc}
 %\documentclass[english,twoside]{pucrs-ppgcc}
 
 %----------------------------------------------------------------
@@ -64,7 +64,13 @@
 %----------------------------------------------------------------
 % Autor (OBRIGATÓRIO)
 %----------------------------------------------------------------
-\author{Fulano da Silva}
+\author[a,b,c]{Atila Leites Romero}
+\author[a,b]{Avelino Francisco Zorzo}
+{\tiny
+\affil[a]{Pontifical Catholic University of RS (PUCRS), Porto Alegre, Brazil}
+\affil[b]{Instituto Nacional de Ci\^{e}ncia e Tecnologia Forense (INCT Forense), Brazil}
+\affil[c]{Setor T\'{e}cnico-Cient\'{i}fico, Superintend\^{e}ncia da Pol\'{i}cia Federal, Porto Alegre, RS, Brazil}
+}
 
 %----------------------------------------------------------------
 % Título (OBRIGATÓRIO). Devem ser passados DOIS parâmetros,
@@ -72,15 +78,15 @@
 % escolhido. Os títulos são utilizados para a montagem da capa,
 % resumo e abstract mais tarde.
 %----------------------------------------------------------------
-\title{Seu título em português aqui}
-      {Your title in english here}
+\title{Data-carving usando redes neurais BLSTM}
+      {Data-carving using BLSTM neural networks}
 
 %----------------------------------------------------------------
 % Opções para o tipo de trabalho (OBRIGATÓRIO)
 %----------------------------------------------------------------
 %\tipotrabalho{\monografia}  % Monografias em geral (e de "bônus": TCCs)
-%\tipotrabalho{\pep}         % Plano de estudo e pesquisa
-\tipotrabalho{\dissertacao} % Dissertação
+\tipotrabalho{\pep}         % Plano de estudo e pesquisa
+%\tipotrabalho{\dissertacao} % Dissertação
 %\tipotrabalho{\ptese}       % Proposta de tese
 %\tipotrabalho{\tese}        % Tese
 
@@ -97,8 +103,8 @@
 % Orientador (e Co-orientador, caso haja um). É OBRIGATÓRIO
 % informar pelo menos o orientador.
 %----------------------------------------------------------------
-\orientador{Beltrano Dias}
-\coorientador{Ciclano de Farias}
+\orientador{Avelino Francisco Zorzo}
+%\coorientador{Ciclano de Farias}
 
 %----------------------------------------------------------------
 % A capa é inserida automaticamente. Por isso não é necessário
@@ -109,10 +115,10 @@
 %----------------------------------------------------------------
 % Depois da capa vem a dedicatória e a epígrafe.
 %----------------------------------------------------------------
-\dedicatoria{Dedico este trabalho a meus pais.}
+\dedicatoria{Dedico este trabalho à minha família.}
 
-\epigrafe{The art of simplicity is a puzzle of complexity.}
-         {Douglas Horton}
+\epigrafe{If we are offered several hypotheses, we should begin our considerations by striking the most complex of them with our sword.}
+         {Isaac Asimov}
 
 %----------------------------------------------------------------
 % Também dá para fazer as duas na mesma página:
@@ -125,17 +131,7 @@
 % A seguir, a página de agradecimentos (OPCIONAL):
 %----------------------------------------------------------------
 \begin{agradecimentos}
-À lorem ipsum, dolor sit amet consetetur sadipscing elitr sed diam
-nonumy eirmod tempor. invidunt ut labore et dolore magna aliquyam
-
-À erad sed, diam voluptua at vero, eos et accusam et justo duo
-dolores et ea rebum stet clita.
-
-À kasd gubergren, no sea. takimata sanctus est lorem ipsum dolor sit
-amet lorem ipsum dolor sit amet. consetetur sadipscing elitr sed
-
-À diam nonumy, eirmod tempor, invidunt ut labore et dolore magna
-aliquyam erat sed diam voluptua at.
+CAPE PUC INCT e orientador
 \end{agradecimentos}
 
 %----------------------------------------------------------------
