@@ -60,6 +60,7 @@
 % Um float do tipo algoritmo. No momento
 % este pacote é incompatível com a classe.
 %\usepackage{algorithm}
+\usepackage{bookmark}
 
 %----------------------------------------------------------------
 % Autor (OBRIGATÓRIO)
@@ -125,6 +126,9 @@
 % A seguir, a página de agradecimentos (OPCIONAL):
 %----------------------------------------------------------------
 \begin{agradecimentos}
+%O presente trabalho foi realizado com apoio da Coordenação de Aperfeiçoamento de Pessoal Nivel Superior – Brasil (CAPES) – Código de Financiamento 001
+This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de NivelSuperior – Brasil (CAPES) – Finance Code 001
+
 CAPE PUC INCT e orientador
 \end{agradecimentos}
 
@@ -176,8 +180,9 @@ erat sed diam voluptua at
 % um para cada capítulo. Para isso, utilize o comando \include,
 % como mostrado abaixo.
 %----------------------------------------------------------------
-\include{exemplo-cap1}
-\include{exemplo-cap2}
+\include{chapters/1-introduction}
+
+
 
 %----------------------------------------------------------------
 % Aqui vai a bibliografia. Existem dois estilos de citação: use
@@ -188,23 +193,23 @@ erat sed diam voluptua at
 \bibliographystyle{ppgcc-alpha}
 %\bibliographystyle{ppgcc-num}
 %\bibliographystyle{apalike}
-\bibliography{exemplo-bib}
+\bibliography{bib}
 
 %----------------------------------------------------------------
 % Após \appendix, se iniciam os capítulos de Apêndice, com
 % numeração alfabética.
 %----------------------------------------------------------------
-\appendix
-\chapter{Meu primeiro apêndice}
-\chapter{My second appendix}
+% \appendix
+% \chapter{Meu primeiro apêndice}
+% \chapter{My second appendix}
 
 %----------------------------------------------------------------
 % Aqui vão os "capítulos" de anexos. Cada anexo deve
 % ser considerado um capítulo.
 %----------------------------------------------------------------
-\anexos
-\chapter{Meu primeiro anexo}
-\chapter{My second attachment}
+% \anexos
+% \chapter{Meu primeiro anexo}
+% \chapter{My second attachment}
 
 % E aqui (para a felicidade de todos) termina o documento.
 \end{document}
