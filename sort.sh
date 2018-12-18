@@ -21,7 +21,7 @@
 # PPGCC/PUCRS (2009).
 
 function message() {
-   echo "$@" > /dev/stderr
+   echo "$@" >&2
 }
 
 function abort() {
