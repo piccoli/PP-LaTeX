@@ -253,7 +253,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %}
 \addto\captionsenglish{%
     \renewcommand*{\PP@Uni}{Pontifical Catholic University of Rio Grande do Sul}
-    \renewcommand*{\PP@Fac}{Polytechnic Institute}
+    \renewcommand*{\PP@Fac}{School of Technology}
     \renewcommand*{\PP@Dep}{Computer Science Graduate Program}
     %\edef\PP@undef{not defined}
     \renewcommand*{\tese}{Dissertation}
