@@ -190,14 +190,19 @@ erat sed diam voluptua at
 \include{exemplo-cap2}
 
 %----------------------------------------------------------------
-% Aqui vai a bibliografia. Existem dois estilos de citação: use
+% Aqui vai a bibliografia. Existem quatro estilos de citação: use
 % 'ppgcc-alpha' para citações do tipo [Abc+] ou [XYZ] (em ordem
-% alfabética na bibliografia), e 'ppgcc-num' para citações
-% numéricas do tipo [1], [20], etc., em ordem de referência.
+% alfabética na bibliografia), 'ppgcc-num' para citações
+% numéricas do tipo [1], [20], etc., em ordem de referência,
+% 'ppgcc-apa-ptbr' para citações do tipo Silva F. (2019) se o 
+% volume estiver sendo escrito em português ou apenas 'apalike'
+% para o mesmo estilo APA, no entanto, para quando o volume
+% estiver sendo escrito em inglês
 %----------------------------------------------------------------
-\bibliographystyle{ppgcc-alpha}
+%\bibliographystyle{ppgcc-alpha} 
 %\bibliographystyle{ppgcc-num}
-%\bibliographystyle{apalike}
+%\bibliographystyle{apalike} # estilo APA em inglês
+\bibliographystyle{ppgcc-apa-ptbr} # estilo APA em português
 \bibliography{exemplo-bib}
 
 %----------------------------------------------------------------
