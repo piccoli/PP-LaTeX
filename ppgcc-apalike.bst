@@ -41,7 +41,8 @@
 %                    this release clarified the license.
 %   14-may-16  (CM)  Translation to Brazilian Portuguese by Carlos Maziero,
 %                    DINF/UFPR.
-
+%   04-feb-19  (RP)  Add language switching support, by Ricardo Piccoli.
+%
 ENTRY
   { address
     author
@@ -79,6 +80,42 @@ FUNCTION {init.state.consts}
 }
 
 STRINGS { s t }
+
+FUNCTION {capitalize}
+{ "\capitalize{" swap$ * "}" * }
+
+FUNCTION {space.word}
+{ " " swap$ * " " * }
+
+%-----------------------------------------
+% Here are the language-specific definitions for explicit words.
+ % Each function has a name bbl.xxx where xxx is the English word.
+ % The BABEL language selection is made here; definitions in babelbst.tex.
+FUNCTION {bbl.and} { "\bbland{}"}
+FUNCTION {bbl.separator} { "\bblseparator{}"}
+FUNCTION {bbl.etal} { "\bbletal{}"}
+FUNCTION {bbl.editors} { "\bbleditors{}" }
+FUNCTION {bbl.editor} { "\bbleditor{}" }
+FUNCTION {bbl.edby} { "\bbledby{}" }
+FUNCTION {bbl.edition} { "\bbledn{}" }
+FUNCTION {bbl.volume} { "\bblvol{}" }
+FUNCTION {bbl.of} { "\bblof{}" }
+FUNCTION {bbl.number} { "\bblnumber{}" }
+FUNCTION {bbl.nr} { "\bblno{}" }
+FUNCTION {bbl.in} { "\bblin{}" }
+FUNCTION {bbl.pages} { "\bblpp{}" }
+FUNCTION {bbl.page} { "\bblp{}" }
+FUNCTION {bbl.chapter} { "\bblchap{}" }
+FUNCTION {bbl.techrep} { "\bbltechrep{}" }
+FUNCTION {bbl.mthesis} { "\bblmthesis{}" }
+FUNCTION {bbl.phdthesis} { "\bblphdthesis{}" }
+FUNCTION {bbl.eidpp} { "\bbleidpp{}" }
+FUNCTION {bbl.numpages} { "\bbleidpp{}" }
+
+FUNCTION {word.in}
+{ bbl.in capitalize
+  ":" *
+  " " * }
 
 FUNCTION {output.nonnull}
 { 's :=
@@ -217,14 +254,14 @@ FUNCTION {format.names}
     { s nameptr "{vv~}{ll}{, jj}{, f.}" format.name$ 't :=   % last name first
       nameptr #1 >
         { namesleft #1 >
-            { ", " * t * }
+            { bbl.separator * t * }
             { numnames #2 >
                 { " " * }
                 'skip$
               if$
               t "others" =
-                { " et~al." * }
-                { " e " * t * }
+                { " " * bbl.etal * }
+                { bbl.and space.word * t * }
               if$
             }
           if$
@@ -256,8 +293,8 @@ FUNCTION {format.editors}
     { "" }
     { editor format.names
       editor num.names$ #1 >
-        { ", editores" * }
-        { ", editor" * }
+        { ", " * bbl.editors * }
+        { ", " * bbl.editor  * }
       if$
     }
   if$
@@ -317,12 +354,12 @@ FUNCTION {either.or.check}
 FUNCTION {format.bvolume}
 { volume empty$
     { "" }
-    { "volume" volume tie.or.space.connect
+    { bbl.volume volume tie.or.space.connect
       series empty$
         'skip$
-        { " de " * series emphasize * }
+        { bbl.of space.word * series emphasize * }
       if$
-      "volume e n\'umero" number either.or.check
+      "volume and number" number either.or.check
     }
   if$
 }
@@ -332,13 +369,13 @@ FUNCTION {format.number.series}
     { number empty$
         { series field.or.null }
         { output.state mid.sentence =
-            { "n\'umero" }
-            { "N\'umero" }
+            { bbl.number }
+            { bbl.number capitalize }
           if$
           number tie.or.space.connect
           series empty$
             { "there's a number but no series in " cite$ * warning$ }
-            { " em " * series * }
+            { bbl.in space.word * series * }
           if$
         }
       if$
@@ -384,8 +421,8 @@ FUNCTION {format.pages}
 { pages empty$
     { "" }
     { pages multi.page.check
-        { "p\'aginas" pages n.dashify tie.or.space.connect }
-        { "p\'agina" pages tie.or.space.connect }
+        { bbl.pages pages n.dashify tie.or.space.connect }
+        { bbl.page pages tie.or.space.connect }
       if$
     }
   if$
@@ -416,7 +453,7 @@ FUNCTION {format.chapter.pages}
 { chapter empty$
     'format.pages
     { type empty$
-        { "cap\'{\i}tulo:" }
+        { bbl.chapter }
         { type "l" change.case$ }
       if$
       chapter tie.or.space.connect
@@ -432,8 +469,8 @@ FUNCTION {format.in.ed.booktitle}
 { booktitle empty$
     { "" }
     { editor empty$
-        { "Em " booktitle emphasize * }
-        { "Em " format.editors * ", " * booktitle emphasize * }
+        { word.in booktitle emphasize * }
+        { word.in format.editors * ", " * booktitle emphasize * }
       if$
     }
   if$
@@ -450,7 +487,7 @@ FUNCTION {format.thesis.type}
 
 FUNCTION {format.tr.number}
 { type empty$
-    { "Relat\'orio T\'ecnico" }
+    { bbl.techrep }
     'type
   if$
   number empty$
@@ -460,24 +497,24 @@ FUNCTION {format.tr.number}
 }
 
 FUNCTION {format.article.crossref}
-{ "Em"                                                  % this is for apalike
-  " \cite{" * crossref * "}" *
+{ word.in
+  "\cite{" * crossref * "}" *
 }
 
 FUNCTION {format.book.crossref}
 { volume empty$
     { "empty volume in " cite$ * "'s crossref of " * crossref * warning$
-      "Em "
+      word.in
     }
     { "Volume" volume tie.or.space.connect
-      " de " *
+      bbl.of space.word *
     }
   if$
   "\cite{" * crossref * "}" *                           % this is for apalike
 }
 
 FUNCTION {format.incoll.inproc.crossref}
-{ "Em"                                                  % this is for apalike
+{ word.in                                                  % this is for apalike
   " \cite{" * crossref * "}" *
 }
 
@@ -667,7 +704,7 @@ FUNCTION {mastersthesis}
   new.block
   format.title "title" output.check
   new.block
-  "Disserta\c{c}\~ao de Mestrado" format.thesis.type output.nonnull
+  bbl.mthesis format.thesis.type output.nonnull
   school "school" output.check
   address output
   new.block
@@ -697,7 +734,7 @@ FUNCTION {phdthesis}
   new.block
   format.btitle "title" output.check
   new.block
-  "Tese de doutorado" format.thesis.type output.nonnull
+  bbl.phdthesis format.thesis.type output.nonnull
   school "school" output.check
   address output
   new.block
@@ -753,29 +790,29 @@ FUNCTION {unpublished}
 
 FUNCTION {default.type} { misc }
 
-MACRO {jan} {"Janeiro"}
+MACRO {jan} {"\bbljan{}"}
 
-MACRO {feb} {"Fevereiro"}
+MACRO {feb} {"\bblfeb{}"}
 
-MACRO {mar} {"Mar\c{c}o"}
+MACRO {mar} {"\bblmar{}"}
 
-MACRO {apr} {"Abril"}
+MACRO {apr} {"\bblapr{}"}
 
-MACRO {may} {"Maio"}
+MACRO {may} {"\bblmay{}"}
 
-MACRO {jun} {"Junho"}
+MACRO {jun} {"\bbljun{}"}
 
-MACRO {jul} {"Julho"}
+MACRO {jul} {"\bbljul{}"}
 
-MACRO {aug} {"Agosto"}
+MACRO {aug} {"\bblaug{}"}
 
-MACRO {sep} {"Setembro"}
+MACRO {sep} {"\bblsep{}"}
 
-MACRO {oct} {"Outubro"}
+MACRO {oct} {"\bbloct{}"}
 
-MACRO {nov} {"Novembro"}
+MACRO {nov} {"\bblnov{}"}
 
-MACRO {dec} {"Dezembro"}
+MACRO {dec} {"\bbldec{}"}
 
 MACRO {acmcs} {"ACM Computing Surveys"}
 
@@ -849,8 +886,8 @@ FUNCTION {format.lab.names}
     { #2 <
         'skip$
         { s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
-            { " et~al." * }
-            { " e " * s #2 "{vv~}{ll}" format.name$ * }
+            { " " bbl.etal * }
+            { bbl.and space.word * s #2 "{vv~}{ll}" format.name$ * }
           if$
         }
       if$
@@ -1091,6 +1128,22 @@ FUNCTION {begin.bib}
     { preamble$ write$ newline$ }
   if$
   "\begin{thebibliography}{}" write$ newline$           % no labels in apalike
+  "\pretolerance=2500" write$ newline$
+  "\hyphenpenalty=10000" write$ newline$
+  "\tolerance=200" write$ newline$
+  "\emergencystretch=15em" write$ newline$
+  "\newcommand{\enquote}[1]{``#1''}" write$ newline$
+  "\providecommand{\urlprefix}{\bblcaptured}" write$ newline$
+  "\providecommand{\selectlanguage}[1]{\relax}" write$ newline$
+  "\newcommand{\Capitalize}[1]{\uppercase{#1}}" write$ newline$
+  "\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}" write$ newline$
+  "\providecommand{\bibAnnoteFile}[1]{%" write$ newline$
+  "  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\" write$ newline$
+  "  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}" write$ newline$
+  "\providecommand{\bibAnnote}[2]{%" write$ newline$
+  "  \begin{quotation}\noindent\textsc{Key:} #1\\" write$ newline$
+  "  \textsc{Annotation:}\ #2\end{quotation}}" write$ newline$
+  "\providecommand{\eprint}[2][]{#2}" write$ newline$
 }
 
 EXECUTE {begin.bib}

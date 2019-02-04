@@ -61,6 +61,9 @@
 % este pacote é incompatível com a classe.
 %\usepackage{algorithm}
 
+% ATENÇÃO: Necessário para o estilo bibliográfico 'ppgcc-apalike'.
+%\usepackage{natbib}[2010/09/13]
+
 %----------------------------------------------------------------
 % Autor (OBRIGATÓRIO)
 %----------------------------------------------------------------
@@ -190,19 +193,20 @@ erat sed diam voluptua at
 \include{exemplo-cap2}
 
 %----------------------------------------------------------------
-% Aqui vai a bibliografia. Existem quatro estilos de citação: use
+% Aqui vai a bibliografia. Existem três estilos de citação: use
 % 'ppgcc-alpha' para citações do tipo [Abc+] ou [XYZ] (em ordem
 % alfabética na bibliografia), 'ppgcc-num' para citações
-% numéricas do tipo [1], [20], etc., em ordem de referência,
-% 'ppgcc-apa-ptbr' para citações do tipo Silva F. (2019) se o 
-% volume estiver sendo escrito em português ou apenas 'apalike'
-% para o mesmo estilo APA, no entanto, para quando o volume
-% estiver sendo escrito em inglês
+% numéricas do tipo [1], [20], etc., por ordem de citação, ou
+% 'ppgcc-apalike' para citações do tipo Silva F. (2019). Caso
+% decida usar o 'ppgcc-apalike', lembre-se de usar o pacote 'natbib'
+% para corrigir a formatação dos parênteses.
 %----------------------------------------------------------------
-%\bibliographystyle{ppgcc-alpha} 
+\bibliographystyle{ppgcc-alpha} 
 %\bibliographystyle{ppgcc-num}
-%\bibliographystyle{apalike} # estilo APA em inglês
-\bibliographystyle{ppgcc-apa-ptbr} # estilo APA em português
+
+% Estilo APA, funcionando em ambos os modos 'portuguese' e 'english'. Prefira
+% esse no lugar de 'apalike'.
+%\bibliographystyle{ppgcc-apalike}
 \bibliography{exemplo-bib}
 
 %----------------------------------------------------------------
