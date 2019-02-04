@@ -84,7 +84,6 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %\LoadClass[12pt,onecolumn,twoside,titlepage,a4paper,openright,final]{report}[2007/10/19]
 \LoadClass[12pt,onecolumn,titlepage,a4paper,openright,final]{report}[2007/10/19]
 
-\RequirePackage[round,sectionbib]{natbib}
 \RequirePackage[T1]{fontenc}[2005/09/27]
 \RequirePackage[utf8]{inputenc}[2008/03/30]
 \RequirePackage[english,brazil]{babel}[2008/07/06]
@@ -220,36 +219,38 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     % TODO Para usar os estilos bibliográficos de forma independente desta
     % classe, copie estas definições para o seu documento.
     \gdef\bbland{e}
+    \gdef\bblseparator{, }
     \gdef\bbletal{et~al.}
     \gdef\bbleditors{editores}
     \gdef\bbleditor{editor}
     \gdef\bbledby{editado por}
     \gdef\bbledn{ed.}
-    \gdef\bblvol{vol.}
+    \gdef\bblvol{volume}
     \gdef\bblof{de}
     \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
-    \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+    \gdef\bblnumber{n\'{u}mero}
     \gdef\bblin{in}
-    \gdef\bblpp{pp.}
-    \gdef\bblp{pp.}
+    \gdef\bblpp{p\'{a}ginas}
+    \gdef\bblp{p\'{a}gina}
     \gdef\bbleidpp{p}
-    \gdef\bblchap{cap.}
+    \gdef\bblchap{cap\'{\i}tulo:}
     \gdef\bbltechrep{Relat\'{o}rio T\'{e}cnico}
     \gdef\bblmthesis{Disserta\c{c}\~{a}o de Mestrado}
     \gdef\bblphdthesis{Tese de Doutorado}
     \gdef\bblcaptured{Capturado em: }
-    \gdef\bbljan{Jan}
-    \gdef\bblfeb{Fev}
-    \gdef\bblmar{Mar}
-    \gdef\bblapr{Abr}
+
+    \gdef\bbljan{Janeiro}
+    \gdef\bblfeb{Fevereiro}
+    \gdef\bblmar{Mar\c{c}o}
+    \gdef\bblapr{Abril}
     \gdef\bblmay{Maio}
-    \gdef\bbljun{Jun}
-    \gdef\bbljul{Jul}
-    \gdef\bblaug{Ago}
-    \gdef\bblsep{Set}
-    \gdef\bbloct{Out}
-    \gdef\bblnov{Nov}
-    \gdef\bbldec{Dez}
+    \gdef\bbljun{Junho}
+    \gdef\bbljul{Julho}
+    \gdef\bblaug{Agosto}
+    \gdef\bblsep{Setembro}
+    \gdef\bbloct{Outubro}
+    \gdef\bblnov{Novembro}
+    \gdef\bbldec{Dezembro}
 %}
 \addto\captionsenglish{%
     \renewcommand*{\PP@Uni}{Pontifical Catholic University of Rio Grande do Sul}
@@ -279,36 +280,37 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     % TODO Para usar os estilos bibliográficos de forma independente desta
     % classe, copie estas definições para o seu documento.
     \gdef\bbland{and}
+    \gdef\bblseparator{ }
     \gdef\bbletal{et~al.}
     \gdef\bbleditors{editors}
     \gdef\bbleditor{editor}
     \gdef\bbledby{edited by}
     \gdef\bbledn{ed.}
-    \gdef\bblvol{vol.}
+    \gdef\bblvol{volume}
     \gdef\bblof{of}
     \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
-    \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
+    \gdef\bblnumber{number}
     \gdef\bblin{in}
-    \gdef\bblpp{pp.}
-    \gdef\bblp{pp.}
+    \gdef\bblp{page}
+    \gdef\bblpp{pages}
     \gdef\bbleidpp{p}
-    \gdef\bblchap{chap.}
+    \gdef\bblchap{chapter}
     \gdef\bbltechrep{Technical Report}
     \gdef\bblmthesis{Master's Thesis}
     \gdef\bblphdthesis{Ph.D. Thesis}
     \gdef\bblcaptured{Source: }
-    \gdef\bbljan{Jan}
-    \gdef\bblfeb{Feb}
-    \gdef\bblmar{Mar}
-    \gdef\bblapr{Apr}
+    \gdef\bbljan{January}
+    \gdef\bblfeb{February}
+    \gdef\bblmar{March}
+    \gdef\bblapr{April}
     \gdef\bblmay{May}
-    \gdef\bbljun{Jun}
-    \gdef\bbljul{Jul}
-    \gdef\bblaug{Aug}
-    \gdef\bblsep{Sep}
-    \gdef\bbloct{Oct}
-    \gdef\bblnov{Nov}
-    \gdef\bbldec{Dec}
+    \gdef\bbljun{June}
+    \gdef\bbljul{July}
+    \gdef\bblaug{August}
+    \gdef\bblsep{September}
+    \gdef\bbloct{October}
+    \gdef\bblnov{November}
+    \gdef\bbldec{December}
 }
 
 %----------------------------------------------------------------------------------
