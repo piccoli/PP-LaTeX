@@ -198,7 +198,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \newcommand*{\PP@Dep}{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
     %\edef\PP@undef{n\~{a}o definido}
     \newcommand*{\tese}{Tese}
-    \newcommand*{\pep}{Plano de estudo e pesquisa}
+    \newcommand*{\pep}{Plano de Estudo e Pesquisa}
     \newcommand*{\ptese}{Proposta de tese}
     \newcommand*{\dissertacao}{Disserta\c{c}\~{a}o}
     \newcommand*{\doutor}{Doutor}
