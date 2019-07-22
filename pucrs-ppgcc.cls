@@ -78,6 +78,10 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \DeclareOption{11pt}{\PP@erro}
 \DeclareOption{english}{\global\let\PP@language\PP@english}
 \DeclareOption{portuguese}{\global\let\PP@language\PP@brazil}
+\DeclareOption{roundcite}{%
+    % Replace citation brackets with parentheses when using ppgcc-apalike.
+    \gdef\@cite#1#2{({#1\if@tempswa , #2\fi})}%
+}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions\relax
 %\ExecuteOptions{12pt,onecolumn,twoside,titlepage,a4paper,openright,final}
@@ -1075,6 +1079,22 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     {\par\begin{singlespace}\hangafter=0\hangindent=4cm\footnotesize}%\small}%
     {\end{singlespace}\par}%
 
+% Remove citation keys from the bibliography entries when using ppgcc-apalike
+% (copied and slightly adapted from a suggestion by Tabajara Krausburg).
+\let\PP@oldbibliographystyle\bibliographystyle
+\renewcommand{\bibliographystyle}[1]{%
+    \edef\PP@tmp@i{#1}%
+    \edef\PP@tmp@ii{ppgcc-apalike}%
+    \ifx\PP@tmp@i\PP@tmp@ii%
+        \renewcommand\@biblabel[1]{}%
+        \let\biblabel@indent\@undefined
+    \fi
+    \PP@oldbibliographystyle{#1}%
+    \let\PP@oldbibliographystyle\@undefined
+    \let\PP@tmp@i\@undefined
+    \let\PP@tmp@ii\@undefined
+}
+
 %----------------------------------------------------------------------------------
 % Redefinindo bibliografias, para aparecer no sumário.
 %----------------------------------------------------------------------------------
@@ -1093,7 +1113,11 @@ e-mail <rfbpiccoli at gmail dot com>^^J
             \@openbib@code
             \usecounter{enumiv}%
             \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+            \renewcommand\theenumiv{\@arabic\c@enumiv}
+            % Remove citation key from bib entry when using ppgcc-apalike
+            % (copied and slightly adapted from a suggestion by Tabajara Krausburg).
+            \@ifundefined{biblabel@indent}{}{\itemindent=-1.5em}%
+           }%
       \sloppy
       \clubpenalty4000
       \@clubpenalty \clubpenalty
