@@ -9,6 +9,14 @@
 \documentclass[portuguese,twoside]{pucrs-ppgcc}
 %\documentclass[english,twoside]{pucrs-ppgcc}
 
+%---------------------------------------------------------
+% 22/07/19 - Opção 'roundcite' adicionada para
+% formatar citações com parênteses, por ex.: (Nagamochi and Abe, 2007)
+%
+% *UPDATE 22/07/19* Note que o pacote 'natbib' não é mais necessário!
+%---------------------------------------------------------
+%\documentclass[portuguese,twoside,roundcite]{pucrs-ppgcc}
+
 %----------------------------------------------------------------
 % Coloque seus pacotes abaixo.
 %
@@ -60,9 +68,6 @@
 % Um float do tipo algoritmo. No momento
 % este pacote é incompatível com a classe.
 %\usepackage{algorithm}
-
-% ATENÇÃO: Necessário para o estilo bibliográfico 'ppgcc-apalike'.
-%\usepackage{natbib}[2010/09/13]
 
 %----------------------------------------------------------------
 % Autor (OBRIGATÓRIO)
@@ -197,11 +202,13 @@ erat sed diam voluptua at
 % 'ppgcc-alpha' para citações do tipo [Abc+] ou [XYZ] (em ordem
 % alfabética na bibliografia), 'ppgcc-num' para citações
 % numéricas do tipo [1], [20], etc., por ordem de citação, ou
-% 'ppgcc-apalike' para citações do tipo Silva F. (2019). Caso
-% decida usar o 'ppgcc-apalike', lembre-se de usar o pacote 'natbib'
-% para corrigir a formatação dos parênteses.
+% 'ppgcc-apalike' para citações do tipo "[Silva F., 2019]".
+%
+% *UPDATE 22/07/19* Caso prefira citações com parênteses no lugar
+% de colchetes, lembre-se de adicionar a opção 'roundcite' ao
+% \documentclass. O pacote 'natbib' não é mais necessário!
 %----------------------------------------------------------------
-\bibliographystyle{ppgcc-alpha} 
+\bibliographystyle{ppgcc-alpha}
 %\bibliographystyle{ppgcc-num}
 
 % Estilo APA, funcionando em ambos os modos 'portuguese' e 'english'. Prefira
