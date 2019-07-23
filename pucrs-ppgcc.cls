@@ -243,18 +243,18 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \gdef\bblphdthesis{Tese de Doutorado}
     \gdef\bblcaptured{Capturado em: }
 
-    \gdef\bbljan{Jan}
-    \gdef\bblfeb{Fev}
-    \gdef\bblmar{Mar}
-    \gdef\bblapr{Abr}
-    \gdef\bblmay{Maio}
-    \gdef\bbljun{Jun}
-    \gdef\bbljul{Jul}
-    \gdef\bblaug{Ago}
-    \gdef\bblsep{Set}
-    \gdef\bbloct{Out}
-    \gdef\bblnov{Nov}
-    \gdef\bbldec{Dez}
+    \gdef\bbljan{jan.}
+    \gdef\bblfeb{fev.}
+    \gdef\bblmar{mar.}
+    \gdef\bblapr{abr.}
+    \gdef\bblmay{mai.}
+    \gdef\bbljun{jun.}
+    \gdef\bbljul{jul.}
+    \gdef\bblaug{ago.}
+    \gdef\bblsep{set.}
+    \gdef\bbloct{out.}
+    \gdef\bblnov{nov.}
+    \gdef\bbldec{dez.}
 %}
 \addto\captionsenglish{%
     \renewcommand*{\PP@Uni}{Pontifical Catholic University of Rio Grande do Sul}
@@ -303,18 +303,18 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \gdef\bblmthesis{Master's Thesis}
     \gdef\bblphdthesis{Ph.D. Thesis}
     \gdef\bblcaptured{Source: }
-    \gdef\bbljan{Jan}
-    \gdef\bblfeb{Feb}
-    \gdef\bblmar{Mar}
-    \gdef\bblapr{Apr}
-    \gdef\bblmay{May}
-    \gdef\bbljun{Jun}
-    \gdef\bbljul{Jul}
-    \gdef\bblaug{Aug}
-    \gdef\bblsep{Sep}
-    \gdef\bbloct{Oct}
-    \gdef\bblnov{Nov}
-    \gdef\bbldec{Dec}
+    \gdef\bbljan{Jan.}
+    \gdef\bblfeb{Feb.}
+    \gdef\bblmar{Mar.}
+    \gdef\bblapr{Apr.}
+    \gdef\bblmay{May.}
+    \gdef\bbljun{Jun.}
+    \gdef\bbljul{Jul.}
+    \gdef\bblaug{Aug.}
+    \gdef\bblsep{Sep.}
+    \gdef\bbloct{Oct.}
+    \gdef\bblnov{Nov.}
+    \gdef\bbldec{Dec.}
 }
 
 %----------------------------------------------------------------------------------
