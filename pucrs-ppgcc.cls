@@ -229,32 +229,32 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \gdef\bbleditor{editor}
     \gdef\bbledby{editado por}
     \gdef\bbledn{ed.}
-    \gdef\bblvol{volume}
+    \gdef\bblvol{vol.}
     \gdef\bblof{de}
     \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
-    \gdef\bblnumber{n\'{u}mero}
+    \gdef\bblnumber{n\raise1ex\hbox{\underbar{\scriptsize o}}}
     \gdef\bblin{in}
-    \gdef\bblpp{p\'{a}ginas}
-    \gdef\bblp{p\'{a}gina}
+    \gdef\bblpp{pp.}
+    \gdef\bblp{pp.}
     \gdef\bbleidpp{p}
-    \gdef\bblchap{cap\'{\i}tulo:}
+    \gdef\bblchap{cap.}
     \gdef\bbltechrep{Relat\'{o}rio T\'{e}cnico}
     \gdef\bblmthesis{Disserta\c{c}\~{a}o de Mestrado}
     \gdef\bblphdthesis{Tese de Doutorado}
     \gdef\bblcaptured{Capturado em: }
 
-    \gdef\bbljan{Janeiro}
-    \gdef\bblfeb{Fevereiro}
-    \gdef\bblmar{Mar\c{c}o}
-    \gdef\bblapr{Abril}
+    \gdef\bbljan{Jan}
+    \gdef\bblfeb{Fev}
+    \gdef\bblmar{Mar}
+    \gdef\bblapr{Abr}
     \gdef\bblmay{Maio}
-    \gdef\bbljun{Junho}
-    \gdef\bbljul{Julho}
-    \gdef\bblaug{Agosto}
-    \gdef\bblsep{Setembro}
-    \gdef\bbloct{Outubro}
-    \gdef\bblnov{Novembro}
-    \gdef\bbldec{Dezembro}
+    \gdef\bbljun{Jun}
+    \gdef\bbljul{Jul}
+    \gdef\bblaug{Ago}
+    \gdef\bblsep{Set}
+    \gdef\bbloct{Out}
+    \gdef\bblnov{Nov}
+    \gdef\bbldec{Dez}
 %}
 \addto\captionsenglish{%
     \renewcommand*{\PP@Uni}{Pontifical Catholic University of Rio Grande do Sul}
@@ -290,31 +290,31 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \gdef\bbleditor{editor}
     \gdef\bbledby{edited by}
     \gdef\bbledn{ed.}
-    \gdef\bblvol{volume}
+    \gdef\bblvol{vol.}
     \gdef\bblof{of}
     \gdef\bblno{n\raise1ex\hbox{\underbar{\scriptsize o}}}
-    \gdef\bblnumber{number}
+    \gdef\bblnumber{n\raise1ex\hbox{\underbar{\scriptsize o}}}
     \gdef\bblin{in}
-    \gdef\bblp{page}
-    \gdef\bblpp{pages}
+    \gdef\bblp{pp.}
+    \gdef\bblpp{pp.}
     \gdef\bbleidpp{p}
-    \gdef\bblchap{chapter}
+    \gdef\bblchap{chap.}
     \gdef\bbltechrep{Technical Report}
     \gdef\bblmthesis{Master's Thesis}
     \gdef\bblphdthesis{Ph.D. Thesis}
     \gdef\bblcaptured{Source: }
-    \gdef\bbljan{January}
-    \gdef\bblfeb{February}
-    \gdef\bblmar{March}
-    \gdef\bblapr{April}
+    \gdef\bbljan{Jan}
+    \gdef\bblfeb{Feb}
+    \gdef\bblmar{Mar}
+    \gdef\bblapr{Apr}
     \gdef\bblmay{May}
-    \gdef\bbljun{June}
-    \gdef\bbljul{July}
-    \gdef\bblaug{August}
-    \gdef\bblsep{September}
-    \gdef\bbloct{October}
-    \gdef\bblnov{November}
-    \gdef\bbldec{December}
+    \gdef\bbljun{Jun}
+    \gdef\bbljul{Jul}
+    \gdef\bblaug{Aug}
+    \gdef\bblsep{Sep}
+    \gdef\bbloct{Oct}
+    \gdef\bblnov{Nov}
+    \gdef\bbldec{Dec}
 }
 
 %----------------------------------------------------------------------------------
