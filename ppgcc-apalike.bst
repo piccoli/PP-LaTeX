@@ -388,8 +388,13 @@ FUNCTION {format.edition}
 { edition empty$
     { "" }
     { output.state mid.sentence =
+<<<<<<< HEAD
         { edition "l" change.case$ " " * bbl.edition * }
         { edition "t" change.case$ " " * bbl.edition * }
+=======
+        { edition "l" change.case$ " edition" * }
+        { edition "t" change.case$ " edition" * }
+>>>>>>> 14fcbb5daaea71fc5d952ba6b4f251c506b4553a
       if$
     }
   if$
@@ -528,10 +533,14 @@ FUNCTION {article}
   new.block
   crossref missing$
     { journal emphasize "journal" output.check
+<<<<<<< HEAD
       % format.vol.num.pages output
       format.bvolume output
       format.number.series output
       format.pages output
+=======
+      format.vol.num.pages output
+>>>>>>> 14fcbb5daaea71fc5d952ba6b4f251c506b4553a
     }
     { format.article.crossref output.nonnull
       format.pages output
