@@ -261,10 +261,10 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \renewcommand*{\PP@Fac}{School of Technology}
     \renewcommand*{\PP@Dep}{Computer Science Graduate Program}
     %\edef\PP@undef{not defined}
-    \renewcommand*{\tese}{Dissertation}
+    \renewcommand*{\tese}{Doctoral Thesis}
     \renewcommand*{\pep}{Research plan}
-    \renewcommand*{\ptese}{Dissertation proposal}
-    \renewcommand*{\dissertacao}{Thesis}
+    \renewcommand*{\ptese}{Doctoral Thesis proposal}
+    \renewcommand*{\dissertacao}{Master Thesis}
     \renewcommand*{\monografia}{Thesis}
     \renewcommand*{\doutor}{Ph.\ D.\ }
     \renewcommand*{\mestre}{Master}
