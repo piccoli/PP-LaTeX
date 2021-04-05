@@ -6,17 +6,13 @@
 % suportadas são 'portuguese' e 'english'
 % Para impressão em frente e verso, use a opção 'twoside'. Da
 % mesma forma, use 'oneside' para impressão em um lado apenas.
-\documentclass[portuguese,twoside]{pucrs-ppgcc}
-%\documentclass[english,twoside]{pucrs-ppgcc}
+%\documentclass[portuguese,oneside]{pucrs-ppgcc}
+\documentclass[english,oneside]{pucrs-ppgcc}
 
 %---------------------------------------------------------
-% 22/07/19 - Opção 'roundcite' adicionada para
-% formatar citações com parênteses, por ex.: (Nagamochi and Abe, 2007)
-%
-% *UPDATE 22/07/19* Note que o pacote 'natbib' não é mais necessário!
-%---------------------------------------------------------
-%\documentclass[portuguese,twoside,roundcite]{pucrs-ppgcc}
-
+% 05/04/2021 - Para utilizar o formato de referências APALIKE:
+% por ex.: (Nagamochi and Abe, 2007)
+% Fazer uso do pacote 'natbib'. Descomentar a linha 70.
 %----------------------------------------------------------------
 % Coloque seus pacotes abaixo.
 %
@@ -68,6 +64,10 @@
 % Um float do tipo algoritmo. No momento
 % este pacote é incompatível com a classe.
 %\usepackage{algorithm}
+
+%----------------------------------------------------------------
+% Utilizar o pacote 'natbib', SOMENTE se fizer uso do estilo APALIKE:
+%\usepackage{natbib}
 
 %----------------------------------------------------------------
 % Autor (OBRIGATÓRIO)
@@ -194,27 +194,45 @@ erat sed diam voluptua at
 % um para cada capítulo. Para isso, utilize o comando \include,
 % como mostrado abaixo.
 %----------------------------------------------------------------
-\include{exemplo-cap1}
-\include{exemplo-cap2}
+\include{_b-exemplo-cap1}
+\include{_c-exemplo-cap1}
 
 %----------------------------------------------------------------
 % Aqui vai a bibliografia. Existem três estilos de citação: use
 % 'ppgcc-alpha' para citações do tipo [Abc+] ou [XYZ] (em ordem
 % alfabética na bibliografia), 'ppgcc-num' para citações
-% numéricas do tipo [1], [20], etc., por ordem de citação, ou
-% 'ppgcc-apalike' para citações do tipo "[Silva F., 2019]".
+% numéricas do tipo [1], [20], etc., por ordem de citação, OU
+% 'ppgcc-apalike' para citações do tipo "(Silva F., 2019) e 
+% Silva F., (2019)".
 %
-% *UPDATE 22/07/19* Caso prefira citações com parênteses no lugar
-% de colchetes, lembre-se de adicionar a opção 'roundcite' ao
-% \documentclass. O pacote 'natbib' não é mais necessário!
 %----------------------------------------------------------------
-\bibliographystyle{ppgcc-alpha}
-%\bibliographystyle{ppgcc-num}
-
-% Estilo APA, funcionando em ambos os modos 'portuguese' e 'english'. Prefira
-% esse no lugar de 'apalike'.
+% NUMÉRICO:
+\bibliographystyle{ppgcc-num}
+%----------------------------------------------------------------
+% ALPHA:
+%\bibliographystyle{ppgcc-alpha}
+%----------------------------------------------------------------
+% APALIKE: 
+% !!! Lembrar de fazer uso do pacote 'natbib'. Linha 70 !!!
+% Funcionando em ambos os modos 'portuguese' e 'english'.
+% Prefira esse (ppgcc-apalike) no lugar de somente 'apalike':
 %\bibliographystyle{ppgcc-apalike}
-\bibliography{exemplo-bib}
+%----------------------------------------------------------------
+% !!! DICA APALIKE !!!:
+% "Recomendamos o uso de dois estilos diferentes de citações para
+% o APALIKE: 'citep' e 'citet'. O \citep traz os nomes dos autores 
+% e também o ano para a referência, tudo entre parênteses 
+% (utilizado nos finais de parágrafos). Enquanto que o '\citet' 
+% atua como uma referência interna ao texto, por exemplo: 
+% "De acordo com~\citet{borges:2020} o tema..." (deixando apenas 
+% o ano entre parênteses e o nome dos autores fora dos parênteses). % E para as fontes de livros, os números das páginas 
+% (opcionalmente) podem ser exibidos usando colchetes, com números 
+% de páginas, como neste exemplo: 
+% ~\citep[10-100]{CORMEMALGORITHMS01}."
+
+%----------------------------------------------------------------
+% Arquivo que consta as referências (.BIB)
+\bibliography{_d-exemplo-bib}
 
 %----------------------------------------------------------------
 % Após \appendix, se iniciam os capítulos de Apêndice, com
