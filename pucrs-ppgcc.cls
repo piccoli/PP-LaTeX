@@ -121,7 +121,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \newcommand{\LyXTType}[1]{\lowercase{\edef\t{\expandafter\csname#1\endcsname}}\tipotrabalho{\t}}
 \newcommand{\LyXDegree}[1]{\lowercase{\edef\g{\expandafter\csname#1\endcsname}}\grau{\g}}
-
+\newcommand{\LyXGenderOri}[1]{\lowercase{\edef\g{\expandafter\csname#1\endcsname}}\generoori{\go}}
+\newcommand{\LyXGenderCoori}[1]{\lowercase{\edef\g{\expandafter\csname#1\endcsname}}\generocoori{\gcoo}}
 %----------------------------------------------------------------------------------
 % Seleciona o idioma o mais cedo possível.
 %
@@ -182,6 +183,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %\edef\PP@undef{n\~{a}o definido}
 \edef\PP@undef{not defined}
 \newcommand*{\monografia}{Monografia}
+\let\PP@generoori=\PP@undef
+\let\PP@generocoori=\PP@undef
 \let\PP@grau=\PP@undef
 \let\PP@tipo=\monografia
 \newcommand*{\tipotrabalho}[1]{\global\let\PP@tipo=#1
@@ -189,6 +192,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
   \ifx#1\tese\grau{\doutor}\else
   \ifx#1\dissertacao\grau{\mestre}\fi\fi\fi}
 \newcommand*{\grau}[1]{\global\let\PP@grau=#1}
+\newcommand*{\generoori}[1]{\global\let\PP@generoori=#1}
+\newcommand*{\generocoori}[1]{\global\let\PP@generocoori=#1}
 \edef\PP@orientador{\PP@undef}
 \edef\PP@coorientador{\PP@undef}
 \newcommand*{\orientador}[1]{\renewcommand*{\PP@orientador}{#1}}
@@ -208,7 +213,13 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \newcommand*{\doutor}{Doutor}
     \newcommand*{\mestre}{Mestre}
     \newcommand*{\bacharel}{Bacharel}
-    \newcommand*{\PP@orientadorname}{Orientador}
+    \newcommand*{\doutora}{Doutora}
+    \newcommand*{\mestra}{Mestra}
+    \newcommand*{\prof}{Prof.}
+    \newcommand*{\profa}{Prof\textsuperscript{a}.}
+    \newcommand*{\bacharela}{Bacharela}
+    \newcommand*{\PP@orientadorname}{Orientad\ifx\PP@generoori\orientador or\else ora\fi{}}
+    \newcommand*{\PP@coorientadorname}{Orientad\ifx\PP@generocoori\coorientador or\else ora\fi{}}
     \newcommand*{\PP@descricao}{%
         \PP@tipo{} apresentad\ifx\PP@tipo\pep o\else a\fi{} como requisito parcial \`{a}
         obten\c{c}\~{a}o do grau de \PP@grau{} em Ci\^{e}ncia da
@@ -218,7 +229,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \newcommand*{\PP@termoname}{Substitua esta p\'{a}gina pelo Termo de Apresenta\c{c}\~{a}o}
     \newcommand*{\PP@dedicatorianame}{Dedicat\'{o}ria}
     \newcommand*{\PP@agradecimentosname}{Agradecimentos}
-    \newcommand*{\PP@bibname}{Refer\^{e}ncias}
+    \newcommand*{\PP@bibname}{Refer\^{e}ncias Bibliogr\'{a}ficas}
     \newcommand*{\PP@anexoname}{Anexo}
     % TODO Para usar os estilos bibliográficos de forma independente desta
     % classe, copie estas definições para o seu documento.
@@ -269,7 +280,13 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \renewcommand*{\doutor}{Ph.\ D.\ }
     \renewcommand*{\mestre}{Master}
     \renewcommand*{\bacharel}{Bachelor}
+    \renewcommand*{\doutora}{Ph.\ D.\ }
+    \renewcommand*{\mestra}{Master}
+    \renewcommand*{\bacharela}{Bachelor}
+    \renewcommand*{\prof}{Prof.}
+    \renewcommand*{\profa}{Prof.}
     \renewcommand*{\PP@orientadorname}{Advisor}
+    \renewcommand*{\PP@coorientadorname}{Advisor}
     \renewcommand*{\PP@descricao}{%
         \PP@tipo{} submitted to the \PP@Uni{} in partial fulfillment of
         the requirements for the degree of \PP@grau{} in Computer
@@ -434,9 +451,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         \vbox{%
             \leftskip0pt plus1fil
             \rightskip0pt plus1fil
-            \noindent\hbox{\PP@orientadorname{}: Prof.\ \PP@orientador}%
+            \noindent\hbox{\PP@orientadorname{}: \ifx\PP@generoori\orientadora \profa \else \prof \fi{}\ \PP@orientador}%
             \ifx\PP@coorientador\PP@undef\relax
-            \else\par\noindent\hbox{Co-\PP@orientadorname{}: Prof.\ \PP@coorientador}\fi
+            \else\par\noindent\hbox{Co-\PP@coorientadorname{}: \ifx\PP@generocoori\orientadora \profa \else \prof \fi{}\ \PP@coorientador}\fi
         }\par\nointerlineskip%
         \vfill\par
         %----------------------------------------------------------------------------------

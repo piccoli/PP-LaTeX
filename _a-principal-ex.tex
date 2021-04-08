@@ -6,8 +6,8 @@
 % suportadas são 'portuguese' e 'english'
 % Para impressão em frente e verso, use a opção 'twoside'. Da
 % mesma forma, use 'oneside' para impressão em um lado apenas.
-%\documentclass[portuguese,oneside]{pucrs-ppgcc}
-\documentclass[english,oneside]{pucrs-ppgcc}
+\documentclass[portuguese,oneside]{pucrs-ppgcc}
+%\documentclass[english,oneside]{pucrs-ppgcc}
 
 %---------------------------------------------------------
 % 05/04/2021 - Para utilizar o formato de referências APALIKE:
@@ -72,7 +72,7 @@
 %----------------------------------------------------------------
 % Autor (OBRIGATÓRIO)
 %----------------------------------------------------------------
-\author{Fulano da Silva}
+\author{Discente da Silva}
 
 %----------------------------------------------------------------
 % Título (OBRIGATÓRIO). Devem ser passados DOIS parâmetros,
@@ -94,19 +94,31 @@
 
 %----------------------------------------------------------------
 % Seleção do curso ("este trabalho é um requisito parcial para
-% obtenção do grau de (mestre ou doutor) em Ciência da Computação").
+% obtenção do grau de (mestre(a) ou doutor(a)) em Ciência da Computação").
 % Necessário somente para o tipo 'monografia'.
 %----------------------------------------------------------------
+%\grau{\bacharela} % Este é "bônus"
 %\grau{\bacharel} % Este é "bônus"
-\grau{\mestre}
+\grau{\mestra}
+%\grau{\mestre}
+%\grau{\doutora}
 %\grau{\doutor}
 
 %----------------------------------------------------------------
-% Orientador (e Co-orientador, caso haja um). É OBRIGATÓRIO
-% informar pelo menos o orientador.
+% Informar o gênero do Orientador(a) e Co-orientador(a) 
+% Apenas um para cada.
 %----------------------------------------------------------------
-\orientador{Beltrano Dias}
-\coorientador{Ciclano de Farias}
+%\generoori{\orientador}
+\generoori{\orientadora}
+%\generocoori{\coorientador}
+\generocoori{\coorientadora}
+
+%----------------------------------------------------------------
+% Orientador(a) (e Co-orientador(a), caso haja um/uma). 
+% É OBRIGATÓRIO informar pelo menos o(a) orientador(a).
+%----------------------------------------------------------------
+\orientador{Beltrano(a) Dias}
+\coorientador{Ciclano(a) de Farias}
 
 %----------------------------------------------------------------
 % A capa é inserida automaticamente. Por isso não é necessário
