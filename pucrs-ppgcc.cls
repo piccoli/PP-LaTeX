@@ -530,7 +530,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
    \cleardoublepage%
    \thispagestyle{empty}%
         \begin{figure}[H]
-        \centering\includegraphics{#1}
+        \centering\includegraphics[width=\textwidth]{#1}
         \end{figure}%
    \newpage%
 }
