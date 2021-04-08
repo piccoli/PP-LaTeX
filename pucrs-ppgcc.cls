@@ -198,6 +198,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \edef\PP@coorientador{\PP@undef}
 \newcommand*{\orientador}[1]{\renewcommand*{\PP@orientador}{#1}}
 \newcommand*{\coorientador}[1]{\renewcommand*{\PP@coorientador}{#1}}
+\edef\PP@fichacatalografica{\PP@undef}
+\newcommand*{\fichacatalografica}[1]{\renewcommand*{\PP@fichacatalografica}{#1}}
 \newcommand*{\PP@Cid}{Porto~Alegre}
 
 % Definições dependentes de idioma.
@@ -225,7 +227,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         obten\c{c}\~{a}o do grau de \PP@grau{} em Ci\^{e}ncia da
         Computa\c{c}\~{a}o na \PP@Uni{}.%
     }
-    \newcommand*{\PP@fichaname}{Substitua esta p\'{a}gina pela Ficha Catalogr\'{a}fica}
+    \newcommand*{\PP@fichaname}{\PP@fichacatalografica}
     \newcommand*{\PP@termoname}{Substitua esta p\'{a}gina pelo Termo de Apresenta\c{c}\~{a}o}
     \newcommand*{\PP@dedicatorianame}{Dedicat\'{o}ria}
     \newcommand*{\PP@agradecimentosname}{Agradecimentos}
@@ -292,7 +294,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         the requirements for the degree of \PP@grau{} in Computer
         Science.%
     }
-    \renewcommand*{\PP@fichaname}{Replace this page with the Library Catalog Page}
+    \renewcommand*{\PP@fichaname}{\PP@fichacatalografica}
     \renewcommand*{\PP@termoname}{Replace this page with the Committee Forms}
     \renewcommand*{\PP@dedicatorianame}{\null}
     \renewcommand*{\PP@agradecimentosname}{Acknowledgments}
@@ -488,6 +490,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \global\let\grau\relax
 \global\let\orientador\relax
 \global\let\coorientador\relax
+\global\let\fichacatalografica\relax
 \newpage%
 }
 
@@ -519,11 +522,25 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 }
 
 %----------------------------------------------------------------------------------
+% Gera uma página para ser substituída na versão final (ficha
+% catalográfica ou termo de apresentação)
+%----------------------------------------------------------------------------------
+\newcommand*\PP@replaceficha[1]{%
+  %\if@openright\cleardoublepage\else\clearpage\fi
+   \cleardoublepage%
+   \thispagestyle{empty}%
+        \begin{figure}[H]
+        \centering\includegraphics{#1}
+        \end{figure}%
+   \newpage%
+}
+
+%----------------------------------------------------------------------------------
 % Gera as páginas para serem substituídas pela ficha
 % catalográfica e o termo de apresentação
 %----------------------------------------------------------------------------------
 \newcommand*{\fillers}{%
-   \PP@replacepage{\PP@fichaname}%
+   \PP@replaceficha{\PP@fichaname}%
    \PP@replacepage{\PP@termoname}%
    %\renewcommand*{\baselinestretch}{1.5}
 }
