@@ -183,8 +183,6 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %\edef\PP@undef{n\~{a}o definido}
 \edef\PP@undef{not defined}
 \newcommand*{\monografia}{Monografia}
-\let\PP@generoori=\PP@undef
-\let\PP@generocoori=\PP@undef
 \let\PP@grau=\PP@undef
 \let\PP@tipo=\monografia
 \newcommand*{\tipotrabalho}[1]{\global\let\PP@tipo=#1
@@ -192,15 +190,66 @@ e-mail <rfbpiccoli at gmail dot com>^^J
   \ifx#1\tese\grau{\doutor}\else
   \ifx#1\dissertacao\grau{\mestre}\fi\fi\fi}
 \newcommand*{\grau}[1]{\global\let\PP@grau=#1}
+\newcommand*{\PP@Cid}{Porto~Alegre}
+
+\let\PP@generoori=\PP@undef
+\let\PP@generocoori=\PP@undef
 \newcommand*{\generoori}[1]{\global\let\PP@generoori=#1}
 \newcommand*{\generocoori}[1]{\global\let\PP@generocoori=#1}
 \edef\PP@orientador{\PP@undef}
-\edef\PP@coorientador{\PP@undef}
 \newcommand*{\orientador}[1]{\renewcommand*{\PP@orientador}{#1}}
-\newcommand*{\coorientador}[1]{\renewcommand*{\PP@coorientador}{#1}}
+
+% #1: Nome Co-orientador(a)
+% #2: Instituição Co-orientador(a)
+\edef\PP@coorientador{\PP@undef}
+\edef\PP@instituicaocoorientador{\PP@undef}
+\def\coorientador#1#2{\gdef\PP@coorientador{#1}\gdef\PP@instituicaocoorientador{#2}}%
+
+%-----------------------------------------------------------------------------
+% TERMO DE APRESENTAÇÃO:
+% #1: Dia da Aprovação
+% #2: Mês da Aprovação
+% #3: Ano da Aprovação
+%-----------------------------------------------------------------------------
+\edef\PP@diaaprovacao{\PP@undef}
+\edef\PP@mesaprovacao{\PP@undef}
+\edef\PP@anoaprovacao{\PP@undef}
+\def\dataaprovacao#1#2#3{\gdef\PP@diaaprovacao{#1}\gdef\PP@mesaprovacao{#2}\gdef\PP@anoaprovacao{#3}}%
+
+% AVALIADOR(A) UM
+% #1: Nome Avaliador(a)
+% #2: Instituição Avaliador(a) 
+\edef\PP@avaliadorumnome{\PP@undef}
+\edef\PP@avaliadoruminst{\PP@undef}
+\def\avaliadorum#1#2{\gdef\PP@avaliadorumnome{#1}\gdef\PP@avaliadoruminst{(#2)}}%
+
+% AVALIADOR(A) DOIS
+% #1: Nome Avaliador(a)
+% #2: Instituição Avaliador(a) 
+\edef\PP@avaliadordoisnome{\PP@undef}
+\edef\PP@avaliadordoisinst{\PP@undef}
+\def\avaliadordois#1#2{\gdef\PP@avaliadordoisnome{#1}\gdef\PP@avaliadordoisinst{(#2)}}%
+
+% AVALIADOR(A) TRÊS
+% #1: Nome Avaliador(a)
+% #2: Instituição Avaliador(a) 
+\edef\PP@avaliadortresnome{\PP@undef}
+\edef\PP@avaliadortresinst{\PP@undef}
+\def\avaliadortres#1#2{\gdef\PP@avaliadortresnome{#1}\gdef\PP@avaliadortresinst{(#2)}}%
+
+% AVALIADOR(A) QUATRO
+% #1: Nome Avaliador(a)
+% #2: Instituição Avaliador(a) 
+\edef\PP@avaliadorquatronome{\PP@undef}
+\edef\PP@avaliadorquatroinst{\PP@undef}
+\def\avaliadorquatro#1#2{\gdef\PP@avaliadorquatronome{#1}\gdef\PP@avaliadorquatroinst{(#2)}}%
+
+%-----------------------------------------------------------------------------
+% FICHA CATALOGRÁFICA:
+% #1:Caminho da Imagem
+%-----------------------------------------------------------------------------
 \edef\PP@fichacatalografica{\PP@undef}
 \newcommand*{\fichacatalografica}[1]{\renewcommand*{\PP@fichacatalografica}{#1}}
-\newcommand*{\PP@Cid}{Porto~Alegre}
 
 % Definições dependentes de idioma.
 %\addto\captionsbrazil{%
@@ -222,11 +271,18 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \newcommand*{\bacharela}{Bacharela}
     \newcommand*{\PP@orientadorname}{Orientad\ifx\PP@generoori\orientador or\else ora\fi{}}
     \newcommand*{\PP@coorientadorname}{Orientad\ifx\PP@generocoori\coorientador or\else ora\fi{}}
+    \newcommand*{\PP@descricaotermo}{%
+        \PP@tipo{} apresentad\ifx\PP@tipo\pep o\else a\fi{} como requisito parcial para 
+        obten\c{c}\~{a}o do grau de \PP@grau{} em Ci\^{e}ncia da
+        Computa\c{c}\~{a}o do \PP@Dep{}, \PP@Fac{} da \PP@Uni{}.%
+    }
     \newcommand*{\PP@descricao}{%
         \PP@tipo{} apresentad\ifx\PP@tipo\pep o\else a\fi{} como requisito parcial \`{a}
         obten\c{c}\~{a}o do grau de \PP@grau{} em Ci\^{e}ncia da
         Computa\c{c}\~{a}o na \PP@Uni{}.%
     }
+    \newcommand*{\PP@dataaprovacao}{Aprovado(a) em \PP@diaaprovacao{} de \PP@mesaprovacao{} de \PP@anoaprovacao{}.}
+    \newcommand*{\PP@bancaexaminadora}{Banca Examinadora:}
     \newcommand*{\PP@fichaname}{\PP@fichacatalografica}
     \newcommand*{\PP@termoname}{Substitua esta p\'{a}gina pelo Termo de Apresenta\c{c}\~{a}o}
     \newcommand*{\PP@dedicatorianame}{Dedicat\'{o}ria}
@@ -289,11 +345,19 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \renewcommand*{\profa}{Prof.}
     \renewcommand*{\PP@orientadorname}{Advisor}
     \renewcommand*{\PP@coorientadorname}{Advisor}
+    \renewcommand*{\PP@descricaotermo}{%
+        This \PP@tipo{} has been submitted in partial fulfillment of 
+        the requirements for the degree of \PP@grau{} in Computer 
+        Science, of the \PP@Dep{}, 
+        \PP@Fac{} of the \PP@Uni{}%
+    }
     \renewcommand*{\PP@descricao}{%
         \PP@tipo{} submitted to the \PP@Uni{} in partial fulfillment of
         the requirements for the degree of \PP@grau{} in Computer
         Science.%
     }
+    \renewcommand*{\PP@dataaprovacao}{Sanctioned on \PP@mesaprovacao{} \PP@diaaprovacao{}, \PP@anoaprovacao{}.}
+    \renewcommand*{\PP@bancaexaminadora}{Committee Members:}
     \renewcommand*{\PP@fichaname}{\PP@fichacatalografica}
     \renewcommand*{\PP@termoname}{Replace this page with the Committee Forms}
     \renewcommand*{\PP@dedicatorianame}{\null}
@@ -350,148 +414,148 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \else \global\let\@title=\@titleen\fi}
 
 %----------------------------------------------------------------------------------
-% Formatação da capa.
+% Formatação da Capa
 %----------------------------------------------------------------------------------
 \newbox\PP@tmpbox
 \newdimen\PP@tmpdim
 \renewcommand\maketitle{%
-\begin{titlepage}%
-    \renewcommand*{\baselinestretch}{1.0}%
-    \hoffset=-1in
-    \voffset=-1in
-    \hsize=\paperwidth
-    \vsize=\paperheight
-    \textwidth=\paperwidth
-    \textheight=\paperheight
-    \evensidemargin0pt
-    \oddsidemargin0pt
-    \topmargin0pt
-    \headheight0pt
-    \headsep0pt
-    \topskip0pt
-    \footskip0pt
-    \columnsep0pt
-    \columnseprule0pt
-    \columnwidth0pt
-    \marginparpush0pt
-    \marginparsep0pt
-    \marginparwidth0pt
-    \global\let\thanks\relax
-    \global\let\date\relax
-    \global\let\@thanks\@empty
-    \global\let\@date\@empty
-    \let\footnote\thanks
-    \normalfont\normalsize
-    \vbox to \vsize{%
-        \boxmaxdepth=0pt
-        \parindent0pt
-        \parfillskip0pt
-        \parskip0pt
-        \leftskip0pt
-        \rightskip0pt
-        \lineskiplimit0pt
-        \lineskip0pt
-        \kern4ex\par
-        %----------------------------------------------------------------------------------
-        % Cabeçalho (universidade + faculdade + programa)
-        %----------------------------------------------------------------------------------
-        \setbox\PP@tmpbox=\vbox{%
-            \leftskip0pt plus1fil
-            \rightskip0pt plus1fil
-            \hyphenpenalty 10000\relax
-            \bfseries
-            \noindent\MakeTextUppercase{\PP@Uni}\par
-            \noindent\MakeTextUppercase{\PP@Fac}\par
-            \noindent\MakeTextUppercase{\PP@Dep}\par
-        }%
-        \PP@tmpdim=9.5cm
-        \advance\PP@tmpdim by-4ex
-        \advance\PP@tmpdim by-\ht\PP@tmpbox
-        \advance\PP@tmpdim by-\dp\PP@tmpbox
-        \box\PP@tmpbox\par\nointerlineskip
-        \kern\PP@tmpdim\par
-        %----------------------------------------------------------------------------------
-        % Retângulo central (título + autor)
-        %----------------------------------------------------------------------------------
-        \hbox{\kern5cm\vbox to 7.7cm{%
-            \hsize=11.5cm
-            \parskip6ex
+    \begin{titlepage}%
+        \renewcommand*{\baselinestretch}{1.0}%
+        \hoffset=-1in
+        \voffset=-1in
+        \hsize=\paperwidth
+        \vsize=\paperheight
+        \textwidth=\paperwidth
+        \textheight=\paperheight
+        \evensidemargin0pt
+        \oddsidemargin0pt
+        \topmargin0pt
+        \headheight0pt
+        \headsep0pt
+        \topskip0pt
+        \footskip0pt
+        \columnsep0pt
+        \columnseprule0pt
+        \columnwidth0pt
+        \marginparpush0pt
+        \marginparsep0pt
+        \marginparwidth0pt
+        \global\let\thanks\relax
+        \global\let\date\relax
+        \global\let\@thanks\@empty
+        \global\let\@date\@empty
+        \let\footnote\thanks
+        \normalfont\normalsize
+        \vbox to \vsize{%
+            \boxmaxdepth=0pt
             \parindent0pt
-            \leftskip0pt plus1fil
-            \rightskip0pt plus1fil
-            \leavevmode\kern2.5em\vbox{%
-                \advance\hsize by-5em
-                \bfseries
-                %\lineskip.25\baselineskip
-                \baselineskip1.2\baselineskip
-                \lineskip0pt
-                \lineskiplimit0pt
-                \noindent\hbox{}\par\nointerlineskip
-                \noindent{\Large\expandafter\MakeTextUppercase\expandafter{\@title}}\par
-                \noindent{\large\expandafter\MakeTextUppercase\expandafter{\@author}}\par\nointerlineskip
-                \vfil\hbox{}%
-            }\kern2.5em
-        }}\par\nointerlineskip
-        \kern7.5ex\par
-        %----------------------------------------------------------------------------------
-        % Descrição da monografia ("Tese apresentada como requisito...")
-        %----------------------------------------------------------------------------------
-        \hbox{}\hfill\vbox{%
-            \hsize=23cm
-            \parfillskip0pt plus1fil
-            \divide\hsize by3\relax
+            \parfillskip0pt
+            \parskip0pt
             \leftskip0pt
             \rightskip0pt
-            \hyphenpenalty=10000\relax
-            \emergencystretch=2em
-            \noindent\PP@descricao
-        }\kern35pt\par\nointerlineskip
-        \kern7.5ex\par
-        %----------------------------------------------------------------------------------
-        % Orientador / Co-Orientador
-        %----------------------------------------------------------------------------------
-        \vbox{%
-            \leftskip0pt plus1fil
-            \rightskip0pt plus1fil
-            \noindent\hbox{\PP@orientadorname{}: \ifx\PP@generoori\orientadora \profa \else \prof \fi{}\ \PP@orientador}%
-            \ifx\PP@coorientador\PP@undef\relax
-            \else\par\noindent\hbox{Co-\PP@coorientadorname{}: \ifx\PP@generocoori\orientadora \profa \else \prof \fi{}\ \PP@coorientador}\fi
-        }\par\nointerlineskip%
-        \vfill\par
-        %----------------------------------------------------------------------------------
-        % Cidade / ano
-        %----------------------------------------------------------------------------------
-        \vbox{%
-            \leftskip0pt plus1fil
-            \rightskip0pt plus1fil
-            \bfseries
-            \noindent\hbox{\PP@Cid}\par
-            \noindent\hbox{\number\year}%
-        }\par\nointerlineskip
-        \kern3ex\par
-    }%
-\end{titlepage}%
-\global\let\maketitle\relax
-\global\let\@author\@empty
-\global\let\@title\@empty
-\global\let\title\relax
-\global\let\author\relax
-\global\let\and\relax
-\global\let\PP@Uni\@empty
-\global\let\PP@Fac\@empty
-\global\let\PP@Dep\@empty
-\global\let\PP@Cid\@empty
-\global\let\PP@orientadorname\@empty
-\global\let\PP@descricao\@empty
-\global\let\PP@orientador\@empty
-\global\let\PP@coorientador\@empty
-\global\let\PP@grau\@empty
-\global\let\tipotrabalho\relax
-\global\let\grau\relax
-\global\let\orientador\relax
-\global\let\coorientador\relax
-\global\let\fichacatalografica\relax
-\newpage%
+            \lineskiplimit0pt
+            \lineskip0pt
+            \kern4ex\par
+            %----------------------------------------------------------------------------------
+            % Cabeçalho (universidade + faculdade + programa)
+            %----------------------------------------------------------------------------------
+            \setbox\PP@tmpbox=\vbox{%
+                \leftskip0pt plus1fil
+                \rightskip0pt plus1fil
+                \hyphenpenalty 10000\relax
+                \bfseries
+                \noindent\MakeTextUppercase{\PP@Uni}\par
+                \noindent\MakeTextUppercase{\PP@Fac}\par
+                \noindent\MakeTextUppercase{\PP@Dep}\par
+            }%
+            \PP@tmpdim=9.5cm
+            \advance\PP@tmpdim by-4ex
+            \advance\PP@tmpdim by-\ht\PP@tmpbox
+            \advance\PP@tmpdim by-\dp\PP@tmpbox
+            \box\PP@tmpbox\par\nointerlineskip
+            \kern\PP@tmpdim\par
+            %----------------------------------------------------------------------------------
+            % Retângulo central (título + autor)
+            %----------------------------------------------------------------------------------
+            \hbox{\kern5cm\vbox to 7.7cm{%
+                \hsize=11.5cm
+                \parskip6ex
+                \parindent0pt
+                \leftskip0pt plus1fil
+                \rightskip0pt plus1fil
+                \leavevmode\kern2.5em\vbox{%
+                    \advance\hsize by-5em
+                    \bfseries
+                    %\lineskip.25\baselineskip
+                    \baselineskip1.2\baselineskip
+                    \lineskip0pt
+                    \lineskiplimit0pt
+                    \noindent\hbox{}\par\nointerlineskip
+                    \noindent{\Large\expandafter\MakeTextUppercase\expandafter{\@title}}\par
+                    \noindent{\large\expandafter\MakeTextUppercase\expandafter{\@author}}\par\nointerlineskip
+                    \vfil\hbox{}%
+                }\kern2.5em
+            }}\par\nointerlineskip
+            \kern7.5ex\par
+            %----------------------------------------------------------------------------------
+            % Descrição da monografia ("Tese apresentada como requisito...")
+            %----------------------------------------------------------------------------------
+            \hbox{}\hfill\vbox{%
+                \hsize=23cm
+                \parfillskip0pt plus1fil
+                \divide\hsize by3\relax
+                \leftskip0pt
+                \rightskip0pt
+                \hyphenpenalty=10000\relax
+                \emergencystretch=2em
+                \noindent\PP@descricao
+            }\kern35pt\par\nointerlineskip
+            \kern7.5ex\par
+            %----------------------------------------------------------------------------------
+            % Orientador / Co-Orientador
+            %----------------------------------------------------------------------------------
+            \vbox{%
+                \leftskip0pt plus1fil
+                \rightskip0pt plus1fil
+                \noindent\hbox{\PP@orientadorname{}: \ifx\PP@generoori\orientadora \profa \else \prof \fi{}\ \PP@orientador}%
+                \ifx\PP@coorientador\PP@undef\relax
+                \else\par\noindent\hbox{Co-\PP@coorientadorname{}: \ifx\PP@generocoori\coorientadora \profa \else \prof \fi{}\ \PP@coorientador}\fi
+            }\par\nointerlineskip%
+            \vfill\par
+            %----------------------------------------------------------------------------------
+            % Cidade / ano
+            %----------------------------------------------------------------------------------
+            \vbox{%
+                \leftskip0pt plus1fil
+                \rightskip0pt plus1fil
+                \bfseries
+                \noindent\hbox{\PP@Cid}\par
+                \noindent\hbox{\number\year}%
+            }\par\nointerlineskip
+            \kern3ex\par
+        }%
+    \end{titlepage}%
+    \global\let\maketitle\relax
+    %\global\let\@author\@empty
+    %\global\let\@title\@empty
+    \global\let\title\relax
+    \global\let\author\relax
+    \global\let\and\relax
+    %\global\let\PP@Uni\@empty
+    %\global\let\PP@Fac\@empty
+    %\global\let\PP@Dep\@empty
+    %\global\let\PP@Cid\@empty
+    %\global\let\PP@orientadorname\@empty
+    %\global\let\PP@descricao\@empty
+    %\global\let\PP@orientador\@empty
+    %\global\let\PP@coorientador\@empty
+    %\global\let\PP@grau\@empty
+    \global\let\tipotrabalho\relax
+    \global\let\grau\relax
+    %\global\let\orientador\relax
+    %\global\let\coorientador\relax
+    \global\let\fichacatalografica\relax
+    \newpage%
 }
 
 %----------------------------------------------------------------------------------
@@ -518,21 +582,195 @@ e-mail <rfbpiccoli at gmail dot com>^^J
       \par\nointerlineskip
       \vss
    }%
-   \newpage%
+   {\newpage}%
 }
 
 %----------------------------------------------------------------------------------
-% Gera uma página para ser substituída na versão final (ficha
-% catalográfica ou termo de apresentação)
+% Gera uma página para ser substituída na versão final (Termo de Apresentação)
+%----------------------------------------------------------------------------------
+\newcommand*\PP@replacetermo[1]{%
+    \newbox\PP@tmpbox
+    \newdimen\PP@tmpdim
+    \cleardoublepage%
+    \thispagestyle{empty}%
+    %\hoffset=-1in
+    %\voffset=-1in
+    %\hsize=\paperwidth
+    %\headheight50pt
+    \normalfont\normalsize
+    \vbox to \vsize{%
+        \boxmaxdepth=0pt
+        \parindent0pt
+        \parfillskip0pt
+        \parskip0pt
+        \leftskip0pt
+        \rightskip0pt
+        \lineskiplimit0pt
+        \lineskip0pt
+        \kern4ex\par
+        %----------------------------------------------------------------------------------
+        % Nome Discente
+        %----------------------------------------------------------------------------------
+       \setbox\PP@tmpbox=\vbox{%
+            \leftskip0pt plus1fil
+            \rightskip0pt plus1fil
+            \hyphenpenalty 10000\relax
+            \bfseries
+            \noindent\MakeTextUppercase{\@author}\par
+        }%
+        \PP@tmpdim=2cm
+        \advance\PP@tmpdim by-4ex
+        \advance\PP@tmpdim by-\ht\PP@tmpbox
+        \advance\PP@tmpdim by-\dp\PP@tmpbox
+        \box\PP@tmpbox\par\nointerlineskip
+        \kern\PP@tmpdim\par
+        
+        %----------------------------------------------------------------------------------
+        % Título
+        %----------------------------------------------------------------------------------
+        \hbox{\kern0.1cm\vbox{%
+            \hsize=16.5cm
+            \parskip6ex
+            \parindent0pt
+            \leftskip0pt plus1fil
+            \rightskip0pt plus1fil
+            \leavevmode\kern2.5em\vbox{%
+                \advance\hsize by-5em
+                \bfseries
+                %\lineskip.25\baselineskip
+                \baselineskip1.2\baselineskip
+                \lineskip0pt
+                \lineskiplimit0pt
+                \noindent\hbox{}\par\nointerlineskip
+                \noindent{\Large\expandafter\MakeTextUppercase\expandafter{\@title}}\par
+                \vfil\hbox{}%
+            }\kern2.5em
+        }}\par\nointerlineskip
+        \kern7.5ex\par
+        
+        %----------------------------------------------------------------------------------
+        % Descrição da monografia ("Tese apresentada como requisito...")
+        %----------------------------------------------------------------------------------
+        \hbox{}\hfill\vbox{%
+            \hsize=25cm
+            \parfillskip0pt plus1fil
+            \divide\hsize by3\relax
+            \leftskip0pt
+            \rightskip0pt
+            \hyphenpenalty=10000\relax
+            \emergencystretch=2em
+            \noindent\PP@descricaotermo
+        }\kern35pt\par\nointerlineskip
+        \kern7.5ex\par
+        
+        %----------------------------------------------------------------------------------
+        % Data da Aprovação
+        %----------------------------------------------------------------------------------
+        \hbox{}\hfill\vbox{%
+            \hsize=25cm
+            \parfillskip0pt plus1fil
+            \divide\hsize by3\relax
+            \leftskip0pt
+            \rightskip0pt
+            \hyphenpenalty=10000\relax
+            \emergencystretch=2em
+            \noindent\PP@dataaprovacao
+        }\kern35pt\par\nointerlineskip
+        \kern7.5ex\par
+        
+        %----------------------------------------------------------------------------------
+        % Banca Examinadora
+        %----------------------------------------------------------------------------------
+        \hbox{\kern0.8cm\vbox{%
+            \hsize=15.5cm
+            \parskip6ex
+            \parindent0pt
+            \leftskip0pt plus1fil
+            \rightskip0pt plus1fil
+            \leavevmode\kern2.5em\vbox{%
+                \advance\hsize by-5em
+                \bfseries
+                %\lineskip.25\baselineskip
+                \baselineskip1.2\baselineskip
+                \lineskip0pt
+                \lineskiplimit0pt
+                \noindent\hbox{}\par\nointerlineskip
+                \noindent{\Large\expandafter\MakeTextUppercase\expandafter{\PP@bancaexaminadora}}\par
+                \vfil\hbox{}%
+            }\kern2.5em
+        }}\par\nointerlineskip
+        \kern0.5ex\par
+        
+        %----------------------------------------------------------------------------------
+        % Lista de Professores da Banca 
+        % (Máximo 4 avaliadores(as), mais Orientador(a) e Co-orientador(a))
+        %----------------------------------------------------------------------------------
+        \vbox{\kern2.5cm\vbox{%
+            \parskip3ex
+            \parindent0pt
+            \leftskip0pt plus1fil
+            \rightskip0pt plus1fil
+            \baselineskip1.2\baselineskip
+
+            \ifx\PP@avaliadorquatronome\PP@undef\relax
+            \else\par\noindent\hbox{\PP@avaliadorquatronome{}~\PP@avaliadorquatroinst{}}\fi
+            
+            \ifx\PP@avaliadortresnome\PP@undef\relax
+            \else\par\noindent\hbox{\PP@avaliadortresnome{}~\PP@avaliadortresinst{}}\fi
+            
+            \ifx\PP@avaliadordoisnome\PP@undef\relax
+            \else\par\noindent\hbox{\PP@avaliadordoisnome{}~\PP@avaliadordoisinst{}}\fi
+            
+            \ifx\PP@avaliadorumnome\PP@undef\relax
+            \else\par\noindent\hbox{\PP@avaliadorumnome{}~\PP@avaliadoruminst{}}\fi
+            
+            \ifx\PP@coorientador\PP@undef\relax
+            \else\par\noindent\hbox{\ifx\PP@generocoori\coorientadora \profa \else \prof \fi{}\ \PP@coorientador~ (\PP@instituicaocoorientador - Co-\PP@coorientadorname{})}\fi
+            
+            \noindent\hbox{\ifx\PP@generoori\orientadora \profa \else \prof \fi{}\ \PP@orientador~(PPGCC/PUCRS - \PP@orientadorname{})}%
+            
+        }}\par\nointerlineskip%
+        \vfill\par
+        \kern3ex\par
+    }%
+    \global\let\@author\@empty
+    \global\let\@title\@empty
+    \global\let\PP@Uni\@empty
+    \global\let\PP@Fac\@empty
+    \global\let\PP@Dep\@empty
+    \global\let\PP@Cid\@empty
+    \global\let\PP@orientadorname\@empty
+    \global\let\PP@descricao\@empty
+    \global\let\PP@descricaotermo\@empty
+    \global\let\PP@orientador\@empty
+    \global\let\PP@coorientador\@empty
+    \global\let\PP@bancaexaminadora\@empty
+    \global\let\PP@dataaprovacao\@empty
+    \global\let\PP@avaliadorumnome\@empty
+    \global\let\PP@avaliadordoisnome\@empty
+    \global\let\PP@avaliadortresnome\@empty
+    \global\let\PP@avaliadorquatronome\@empty
+    \global\let\PP@avaliadoruminst\@empty
+    \global\let\PP@avaliadordoisinst\@empty
+    \global\let\PP@avaliadortresinst\@empty
+    \global\let\PP@avaliadorquatroinst\@empty
+    \global\let\PP@grau\@empty
+    \global\let\orientador\relax
+    \global\let\coorientador\relax
+    \newpage%
+}
+
+%----------------------------------------------------------------------------------
+% Gera uma página para ser substituída na versão final (Ficha Catalográfica)
 %----------------------------------------------------------------------------------
 \newcommand*\PP@replaceficha[1]{%
   %\if@openright\cleardoublepage\else\clearpage\fi
    \cleardoublepage%
    \thispagestyle{empty}%
-        \begin{figure}[H]
-        \centering\includegraphics[width=\textwidth]{#1}
-        \end{figure}%
-   \newpage%
+    \begin{figure}[H]
+    \centering\includegraphics[width=\textwidth]{#1}
+    \end{figure}%
+   {\newpage}%
 }
 
 %----------------------------------------------------------------------------------
@@ -541,7 +779,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \newcommand*{\fillers}{%
    \PP@replaceficha{\PP@fichaname}%
-   \PP@replacepage{\PP@termoname}%
+   \PP@replacetermo{\PP@fichatermo}%
    %\renewcommand*{\baselinestretch}{1.5}
 }
 

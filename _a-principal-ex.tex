@@ -87,8 +87,8 @@
 % Opções para o tipo de trabalho (OBRIGATÓRIO)
 %----------------------------------------------------------------
 %\tipotrabalho{\monografia}  % Monografias em geral (e de "bônus": TCCs)
-%\tipotrabalho{\pep}         % Plano de estudo e pesquisa (Research plan)
-\tipotrabalho{\dissertacao} % Dissertação (Master Thesis)
+\tipotrabalho{\pep}         % Plano de estudo e pesquisa (Research plan)
+%\tipotrabalho{\dissertacao} % Dissertação (Master Thesis)
 %\tipotrabalho{\ptese}       % Proposta de tese (Doctoral Thesis proposal)
 %\tipotrabalho{\tese}        % Tese (Doctoral Thesis)
 
@@ -108,26 +108,41 @@
 % Informar o gênero do Orientador(a) e Co-orientador(a) 
 % Apenas um para cada.
 %----------------------------------------------------------------
-%\generoori{\orientador}
-\generoori{\orientadora}
+\generoori{\orientador}
+%\generoori{\orientadora}
 %\generocoori{\coorientador}
 \generocoori{\coorientadora}
 
 %----------------------------------------------------------------
 % Orientador(a) (e Co-orientador(a), caso haja um/uma). 
 % É OBRIGATÓRIO informar pelo menos o(a) orientador(a).
+% Havendo Co-orientador(a), informar a sua respectiva instituição.
 %----------------------------------------------------------------
 \orientador{Beltrano(a) Dias}
-\coorientador{Ciclano(a) de Farias}
+\coorientador{Ciclano(a) de Farias}{PPGCC/PUCRS}
 
 %----------------------------------------------------------------
-% Caminho da Ficha Catalográfica
+% Ficha Catalográfica
 % - Gerar a Ficha no site da Biblioteca Central da PUCRS:
 % https://biblioteca.pucrs.br/apoio-a-pesquisa/ficha-catalografica/
 % A Ficha e o Termo de Apresentação são obrigatórios somente na
-% versão final da Dissertação e da Tese (PEP e Proposta de Tese não!)
+% versão final da Dissertação e da Tese 
+% (PEP e Proposta de Tese eles não aparecem!)
 %----------------------------------------------------------------
 \fichacatalografica{fig/ficha}
+
+%----------------------------------------------------------------
+% Termo de Apresentação
+% Quando o volume estiver em inglês, formato de data em inglês
+% O template está habilitado para ATÉ quatro avaliadores, 
+% mais Orientador(a) e Co-orientador(a).
+% Informar o nome do(a) avaliador(a) e a sua respectiva instituição.
+%----------------------------------------------------------------
+\dataaprovacao{01}{Janeiro}{2021}
+\avaliadorum{Prof. Dr. Avaliador(a) UM}{PPGCC/PUCRS}
+\avaliadordois{Prof\textsuperscript{a}. Dr\textsuperscript{a}. Avaliador(a) DOIS}{PPGCC/PUCRS}
+%\avaliadortres{Prof. Avaliador(a) TRÊS}{PPGCC/PUCRS}
+%\avaliadorquatro{Prof\textsuperscript{a}. Dr\textsuperscript{a}. Avaliador(a) QUATRO}{PPGCC/PUCRS}
 
 %----------------------------------------------------------------
 % A capa é inserida automaticamente. Por isso não é necessário
