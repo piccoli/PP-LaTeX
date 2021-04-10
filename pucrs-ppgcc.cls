@@ -251,11 +251,17 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \edef\PP@fichacatalografica{\PP@undef}
 \newcommand*{\fichacatalografica}[1]{\renewcommand*{\PP@fichacatalografica}{#1}}
 
+%-----------------------------------------------------------------------------
 % Definições dependentes de idioma.
 %\addto\captionsbrazil{%
     \newcommand*{\PP@Uni}{Pontif\'{i}cia Universidade Cat\'{o}lica do Rio Grande do Sul}
     \newcommand*{\PP@Fac}{Escola Polit\'{e}cnica}
     \newcommand*{\PP@Dep}{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o}
+    \newcommand*{\PP@FacPort}{Escola Polit\'{e}cnica} % Na Capa da Biblioteca precisa ser sempre em português
+    \newcommand*{\PP@DepPort}{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Ci\^{e}ncia da Computa\c{c}\~{a}o} % Na Capa da Biblioteca precisa ser sempre em português
+    \newcommand*{\PP@Mestrado}{Mestrado em \PP@Curso{}}
+    \newcommand*{\PP@Doutorado}{Doutorado em \PP@Curso{}}
+    \newcommand*{\PP@Curso}{Ci\^{e}ncia da Computa\c{c}\~{a}o}
     %\edef\PP@undef{n\~{a}o definido}
     \newcommand*{\tese}{Tese}
     \newcommand*{\pep}{Plano de Estudo e Pesquisa}
@@ -291,6 +297,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \newcommand*{\PP@anexoname}{Anexo}
     % TODO Para usar os estilos bibliográficos de forma independente desta
     % classe, copie estas definições para o seu documento.
+    \gdef\bbldoisp{: }
     \gdef\bbland{e}
     \gdef\bblseparator{, }
     \gdef\bbletal{et~al.}
@@ -414,6 +421,18 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \else \global\let\@title=\@titleen\fi}
 
 %----------------------------------------------------------------------------------
+% Subtítulo em dois idiomas (SE HOUVER)
+%----------------------------------------------------------------------------------
+\let\@subtitle=\PP@undef
+\edef\PP@subtitlept{\PP@undef}
+\edef\PP@subtitleen{\PP@undef}
+% #1: subtítulo em português
+% #2: subtítulo em inglês
+\def\subtitle#1#2{\gdef\PP@subtitlept{#1}\gdef\PP@subtitleen{#2}%
+\ifx\PP@language\PP@brazil \global\let\@subtitle=\PP@subtitlept
+\else \global\let\@subtitle=\PP@subtitleen\fi}
+
+%----------------------------------------------------------------------------------
 % Formatação da Capa
 %----------------------------------------------------------------------------------
 \newbox\PP@tmpbox
@@ -491,7 +510,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
                     \lineskip0pt
                     \lineskiplimit0pt
                     \noindent\hbox{}\par\nointerlineskip
-                    \noindent{\Large\expandafter\MakeTextUppercase\expandafter{\@title}}\par
+                    \noindent{\Large\expandafter\MakeTextUppercase\expandafter{\ifx\@subtitle\PP@undef\@title \else \@title\bbldoisp\@subtitle \fi}}\par
                     \noindent{\large\expandafter\MakeTextUppercase\expandafter{\@author}}\par\nointerlineskip
                     \vfil\hbox{}%
                 }\kern2.5em
@@ -559,6 +578,132 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 }
 
 %----------------------------------------------------------------------------------
+% CAPA BIBLIOTECA
+%----------------------------------------------------------------------------------
+\newcommand*{\replacecapa}{%
+    \begin{titlepage}%
+    \renewcommand*{\baselinestretch}{1.0}%
+        \hoffset=-1in
+        \voffset=-1in
+        \hsize=\paperwidth
+        \vsize=\paperheight
+        \textwidth=\paperwidth
+        \textheight=\paperheight
+        \evensidemargin0pt
+        \oddsidemargin0pt
+        \topmargin0pt
+        \headheight0pt
+        \headsep0pt
+        \topskip0pt
+        \footskip0pt
+        \columnsep0pt
+        \columnseprule0pt
+        \columnwidth0pt
+        \marginparpush0pt
+        \marginparsep0pt
+        \marginparwidth0pt
+        \global\let\thanks\relax
+        \global\let\date\relax
+        \global\let\@thanks\@empty
+        \global\let\@date\@empty
+        \let\footnote\thanks
+        \normalfont\normalsize
+        %---------------------------------------------------
+        % Fundo parte de cima
+        %---------------------------------------------------
+        \begin{figure}[H]
+        \centering\includegraphics[width=\textwidth]{src/fundomestradodoutorado_cima.png}
+        \end{figure}%
+        {
+        \vspace{10mm}
+        \begin{center}
+            \vfill
+            
+            \noindent\MakeTextUppercase{\PP@FacPort}\par
+            \noindent\MakeTextUppercase{\PP@DepPort}\par
+            
+            \ifx\PP@tipo\dissertacao\noindent\MakeTextUppercase{\PP@Mestrado}\par\else
+            \ifx\PP@tipo\tese\noindent\MakeTextUppercase{\PP@Doutorado}\par\fi\fi
+            \vspace{10mm}
+            
+            \noindent{\large\expandafter\MakeTextUppercase\expandafter{\@author}}\par\nointerlineskip
+            \vspace{5mm}
+            
+            \noindent{\large\expandafter\MakeTextUppercase\expandafter{\textbf{\@title}}}\par
+            \noindent{\ifx\@subtitle\PP@undef\relax \else \textrm{\MakeTextUppercase\@subtitle} \fi}
+             
+            \vspace{5mm}
+            
+            \noindent\hbox{\PP@Cid}\par
+            \noindent\hbox{\number\year}%
+            \vspace{5mm}
+
+        \end{center}
+        }
+        \vspace{1.8mm}
+        \vfill
+
+        %---------------------------------------------------
+        % Fundo parte de baixo
+        %---------------------------------------------------
+        \begin{figure}[H]
+        \centering\includegraphics[width=\textwidth]{src/fundomestradodoutorado_baixo.png}
+        \end{figure}%
+
+    \end{titlepage}%
+    {\newpage}%
+    \global\let\PP@FacPort\@empty
+    \global\let\PP@DepPort\@empty
+    \global\let\PP@Mestrado\@empty
+    \global\let\PP@Doutorado\@empty
+    \global\let\PP@author\@empty
+    \global\let\PP@title\@empty
+    %\global\let\PP@subtitle\@empty
+}
+
+%----------------------------------------------------------------------------------
+% CONTRA CAPA BIBLIOTECA
+%----------------------------------------------------------------------------------
+\newcommand*{\replacecontracapa}{%
+    \cleardoublepage%
+    \begin{titlepage}%
+    \renewcommand*{\baselinestretch}{1.0}%
+        \hoffset=-1in
+        \voffset=-1in
+        \hsize=\paperwidth
+        \vsize=\paperheight
+        \textwidth=\paperwidth
+        \textheight=\paperheight
+        \evensidemargin0pt
+        \oddsidemargin0pt
+        \topmargin0pt
+        \headheight0pt
+        \headsep0pt
+        \topskip0pt
+        \footskip0pt
+        \columnsep0pt
+        \columnseprule0pt
+        \columnwidth0pt
+        \marginparpush0pt
+        \marginparsep0pt
+        \marginparwidth0pt
+        \global\let\thanks\relax
+        \global\let\date\relax
+        \global\let\@thanks\@empty
+        \global\let\@date\@empty
+        \let\footnote\thanks
+        \normalfont\normalsize
+        
+        \begin{figure}[H]
+        \centering\includegraphics[width=\textwidth]{src/contracapa.png}
+        \end{figure}%
+    
+    \end{titlepage}%
+    {\newpage}%
+    
+}
+
+%----------------------------------------------------------------------------------
 % Gera uma página para ser substituída na versão final (ficha
 % catalográfica ou termo de apresentação)
 %----------------------------------------------------------------------------------
@@ -588,15 +733,11 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 % Gera uma página para ser substituída na versão final (Termo de Apresentação)
 %----------------------------------------------------------------------------------
-\newcommand*\PP@replacetermo[1]{%
+\newcommand*\PP@replacetermo[9]{%
     \newbox\PP@tmpbox
     \newdimen\PP@tmpdim
     \cleardoublepage%
     \thispagestyle{empty}%
-    %\hoffset=-1in
-    %\voffset=-1in
-    %\hsize=\paperwidth
-    %\headheight50pt
     \normalfont\normalsize
     \vbox to \vsize{%
         \boxmaxdepth=0pt
@@ -642,11 +783,11 @@ e-mail <rfbpiccoli at gmail dot com>^^J
                 \lineskip0pt
                 \lineskiplimit0pt
                 \noindent\hbox{}\par\nointerlineskip
-                \noindent{\Large\expandafter\MakeTextUppercase\expandafter{\@title}}\par
+                \noindent{\Large\expandafter\MakeTextUppercase\expandafter{\ifx\@subtitle\PP@undef\@title \else \@title\bbldoisp\@subtitle \fi}}\par
                 \vfil\hbox{}%
             }\kern2.5em
         }}\par\nointerlineskip
-        \kern7.5ex\par
+        \kern5.5ex\par
         
         %----------------------------------------------------------------------------------
         % Descrição da monografia ("Tese apresentada como requisito...")
@@ -661,7 +802,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
             \emergencystretch=2em
             \noindent\PP@descricaotermo
         }\kern35pt\par\nointerlineskip
-        \kern7.5ex\par
+        \kern5.5ex\par
         
         %----------------------------------------------------------------------------------
         % Data da Aprovação
@@ -674,9 +815,9 @@ e-mail <rfbpiccoli at gmail dot com>^^J
             \rightskip0pt
             \hyphenpenalty=10000\relax
             \emergencystretch=2em
-            \noindent\PP@dataaprovacao
+            \noindent{#1} %\PP@dataaprovacao
         }\kern35pt\par\nointerlineskip
-        \kern7.5ex\par
+        \kern5.5ex\par
         
         %----------------------------------------------------------------------------------
         % Banca Examinadora
@@ -699,7 +840,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
                 \vfil\hbox{}%
             }\kern2.5em
         }}\par\nointerlineskip
-        \kern0.5ex\par
+        \kern0ex\par
         
         %----------------------------------------------------------------------------------
         % Lista de Professores da Banca 
@@ -712,17 +853,17 @@ e-mail <rfbpiccoli at gmail dot com>^^J
             \rightskip0pt plus1fil
             \baselineskip1.2\baselineskip
 
-            \ifx\PP@avaliadorquatronome\PP@undef\relax
-            \else\par\noindent\hbox{\PP@avaliadorquatronome{}~\PP@avaliadorquatroinst{}}\fi
+            \ifx#2\PP@undef\relax
+            \else\par\noindent\hbox{#2~#3}\fi
             
-            \ifx\PP@avaliadortresnome\PP@undef\relax
-            \else\par\noindent\hbox{\PP@avaliadortresnome{}~\PP@avaliadortresinst{}}\fi
+            \ifx#4\PP@undef\relax
+            \else\par\noindent\hbox{#4~#5}\fi
             
-            \ifx\PP@avaliadordoisnome\PP@undef\relax
-            \else\par\noindent\hbox{\PP@avaliadordoisnome{}~\PP@avaliadordoisinst{}}\fi
+            \ifx#6\PP@undef\relax
+            \else\par\noindent\hbox{#6~#7}\fi
             
-            \ifx\PP@avaliadorumnome\PP@undef\relax
-            \else\par\noindent\hbox{\PP@avaliadorumnome{}~\PP@avaliadoruminst{}}\fi
+            \ifx#8\PP@undef\relax
+            \else\par\noindent\hbox{#8~#9}\fi
             
             \ifx\PP@coorientador\PP@undef\relax
             \else\par\noindent\hbox{\ifx\PP@generocoori\coorientadora \profa \else \prof \fi{}\ \PP@coorientador~ (\PP@instituicaocoorientador - Co-\PP@coorientadorname{})}\fi
@@ -764,7 +905,6 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % Gera uma página para ser substituída na versão final (Ficha Catalográfica)
 %----------------------------------------------------------------------------------
 \newcommand*\PP@replaceficha[1]{%
-  %\if@openright\cleardoublepage\else\clearpage\fi
    \cleardoublepage%
    \thispagestyle{empty}%
     \begin{figure}[H]
@@ -778,9 +918,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % catalográfica e o termo de apresentação
 %----------------------------------------------------------------------------------
 \newcommand*{\fillers}{%
-   \PP@replaceficha{\PP@fichaname}%
-   \PP@replacetermo{\PP@fichatermo}%
-   %\renewcommand*{\baselinestretch}{1.5}
+    \PP@replaceficha{\PP@fichaname}%
+    \PP@replacetermo{\PP@dataaprovacao}{\PP@avaliadorquatronome}{\PP@avaliadorquatroinst}{\PP@avaliadortresnome}{\PP@avaliadortresinst}{\PP@avaliadordoisnome}{\PP@avaliadordoisinst}{\PP@avaliadorumnome}{\PP@avaliadoruminst}
 }
 
 %----------------------------------------------------------------------------------
@@ -929,7 +1068,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \newenvironment{resumo}[1]%
     {\begin{hyphenrules}{brazil}%
-     \begin{PP@abstract}{Resumo}{Palavras-Chave}{\@titlept}{#1}}%
+     \begin{PP@abstract}{Resumo}{Palavras-Chave}{\ifx\PP@subtitlept\PP@undef\@titlept \else \@titlept\bbldoisp\PP@subtitlept\fi}{#1}}%
     {\global\let\@titlept\@empty
      \end{PP@abstract}%
      \end{hyphenrules}}
@@ -941,7 +1080,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 %----------------------------------------------------------------------------------
 \renewenvironment{abstract}[1]%
     {\begin{hyphenrules}{english}%
-     \begin{PP@abstract}{Abstract}{Keywords}{\@titleen}{#1}}%
+     \begin{PP@abstract}{Abstract}{Keywords}{\ifx\PP@subtitleen\PP@undef \@titleen \else \@titleen\bbldoisp\PP@subtitleen \fi}{#1}}%
     {\global\let\@titleen\@empty
      \end{PP@abstract}%
      \end{hyphenrules}}
@@ -1456,7 +1595,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
       \normalfont\normalsize
       \vskip 6ex
     }}%
-}
+}   
 
 \AtEndOfClass{%
     \renewcommand*{\familydefault}{\sfdefault}
@@ -1529,6 +1668,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \global\clubpenalty=10000
     %\addto\captionsbrazil{\renewcommand*{\bibname}{Refer\^{e}ncias~Bibliogr\'{a}ficas}}
     \addto\captionsenglish{\renewcommand*{\bibname}{References}}
+    
     %\addto\captionsbrazil{\renewcommand*{\contentsname}{Sum\'{a}rio}}
     %\addto\captionsbrazil{\renewcommand*{\figurename}{Figura}}
     %\addto\captionsbrazil{\renewcommand*{\tablename}{Tabela}}
@@ -1545,12 +1685,17 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     ]{hyperref-compat}
 
     \expandafter\selectlanguage\expandafter{\PP@language}
+
 }
 
 \AtBeginDocument{%
     \expandafter\selectlanguage\expandafter{\PP@language}
+    % Capa da Biblioteca é inserida quando for Dissertação ou Tese
+    \ifx\PP@tipo\tese\replacecapa\else
+    \ifx\PP@tipo\dissertacao\replacecapa\fi\fi
+    
     \maketitle
-
+    
     \hypersetup{
         pdfauthor=\@author,
         pdftitle=\@title

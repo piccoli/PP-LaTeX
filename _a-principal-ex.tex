@@ -82,9 +82,21 @@
 %----------------------------------------------------------------
 \title{Seu título em português aqui}
       {Your title in english here}
-
+      
+%----------------------------------------------------------------
+% Subtítulo (OPCIONAL). Devem ser passados DOIS parâmetros,
+% o subtítulo em português E o em inglês, não importando o idioma
+% escolhido. Os títulos são utilizados para a montagem da capa,
+% resumo e abstract mais tarde.
+% Se não houver, deixar comentado.
+%----------------------------------------------------------------
+%\subtitle{Seu SUBTÍTULO em português aqui}
+%         {Your SUBTITLE in english here}
+         
 %----------------------------------------------------------------
 % Opções para o tipo de trabalho (OBRIGATÓRIO)
+% Quando for "Dissertação OU Tese", descomentar a linha no final 
+% deste documento que consta o "\replacecontracapa".
 %----------------------------------------------------------------
 %\tipotrabalho{\monografia}  % Monografias em geral (e de "bônus": TCCs)
 \tipotrabalho{\pep}         % Plano de estudo e pesquisa (Research plan)
@@ -108,8 +120,8 @@
 % Informar o gênero do Orientador(a) e Co-orientador(a) 
 % Apenas um para cada.
 %----------------------------------------------------------------
-\generoori{\orientador}
-%\generoori{\orientadora}
+%\generoori{\orientador}
+\generoori{\orientadora}
 %\generocoori{\coorientador}
 \generocoori{\coorientadora}
 
@@ -121,15 +133,20 @@
 \orientador{Beltrano(a) Dias}
 \coorientador{Ciclano(a) de Farias}{PPGCC/PUCRS}
 
+% ===============================================================
+% A Ficha e o Termo de Apresentação são obrigatórios somente na
+% versão final da Dissertação e da Tese 
+% (PEP e Proposta de Tese eles não aparecem!)
+
 %----------------------------------------------------------------
 % Ficha Catalográfica
 % - Gerar a Ficha no site da Biblioteca Central da PUCRS:
 % https://biblioteca.pucrs.br/apoio-a-pesquisa/ficha-catalografica/
-% A Ficha e o Termo de Apresentação são obrigatórios somente na
-% versão final da Dissertação e da Tese 
-% (PEP e Proposta de Tese eles não aparecem!)
+% A Capa e a Contra Capa da Biblioteca NÃO são contabilizadas na
+% quantidade total de páginas a serem informadas na geração da Ficha!
+% ==
 %----------------------------------------------------------------
-\fichacatalografica{fig/ficha}
+\fichacatalografica{src/ficha.png}
 
 %----------------------------------------------------------------
 % Termo de Apresentação
@@ -137,6 +154,8 @@
 % O template está habilitado para ATÉ quatro avaliadores, 
 % mais Orientador(a) e Co-orientador(a).
 % Informar o nome do(a) avaliador(a) e a sua respectiva instituição.
+% Formato em português: "01 Janeiro, 2021"
+% Formato em inglês: "January 1st, 2021"
 %----------------------------------------------------------------
 \dataaprovacao{01}{Janeiro}{2021}
 \avaliadorum{Prof. Dr. Avaliador(a) UM}{PPGCC/PUCRS}
@@ -285,6 +304,13 @@ erat sed diam voluptua at
 \anexos
 \chapter{Meu primeiro anexo}
 \chapter{My second attachment}
+
+%----------------------------------------------------------------
+% CONTRA CAPA DA BIBLIOTECA não está sendo inserida ao final do volume 
+% automaticamente quando é Dissertação ou Tese, mas está implementada.
+% Basta apenas descomentar a linha abaixo:
+%----------------------------------------------------------------
+%\replacecontracapa
 
 % E aqui (para a felicidade de todos) termina o documento.
 \end{document}
