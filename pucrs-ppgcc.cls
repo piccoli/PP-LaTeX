@@ -615,40 +615,99 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         \centering\includegraphics[width=\textwidth]{src/fundomestradodoutorado_cima.png}
         \end{figure}%
         {
-        \vspace{10mm}
+        %\vfill
+        \vspace{1mm}
         \begin{center}
-            \vfill
+
+            \setbox\PP@tmpbox=\vbox{%
+                \leftskip0pt plus1fil
+                \rightskip0pt plus1fil
+                \hyphenpenalty 1\relax
+                %\bfseries
+                \noindent\MakeTextUppercase{\PP@FacPort}\par
+                \noindent\MakeTextUppercase{\PP@DepPort}\par
+                
+                \ifx\PP@tipo\dissertacao\noindent\MakeTextUppercase{\PP@Mestrado}\par\else
+                \ifx\PP@tipo\tese\noindent\MakeTextUppercase{\PP@Doutorado}\par\fi\fi
+            }%
+            \PP@tmpdim=3.5cm
+            \advance\PP@tmpdim by-4ex
+            \advance\PP@tmpdim by-\ht\PP@tmpbox
+            \advance\PP@tmpdim by-\dp\PP@tmpbox
+            \box\PP@tmpbox\par\nointerlineskip
+            \kern\PP@tmpdim\par
             
-            \noindent\MakeTextUppercase{\PP@FacPort}\par
-            \noindent\MakeTextUppercase{\PP@DepPort}\par
+            %---------------------------------------------------
+            % Nome Discente
+            %---------------------------------------------------
+            \setbox\PP@tmpbox=\vbox{%
+                \leftskip0pt plus1fil
+                \rightskip0pt plus1fil
+                \hyphenpenalty 1\relax
+                %\bfseries
+                \noindent{\large\expandafter\MakeTextUppercase{\@author}}\par\nointerlineskip
+            }%
+            \PP@tmpdim=3.5cm
+            \advance\PP@tmpdim by-10ex
+            \advance\PP@tmpdim by-\ht\PP@tmpbox
+            \advance\PP@tmpdim by-\dp\PP@tmpbox
+            \box\PP@tmpbox\par\nointerlineskip
+            \kern\PP@tmpdim\par
             
-            \ifx\PP@tipo\dissertacao\noindent\MakeTextUppercase{\PP@Mestrado}\par\else
-            \ifx\PP@tipo\tese\noindent\MakeTextUppercase{\PP@Doutorado}\par\fi\fi
-            \vspace{10mm}
+            %---------------------------------------------------
+            % Título + Subtítulo
+            %---------------------------------------------------
+            \hbox{\kern2.1cm\vbox to 4.7cm{%
+                \hsize=16.5cm
+                \PP@tmpdim=3.5cm
+                \advance\PP@tmpdim by-15ex
+                \advance\PP@tmpdim by-\ht\PP@tmpbox
+                \advance\PP@tmpdim by-\dp\PP@tmpbox
+                \box\PP@tmpbox\par\nointerlineskip
+                \kern\PP@tmpdim\par
+                \leavevmode\vbox{%
+                \advance\PP@tmpdim by-4ex
+                    %\bfseries
+                    %\lineskip.25\baselineskip
+                    %\baselineskip1.2\baselineskip
+                    %\lineskip0pt
+                    %\lineskiplimit0pt
+                    %\noindent\hbox{}\par\nointerlineskip
+                    \noindent{\bfseries\Large\expandafter\MakeTextUppercase\expandafter{\@title}}\par
+                    \noindent{\ifx\@subtitle\PP@undef\relax \else \textrm{\MakeTextUppercase\@subtitle}\fi}\par
+                    
+                    %---------------------------------------------------
+                    % Cidade + Ano
+                    %---------------------------------------------------
+                    \vspace{8mm}
+
+                    \noindent{\PP@Cid}\par
+                    \noindent{\number\year}%
+
+                    \hbox{}%
+                }
+            }}
             
-            \noindent{\large\expandafter\MakeTextUppercase\expandafter{\@author}}\par\nointerlineskip
-            \vspace{5mm}
-            
-            \noindent{\large\expandafter\MakeTextUppercase\expandafter{\textbf{\@title}}}\par
-            \noindent{\ifx\@subtitle\PP@undef\relax \else \textrm{\MakeTextUppercase\@subtitle} \fi}
-             
-            \vspace{5mm}
-            
-            \noindent\hbox{\PP@Cid}\par
-            \noindent\hbox{\number\year}%
-            \vspace{5mm}
+            %---------------------------------------------------
+            % Fundo parte de baixo
+            %---------------------------------------------------
+            \setbox\PP@tmpbox=\vbox{%
+                        \leftskip0pt plus1fil
+                        \rightskip0pt plus1fil
+                        \hyphenpenalty 1\relax
+                            \begin{figure}[H]
+                            \centering\includegraphics[width=\textwidth]{src/fundomestradodoutorado_baixo.png}
+                            \end{figure}%
+                    }%
+                    \PP@tmpdim=3.5cm
+                    \advance\PP@tmpdim by-4ex
+                    \advance\PP@tmpdim by-\ht\PP@tmpbox
+                    \advance\PP@tmpdim by-\dp\PP@tmpbox
+                    \box\PP@tmpbox\par\nointerlineskip
+                    \kern\PP@tmpdim\par
 
         \end{center}
         }
-        \vspace{1.8mm}
-        \vfill
-
-        %---------------------------------------------------
-        % Fundo parte de baixo
-        %---------------------------------------------------
-        \begin{figure}[H]
-        \centering\includegraphics[width=\textwidth]{src/fundomestradodoutorado_baixo.png}
-        \end{figure}%
 
     \end{titlepage}%
     {\newpage}%
