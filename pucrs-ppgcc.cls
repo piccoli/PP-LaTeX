@@ -120,9 +120,10 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 % Para usuários do LyX.
 %----------------------------------------------------------------------------------
 \newcommand{\LyXTType}[1]{\lowercase{\edef\t{\expandafter\csname#1\endcsname}}\tipotrabalho{\t}}
+\newcommand{\LyXVersaoVolume}[1]{\lowercase{\edef\stv{\expandafter\csname#1\endcsname}}\versaovolume{\stv}}
 \newcommand{\LyXDegree}[1]{\lowercase{\edef\g{\expandafter\csname#1\endcsname}}\grau{\g}}
-\newcommand{\LyXGenderOri}[1]{\lowercase{\edef\g{\expandafter\csname#1\endcsname}}\generoori{\go}}
-\newcommand{\LyXGenderCoori}[1]{\lowercase{\edef\g{\expandafter\csname#1\endcsname}}\generocoori{\gcoo}}
+\newcommand{\LyXGenderOri}[1]{\lowercase{\edef\go{\expandafter\csname#1\endcsname}}\generoori{\go}}
+\newcommand{\LyXGenderCoori}[1]{\lowercase{\edef\gcoo{\expandafter\csname#1\endcsname}}\generocoori{\gcoo}}
 %----------------------------------------------------------------------------------
 % Seleciona o idioma o mais cedo possível.
 %
@@ -184,12 +185,14 @@ e-mail <rfbpiccoli at gmail dot com>^^J
 \edef\PP@undef{not defined}
 \newcommand*{\monografia}{Monografia}
 \let\PP@grau=\PP@undef
+\let\PP@versaovolume=\PP@undef
 \let\PP@tipo=\monografia
 \newcommand*{\tipotrabalho}[1]{\global\let\PP@tipo=#1
   \ifx#1\ptese\grau{\doutor}\else
   \ifx#1\tese\grau{\doutor}\else
   \ifx#1\dissertacao\grau{\mestre}\fi\fi\fi}
 \newcommand*{\grau}[1]{\global\let\PP@grau=#1}
+\newcommand*{\versaovolume}[1]{\global\let\PP@versaovolume=#1}
 \newcommand*{\PP@Cid}{Porto~Alegre}
 
 \let\PP@generoori=\PP@undef
@@ -275,6 +278,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \newcommand*{\prof}{Prof.}
     \newcommand*{\profa}{Prof\textsuperscript{a}.}
     \newcommand*{\bacharela}{Bacharela}
+    \newcommand*{\final}{final}
+    \newcommand*{\banca}{banca}
     \newcommand*{\PP@orientadorname}{Orientad\ifx\PP@generoori\orientador or\else ora\fi{}}
     \newcommand*{\PP@coorientadorname}{Orientad\ifx\PP@generocoori\coorientador or\else ora\fi{}}
     \newcommand*{\PP@descricaotermo}{%
@@ -350,6 +355,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \renewcommand*{\bacharela}{Bachelor}
     \renewcommand*{\prof}{Prof.}
     \renewcommand*{\profa}{Prof.}
+    \renewcommand*{\final}{final}
+    \renewcommand*{\banca}{banca}
     \renewcommand*{\PP@orientadorname}{Advisor}
     \renewcommand*{\PP@coorientadorname}{Advisor}
     \renewcommand*{\PP@descricaotermo}{%
@@ -571,6 +578,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     %\global\let\PP@grau\@empty
     \global\let\tipotrabalho\relax
     \global\let\grau\relax
+    \global\let\versaovolume\relax
     %\global\let\orientador\relax
     %\global\let\coorientador\relax
     \global\let\fichacatalografica\relax
@@ -955,6 +963,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \global\let\PP@avaliadortresinst\@empty
     \global\let\PP@avaliadorquatroinst\@empty
     \global\let\PP@grau\@empty
+    \global\let\PP@versaovolume\@empty
     \global\let\orientador\relax
     \global\let\coorientador\relax
     \newpage%
@@ -1012,7 +1021,6 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \end{pretextual}%
     \global\let\PP@dedicatorianame\@empty
 }
-
 %----------------------------------------------------------------------------------
 % Epígrafe (interno, só formata o pensamento na página atual)
 %
@@ -1764,11 +1772,15 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     % precisamos corrigir para 2.
     \if@twoside\else\setcounter{page}\tw@\fi
     \onehalfspacing
-    \ifx\PP@tipo\tese\fillers\else
-    \ifx\PP@tipo\dissertacao\fillers\fi\fi
+    
+    \ifx\PP@versaovolume\final
+        \ifx\PP@tipo\tese\fillers\else
+        \ifx\PP@tipo\dissertacao\fillers\fi\fi\fi
+    
     \global\let\PP@tipo\@empty
     \global\let\PP@fichaname\@empty
     \global\let\PP@termoname\@empty
+    \global\let\PP@versaovolume\@empty
 }
 
 \endinput

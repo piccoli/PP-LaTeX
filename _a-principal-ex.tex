@@ -44,6 +44,7 @@
 %\RequirePackage{array}[2008/09/09]
 %\RequirePackage{longtable}
 %----------------------------------------------------------------
+\usepackage{bera}
 % Para inserção de figuras.
 \usepackage{graphicx}
 % Utilize a opção 'pdftex' se você estiver usando o pdflatex (que
@@ -69,12 +70,12 @@
 % Utilizar o pacote 'natbib', SOMENTE se fizer uso do estilo APALIKE:
 %\usepackage{natbib}
 
-%----------------------------------------------------------------
+%================================================================
 % Autor (OBRIGATÓRIO)
 %----------------------------------------------------------------
 \author{Discente da Silva}
 
-%----------------------------------------------------------------
+%================================================================
 % Título (OBRIGATÓRIO). Devem ser passados DOIS parâmetros,
 % o título em português E o inglês, não importando o idioma
 % escolhido. Os títulos são utilizados para a montagem da capa,
@@ -83,7 +84,7 @@
 \title{Seu título em português aqui}
       {Your title in english here}
       
-%----------------------------------------------------------------
+%================================================================
 % Subtítulo (OPCIONAL). Devem ser passados DOIS parâmetros,
 % o subtítulo em português E o em inglês, não importando o idioma
 % escolhido. Os títulos são utilizados para a montagem da capa,
@@ -92,19 +93,32 @@
 %----------------------------------------------------------------
 %\subtitle{Seu SUBTÍTULO em português aqui}
 %         {Your SUBTITLE in english here}
-         
-%----------------------------------------------------------------
+
+%================================================================
 % Opções para o tipo de trabalho (OBRIGATÓRIO)
 % Quando for "Dissertação OU Tese", descomentar a linha no final 
 % deste documento que consta o "\replacecontracapa".
 %----------------------------------------------------------------
 %\tipotrabalho{\monografia}  % Monografias em geral (e de "bônus": TCCs)
-\tipotrabalho{\pep}         % Plano de estudo e pesquisa (Research plan)
-%\tipotrabalho{\dissertacao} % Dissertação (Master Thesis)
+%\tipotrabalho{\pep}         % Plano de estudo e pesquisa (Research plan)
+\tipotrabalho{\dissertacao} % Dissertação (Master Thesis)
 %\tipotrabalho{\ptese}       % Proposta de tese (Doctoral Thesis proposal)
 %\tipotrabalho{\tese}        % Tese (Doctoral Thesis)
 
+%Template para Seminário de Andamento: https://github.com/ppgcc/SA-LaTeX
+
+%================================================================
+% Status Volume (OBRIGATÓRIO quando "\dissertacao" OU "\tese"):
+% Caso seja Dissertação ou Tese e o volume seja apenas para enviar 
+% à banca avaliadora, deixe "\versaovolume{\banca}". Desta forma, o 
+% volume NÃO apresentará a Ficha Catalográfica e nem o Termo de 
+% Apresentação. Mas se caso seja a versão final para Homologação, 
+% deixe: \versaovolume{\final}
 %----------------------------------------------------------------
+%\versaovolume{\banca}         % Avaliação Banca
+\versaovolume{\final}  % Volume Final para Homologação e Publicação
+
+%================================================================
 % Seleção do curso ("este trabalho é um requisito parcial para
 % obtenção do grau de (mestre(a) ou doutor(a)) em Ciência da Computação").
 % Necessário somente para o tipo 'monografia'.
@@ -116,7 +130,7 @@
 %\grau{\doutora}
 %\grau{\doutor}
 
-%----------------------------------------------------------------
+%================================================================
 % Informar o gênero do Orientador(a) e Co-orientador(a) 
 % Apenas um para cada.
 %----------------------------------------------------------------
@@ -125,20 +139,22 @@
 %\generocoori{\coorientador}
 \generocoori{\coorientadora}
 
-%----------------------------------------------------------------
+%================================================================
 % Orientador(a) (e Co-orientador(a), caso haja um/uma). 
 % É OBRIGATÓRIO informar pelo menos o(a) orientador(a).
 % Havendo Co-orientador(a), informar a sua respectiva instituição.
+% NÃO alterar os nomes das tags. Apenas insera os nomes dos professores(as) 
+% dentro dos `{}', indiferente dos gêneros pré-definidos anteriormente.
 %----------------------------------------------------------------
 \orientador{Beltrano(a) Dias}
 \coorientador{Ciclano(a) de Farias}{PPGCC/PUCRS}
 
-% ===============================================================
+%================================================================
 % A Ficha e o Termo de Apresentação são obrigatórios somente na
 % versão final da Dissertação e da Tese 
 % (PEP e Proposta de Tese eles não aparecem!)
 
-%----------------------------------------------------------------
+%================================================================
 % Ficha Catalográfica
 % - Gerar a Ficha no site da Biblioteca Central da PUCRS:
 % https://biblioteca.pucrs.br/apoio-a-pesquisa/ficha-catalografica/
@@ -148,7 +164,7 @@
 %----------------------------------------------------------------
 \fichacatalografica{src/ficha.png}
 
-%----------------------------------------------------------------
+%================================================================
 % Termo de Apresentação
 % Quando o volume estiver em inglês, formato de data em inglês
 % O template está habilitado para ATÉ quatro avaliadores, 
@@ -163,19 +179,19 @@
 %\avaliadortres{Prof. Avaliador(a) TRÊS}{PPGCC/PUCRS}
 %\avaliadorquatro{Prof\textsuperscript{a}. Dr\textsuperscript{a}. Avaliador(a) QUATRO}{PPGCC/PUCRS}
 
-%----------------------------------------------------------------
+%================================================================
 % A capa é inserida automaticamente. Por isso não é necessário
 % chamar \maketitle
 %----------------------------------------------------------------
 \begin{document}
 
+%================================================================
+% Depois da capa vem a dedicatória e a epígrafe. (OPCIONAL):
+% (Aparece quando for Dissertação ou Tese)
 %----------------------------------------------------------------
-% Depois da capa vem a dedicatória e a epígrafe.
-%----------------------------------------------------------------
-\dedicatoria{Dedico este trabalho a meus pais.}
+\dedicatoria{Dedico este trabalho a meus pais.} 
 
-\epigrafe{The art of simplicity is a puzzle of complexity.}
-         {Douglas Horton}
+\epigrafe{The art of simplicity is a puzzle of complexity.}{Douglas Horton}
 
 %----------------------------------------------------------------
 % Também dá para fazer as duas na mesma página:
@@ -184,24 +200,15 @@
 %          {The art of simplicity is a puzzle of complexity.}
 %          {Douglas Horton}
 
-%----------------------------------------------------------------
-% A seguir, a página de agradecimentos (OPCIONAL):
+%================================================================
+% A seguir, a página de AGRADDECIMENTOS (OPCIONAL):
+% Se deixar descomentado, irá aparecer em qualquer momento.
 %----------------------------------------------------------------
 \begin{agradecimentos}
-À lorem ipsum, dolor sit amet consetetur sadipscing elitr sed diam
-nonumy eirmod tempor. invidunt ut labore et dolore magna aliquyam
-
-À erad sed, diam voluptua at vero, eos et accusam et justo duo
-dolores et ea rebum stet clita.
-
-À kasd gubergren, no sea. takimata sanctus est lorem ipsum dolor sit
-amet lorem ipsum dolor sit amet. consetetur sadipscing elitr sed
-
-À diam nonumy, eirmod tempor, invidunt ut labore et dolore magna
-aliquyam erat sed diam voluptua at.
+À lorem ipsum, dolor sit amet consetetur sadipscing elitr sed diam...
 \end{agradecimentos}
 
-%----------------------------------------------------------------
+%================================================================
 % Resumo, com as palavras-chave passadas por parâmetro
 % (OBRIGATÓRIO, ao menos para teses e dissertações)
 %----------------------------------------------------------------
@@ -216,7 +223,7 @@ nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
 erat sed diam voluptua at.
 \end{resumo}
 
-%----------------------------------------------------------------
+%================================================================
 % Abstract, com as palavras-chave passadas por parâmetro
 % (OBRIGATÓRIO, ao menos para teses e dissertações)
 %----------------------------------------------------------------
@@ -231,7 +238,7 @@ nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
 erat sed diam voluptua at
 \end{abstract}
 
-%----------------------------------------------------------------
+%================================================================
 % Listas e sumário, nessa ordem. Somente o sumário é obrigatório,
 % portanto, comente as outras listas, caso sejam desnecessárias.
 %----------------------------------------------------------------
@@ -243,7 +250,7 @@ erat sed diam voluptua at
 \listofsymbols       % Lista de símbolos     (OPCIONAL)
 \tableofcontents     % Sumário               (OBRIGATÓRIO)
 
-%----------------------------------------------------------------
+%================================================================
 % Aqui começa o desenvolvimento do trabalho. Para uma melhor
 % organização do documento, separe-o em arquivos,
 % um para cada capítulo. Para isso, utilize o comando \include,
@@ -252,7 +259,7 @@ erat sed diam voluptua at
 \include{_b-exemplo-cap1}
 \include{_c-exemplo-cap1}
 
-%----------------------------------------------------------------
+%================================================================
 % Aqui vai a bibliografia. Existem três estilos de citação: use
 % 'ppgcc-alpha' para citações do tipo [Abc+] ou [XYZ] (em ordem
 % alfabética na bibliografia), 'ppgcc-num' para citações
@@ -285,11 +292,11 @@ erat sed diam voluptua at
 % de páginas, como neste exemplo: 
 % ~\citep[10-100]{CORMEMALGORITHMS01}."
 
-%----------------------------------------------------------------
+%================================================================
 % Arquivo que consta as referências (.BIB)
 \bibliography{_d-exemplo-bib}
 
-%----------------------------------------------------------------
+%================================================================
 % Após \appendix, se iniciam os capítulos de Apêndice, com
 % numeração alfabética.
 %----------------------------------------------------------------
@@ -297,7 +304,7 @@ erat sed diam voluptua at
 \chapter{Meu primeiro apêndice}
 \chapter{My second appendix}
 
-%----------------------------------------------------------------
+%================================================================
 % Aqui vão os "capítulos" de anexos. Cada anexo deve
 % ser considerado um capítulo.
 %----------------------------------------------------------------
@@ -305,7 +312,7 @@ erat sed diam voluptua at
 \chapter{Meu primeiro anexo}
 \chapter{My second attachment}
 
-%----------------------------------------------------------------
+%================================================================
 % CONTRA CAPA DA BIBLIOTECA não está sendo inserida ao final do volume 
 % automaticamente quando é Dissertação ou Tese, mas está implementada.
 % Basta apenas descomentar a linha abaixo:
