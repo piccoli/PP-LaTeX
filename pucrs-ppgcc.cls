@@ -1784,6 +1784,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         \ifx\PP@tipo\tese\fillers\else
         \ifx\PP@tipo\dissertacao\fillers\fi\fi\fi
     
+
     %\global\let\PP@tipo\@empty
     \global\let\PP@fichaname\@empty
     \global\let\PP@termoname\@empty
