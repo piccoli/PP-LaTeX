@@ -741,19 +741,19 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         \vsize=\paperheight
         \textwidth=\paperwidth
         \textheight=\paperheight
-        \evensidemargin0pt
+        %\evensidemargin0pt
         \oddsidemargin0pt
         \topmargin0pt
         \headheight0pt
         \headsep0pt
-        \topskip0pt
-        \footskip0pt
-        \columnsep0pt
-        \columnseprule0pt
-        \columnwidth0pt
-        \marginparpush0pt
-        \marginparsep0pt
-        \marginparwidth0pt
+        %\topskip0pt
+        %\footskip0pt
+        %\columnsep0pt
+        %\columnseprule0pt
+        %\columnwidth0pt
+        %\marginparpush0pt
+        %\marginparsep0pt
+        %\marginparwidth0pt
         \global\let\thanks\relax
         \global\let\date\relax
         \global\let\@thanks\@empty
@@ -762,7 +762,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         \normalfont\normalsize
         
         \begin{figure}[H]
-        \centering\includegraphics[width=\textwidth]{src/contracapa.png}
+        \centering\includegraphics[width=\textwidth,height=0.999\textheight]{src/contracapa.png}
         \end{figure}%
     
     \end{titlepage}%
@@ -1664,6 +1664,13 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     }}%
 }   
 
+\newcommand{\contracapa}{\par
+    \ifx\PP@tipo\tese\replacecontracapa\else
+    \ifx\PP@tipo\dissertacao\replacecontracapa\fi\fi
+    
+    \global\let\PP@tipo\@empty
+}
+
 \AtEndOfClass{%
     \renewcommand*{\familydefault}{\sfdefault}
     \renewcommand{\chaptername}{}
@@ -1777,7 +1784,8 @@ e-mail <rfbpiccoli at gmail dot com>^^J
         \ifx\PP@tipo\tese\fillers\else
         \ifx\PP@tipo\dissertacao\fillers\fi\fi\fi
     
-    \global\let\PP@tipo\@empty
+
+    %\global\let\PP@tipo\@empty
     \global\let\PP@fichaname\@empty
     \global\let\PP@termoname\@empty
     \global\let\PP@versaovolume\@empty
