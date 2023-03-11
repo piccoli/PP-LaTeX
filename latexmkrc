@@ -4,7 +4,7 @@
 # LaTeX através do latexmk e utilizando a classe pucrs-ppgcc.cls.
 #
 # por Ricardo Piccoli <rfbpiccoli at gmail dot com>.
-@default_files = ( "exemplo" );
+@default_files = ( "_a-principal-ex" );
 
 push @generated_exts, "loa";
 push @generated_exts, "lob";
