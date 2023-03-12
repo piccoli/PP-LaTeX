@@ -29,7 +29,7 @@ function abort() {
    exit 1
 }
 
-readonly FILE="$1"
+readonly FILE="$(basename $1 .tex)"
 readonly CLS="pucrs-ppgcc.cls"
 
 if [[ $# -lt 1 ]]; then
