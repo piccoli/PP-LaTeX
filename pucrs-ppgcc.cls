@@ -362,7 +362,7 @@ e-mail <rfbpiccoli at gmail dot com>^^J
     \renewcommand*{\PP@descricaotermo}{%
         This \PP@tipo{} has been submitted in partial fulfillment of 
         the requirements for the degree of \PP@grau{} in Computer 
-        Science, of the \PP@Dep{}, 
+        Science of the \PP@Dep{}, 
         \PP@Fac{} of the \PP@Uni{}%
     }
     \renewcommand*{\PP@descricao}{%
